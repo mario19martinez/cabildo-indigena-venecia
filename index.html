@@ -313,24 +313,28 @@
             <tbody role="rowgroup" id="solicitudes-cuerpo"></tbody>
           </table>
 
-          <p class="aviso">Los selectores no tienen efecto en este bloque: están deshabilitados y no guardan cambios ni actualizan la tabla. El cambio de estado se habilitará en el Bloque 3. No hay edición ni eliminación de solicitudes.</p>
+          <p class="aviso">El selector propone un nuevo estado; el cambio se aplica solo al confirmar. No hay edición ni eliminación de solicitudes.</p>
           <p>Estados disponibles: pendiente, en revisión, aprobada, rechazada y completada. No se definen transiciones obligatorias entre ellos.</p>
         </section>
 
         <section class="tarjeta" id="solicitudes-confirmacion" aria-labelledby="solicitudes-titulo-confirmacion" hidden>
-          <h2 class="tarjeta__titulo" id="solicitudes-titulo-confirmacion">Confirmación del cambio de estado</h2>
-          <p>¿Confirma cambiar el estado de la solicitud «Solicitud de certificado de residencia» de «Pendiente» a «En revisión»?</p>
-          <p class="mensaje-exito" role="status">Estado actualizado.</p>
+          <h2 class="tarjeta__titulo" id="solicitudes-titulo-confirmacion" tabindex="-1">Confirmación del cambio de estado</h2>
+          <p id="solicitudes-confirmacion-pregunta">¿Confirma cambiar el estado de la solicitud?</p>
+          <p class="mensaje-exito" id="solicitudes-confirmacion-exito" role="status" tabindex="-1" hidden>Estado actualizado.</p>
           <dl class="resumen">
             <div class="resumen__fila">
               <dt>Estado anterior</dt>
-              <dd><span class="etiqueta-estado etiqueta-estado--pendiente">Pendiente</span></dd>
+              <dd id="solicitudes-confirmacion-anterior"></dd>
             </div>
             <div class="resumen__fila">
               <dt>Estado actualizado</dt>
-              <dd><span class="etiqueta-estado etiqueta-estado--en-revision">En revisión</span></dd>
+              <dd id="solicitudes-confirmacion-nueva"></dd>
             </div>
           </dl>
+          <div class="acciones" id="solicitudes-confirmacion-acciones">
+            <button class="boton-principal" id="solicitudes-confirmar" type="button">Confirmar</button>
+            <button class="boton-secundario" id="solicitudes-cancelar" type="button">Cancelar</button>
+          </div>
         </section>
 
         <section class="tarjeta" id="solicitudes-vacio" aria-labelledby="solicitudes-titulo-vacio" hidden>

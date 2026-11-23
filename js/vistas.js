@@ -1,12 +1,13 @@
 /* =========================================================
-   Renderizado de solo lectura de la interfaz.
-   Evidencia GA6-220501096 (AA3 + AA4) — Etapa 2, Bloque 1.
+   Renderizado de las vistas y confirmación en línea.
+   Evidencia GA6-220501096 (AA3 + AA4) — Etapa 2.
 
    Pinta las listas y tablas desde Estado.datos, filtra los datos
    propios por la sesión activa, alterna los estados vacíos y
    actualiza el botón de cierre, la tarjeta del rol y los avisos.
-   No valida credenciales ni navega: eso corresponde a
-   js/sesion.js y js/navegacion.js.
+   También muestra la confirmación del cambio de estado de una
+   solicitud (HU-09 / RF-12). No valida credenciales ni navega:
+   eso corresponde a js/sesion.js y js/navegacion.js.
    ========================================================= */
 
 window.Vistas = (function () {
@@ -163,15 +164,18 @@ window.Vistas = (function () {
     return fila;
   }
 
-  function crearSelect(id, etiqueta, valores, seleccionado, bloque) {
+  function crearSelect(id, etiqueta, valores, seleccionado, bloque, deshabilitado) {
     var campo = crearElemento('div', 'campo');
     var label = crearElemento('label', 'campo__etiqueta', 'Nuevo ' + etiqueta);
     var select = crearElemento('select', 'campo__control');
 
     label.htmlFor = id;
     select.id = id;
-    select.disabled = true;
-    select.setAttribute('data-pendiente', bloque);
+    select.disabled = deshabilitado === true;
+
+    if (bloque) {
+      select.setAttribute('data-pendiente', bloque);
+    }
 
     valores.forEach(function (valor) {
       var opcion = document.createElement('option');
@@ -190,14 +194,25 @@ window.Vistas = (function () {
     var valores = ESTADOS_SOLICITUD.map(function (estado) {
       return { valor: estado, texto: etiquetaEstado(estado) };
     });
-
-    return crearSelect(
+    var campo = crearSelect(
       'solicitudes-estado-' + solicitud.id,
       'estado',
       valores,
       solicitud.estado,
-      'bloque-3'
+      null,
+      false
     );
+    var select = campo.querySelector('select');
+
+    if (select) {
+      select.setAttribute('data-solicitud', solicitud.id);
+      select.setAttribute(
+        'aria-label',
+        'Nuevo estado de la solicitud ' + solicitud.tipo
+      );
+    }
+
+    return campo;
   }
 
   function crearSelectorRol(cuenta) {
@@ -210,7 +225,8 @@ window.Vistas = (function () {
       'rol',
       valores,
       cuenta.rol,
-      'bloque-3'
+      'bloque-3',
+      true
     );
   }
 
@@ -357,6 +373,72 @@ window.Vistas = (function () {
 
     if (estado) {
       limpiar(estado);
+    }
+
+    panel.hidden = true;
+  }
+
+  /* HU-09 / RF-12: confirmación en línea del cambio de estado.
+     El panel se llena desde la solicitud y los estados reales; no
+     reutiliza el texto fijo de la maqueta. */
+  function mostrarConfirmacionEstado(solicitud, anterior, nuevo, aplicado) {
+    var panel = porId('solicitudes-confirmacion');
+    var titulo = porId('solicitudes-titulo-confirmacion');
+    var pregunta = porId('solicitudes-confirmacion-pregunta');
+    var exito = porId('solicitudes-confirmacion-exito');
+    var nodoAnterior = porId('solicitudes-confirmacion-anterior');
+    var nodoNuevo = porId('solicitudes-confirmacion-nueva');
+    var acciones = porId('solicitudes-confirmacion-acciones');
+
+    if (!panel || !pregunta || !nodoAnterior || !nodoNuevo) {
+      return;
+    }
+
+    pregunta.textContent = '¿Confirma cambiar el estado de la solicitud «' +
+      solicitud.tipo + '» de ' +
+      window.Estado.nombreComunero(solicitud.idComunero) +
+      ' de «' + etiquetaEstado(anterior) + '» a «' +
+      etiquetaEstado(nuevo) + '»?';
+
+    limpiar(nodoAnterior);
+    limpiar(nodoNuevo);
+    nodoAnterior.appendChild(crearEtiquetaEstado(anterior));
+    nodoNuevo.appendChild(crearEtiquetaEstado(nuevo));
+
+    if (exito) {
+      exito.hidden = aplicado !== true;
+      exito.textContent = aplicado === true ? 'Estado actualizado.' : '';
+    }
+
+    if (acciones) {
+      acciones.hidden = aplicado === true;
+    }
+
+    panel.hidden = false;
+
+    if (aplicado === true && exito) {
+      exito.focus();
+    } else if (titulo) {
+      titulo.focus();
+    }
+  }
+
+  function limpiarConfirmacionEstado() {
+    var panel = porId('solicitudes-confirmacion');
+    var exito = porId('solicitudes-confirmacion-exito');
+    var acciones = porId('solicitudes-confirmacion-acciones');
+
+    if (!panel) {
+      return;
+    }
+
+    if (exito) {
+      exito.hidden = true;
+      exito.textContent = '';
+    }
+
+    if (acciones) {
+      acciones.hidden = false;
     }
 
     panel.hidden = true;
@@ -622,6 +704,8 @@ window.Vistas = (function () {
       renderAvisoRuta();
     },
     mostrarConfirmacionSolicitud: mostrarConfirmacionSolicitud,
-    limpiarConfirmacionSolicitud: limpiarConfirmacionSolicitud
+    limpiarConfirmacionSolicitud: limpiarConfirmacionSolicitud,
+    mostrarConfirmacionEstado: mostrarConfirmacionEstado,
+    limpiarConfirmacionEstado: limpiarConfirmacionEstado
   };
 })();

@@ -301,7 +301,7 @@ Los patrones se aplican dentro de una sola página: comparten el encabezado, el 
 - **Botón deshabilitado:** no se agrega como estado general; solo el botón de registro de solicitud se deshabilita temporalmente después de un alta correcta para evitar un segundo envío (DP-06).
 - **Creación de cuentas por el Administrador:** sigue pendiente (P-07) y no se representa.
 - **Componentes de familias, actas, etiquetas, perfil o noticias administrativas:** no están aprobados (P-01 a P-13) y no se crean.
-- **Sesión en memoria y validaciones funcionales:** el Bloque 1 implementó la sesión y el control de acceso; el Bloque 2, la validación y el alta de solicitudes. El cambio de estado, el censo, las cuentas y el cambio de rol corresponden a los Bloques 3 y 4.
+- **Sesión en memoria y validaciones funcionales:** el Bloque 1 implementó la sesión y el control de acceso; el Bloque 2, la validación y el alta de solicitudes; el Bloque 3, el cambio de estado de una solicitud (RF-12). El censo, las cuentas y el cambio de rol siguen pendientes.
 - **D-11:** la restricción de acceso directo a la ficha censal se implementará en la Etapa 2; en la Etapa 1 «Continuar» solo demuestra la navegación y advierte que no hay borrador guardado.
 - **D-12:** el Bloque 2 implementó la confirmación del alta dentro de `#/registrar-solicitud`; las confirmaciones de censo y cuentas se implementan en sus bloques.
 - **D-14 y panel de credenciales (P-4):** se documentarán e implementarán en la Etapa 2, no en esta estructura.
@@ -314,3 +314,4 @@ Los patrones se aplican dentro de una sola página: comparten el encabezado, el 
 | 15/11/2026 | Creación del documento con el inventario real de las doce maquetas, la estrategia de dos capas de `styles.css`, la plantilla común y la guía visual. |
 | 15/11/2026 | Etapa 1: se documenta la aplicación de una sola página (`index.html`), la tabla de rutas de `js/rutas.js`, el enrutador de `js/navegacion.js`, el menú provisional de doce rutas, el salto al contenido interceptado, el foco del `h1`, la regla `[hidden]` y las acciones marcadas con `data-pendiente`. |
 | 19/11/2026 | Bloque 2: el formulario de solicitud registra en memoria (HU-06), muestra la confirmación con resumen y conserva las consultas de solicitudes y certificados; se retira `data-pendiente` de ese botón y se documenta su deshabilitado temporal. |
+| 22/11/2026 | HU-09 / RF-12: el selector de estado de `#/solicitudes` deja de estar deshabilitado; la confirmación en línea reutiliza `.acciones`, `.boton-principal`, `.boton-secundario`, `.resumen` y `.mensaje-exito`, sin componentes nuevos. |
