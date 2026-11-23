@@ -7,13 +7,18 @@
    No usa almacenamiento: al recargar, iniciar() vuelve a crear
    las colecciones desde Datos.crearSemilla().
 
-   Las consultas son de solo lectura. La única escritura sobre los
-   datos es el alta de solicitudes del Bloque 2 (HU-06); las demás
-   operaciones que modifican datos corresponden a bloques posteriores.
+   Las consultas son de solo lectura. Las escrituras sobre los datos
+   son el alta de solicitudes (HU-06) y el cambio de estado de una
+   solicitud (HU-09 / RF-12); las demás operaciones que modifican
+   datos corresponden a bloques posteriores.
    ========================================================= */
 
 window.Estado = (function () {
   'use strict';
+
+  var ESTADOS_SOLICITUD = [
+    'pendiente', 'en-revision', 'aprobada', 'rechazada', 'completada'
+  ];
 
   var API = {
     datos: null,
@@ -133,6 +138,36 @@ window.Estado = (function () {
       API.datos.solicitudes.push(solicitud);
 
       return solicitud;
+    },
+
+    /* HU-09 / RF-12: cambio de estado en memoria.
+       Solo Administrador y Líder. No define transiciones obligatorias:
+       cualquier estado de la lista es válido. */
+    cambiarEstadoSolicitud: function (idSolicitud, nuevoEstado) {
+      var sesion = API.sesion;
+      var solicitud = API.solicitudPorId(idSolicitud);
+      var anterior;
+
+      if (!sesion || (sesion.rol !== 'administrador' && sesion.rol !== 'lider')) {
+        return { ok: false, motivo: 'sin-permiso' };
+      }
+
+      if (!solicitud) {
+        return { ok: false, motivo: 'no-encontrada' };
+      }
+
+      if (ESTADOS_SOLICITUD.indexOf(nuevoEstado) === -1) {
+        return { ok: false, motivo: 'estado-invalido' };
+      }
+
+      if (solicitud.estado === nuevoEstado) {
+        return { ok: false, motivo: 'sin-cambios' };
+      }
+
+      anterior = solicitud.estado;
+      solicitud.estado = nuevoEstado;
+
+      return { ok: true, solicitud: solicitud, anterior: anterior };
     }
   };
 

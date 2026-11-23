@@ -348,7 +348,7 @@ Los catorce RF quedan representados. RF-09 figura en la 4 porque el criterio 6 d
 | Objetivo | Consultar todas las solicitudes y actualizar su estado |
 | Datos | Todas las `solicitudes` con el comunero asociado |
 | Interacciones | Selector de estado por fila; confirmación en línea con «Confirmar» y «Cancelar» (D-06); confirmar aplica el cambio; cancelar no modifica nada |
-| Estados | Tabla · confirmación · vacío · aviso de que el selector no cambia nada por sí solo |
+| Estados | Tabla · confirmación pendiente · cambio aplicado · vacío · aviso de que el selector solo propone el cambio |
 | Accesibilidad | Un `label` con `for` único por selector; confirmación con `role="status"`; foco al panel de confirmación |
 | Dependencias | Vistas 3, 4 y 5; el cambio se refleja en la 5 |
 | Verificación | Cambiar el estado de una solicitud de Ana e ingresar como Ana para verlo |
@@ -714,3 +714,4 @@ Cubre RF-04, RF-08, RF-09, RF-12 y RF-02 en una sola sesión, sin recargar.
 |---|---|
 | 15/11/2026 | Creación del documento en la Etapa 0: mapa de las doce vistas, fichas, semilla en memoria, sesión simulada, decisiones D-01 a D-13 y verificaciones. Sin cambios en `docs/historias.md` ni en `docs/requisitos.md`. |
 | 16/11/2026 | Etapa 2, Bloque 1: se registra D-14 (sesión activa en `#/iniciar-sesion` → `#/inicio` con aviso), se corrige §8.3 y §8.4, se deja constancia de que P-07 sigue pendiente, se documenta PE-12 sobre la conservación de maquetas y se anota la limitación temporal `fichas: []` que se resolverá en el Bloque 4. La guarda provisional de `#/ficha-censal` se identifica como temporal y no como D-11. Se corrige en la ficha 6.3 la referencia al cierre de sesión, que se realiza desde el botón del encabezado (PE-08). |
+| 22/11/2026 | HU-09 / RF-12: el cambio de estado de una solicitud se habilita con confirmación en línea. El selector solo propone el cambio; la escritura ocurre al confirmar y se refleja en la consulta del miembro. Se actualiza la ficha 6.7. |

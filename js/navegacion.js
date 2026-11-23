@@ -4,9 +4,9 @@
 
    El enrutador resuelve el hash, aplica las guardas de sesión y
    rol, reconstruye el menú del rol activo y actualiza título,
-   foco y aviso de redirección. El ingreso y el cierre de sesión
-   se enlazan aquí porque en este bloque el acceso es el único
-   formulario funcional; los demás siguen inertes.
+   foco y aviso de redirección. El ingreso, el cierre de sesión, el
+   registro de solicitudes y el cambio de estado de una solicitud
+   se enlazan aquí; los demás formularios siguen inertes.
 
    Reglas:
    - Ruta vacía o desconocida → #/noticias.
@@ -14,6 +14,7 @@
    - D-02: sin sesión, ruta privada → #/iniciar-sesion + aviso;
      rol sin permiso → #/inicio + aviso.
    - #/ficha-censal queda reservada para el Bloque 4.
+   - HU-09: el cambio de estado se confirma en línea antes de escribir.
    - La carga inicial no mueve el foco; los cambios de vista sí.
    - Ningún formulario se envía ni recarga la página.
    ========================================================= */
@@ -24,6 +25,7 @@
   var RUTAS = window.RUTAS || [];
   var RUTA_INICIAL = window.RUTA_INICIAL || (RUTAS[0] ? RUTAS[0].clave : '');
   var claveActiva = null;
+  var cambioEstadoPendiente = null;
 
   function porId(id) {
     return document.getElementById(id);
@@ -181,6 +183,10 @@
 
     if (clave === 'registrar-solicitud') {
       prepararVistaRegistro();
+    }
+
+    if (clave === 'solicitudes') {
+      prepararVistaSolicitudes();
     }
 
     if (enfocar) {
@@ -462,6 +468,121 @@
     }
   }
 
+  /* HU-09 / RF-12: cambio de estado con confirmación en línea. */
+  function prepararVistaSolicitudes() {
+    cambioEstadoPendiente = null;
+    window.Vistas.limpiarConfirmacionEstado();
+  }
+
+  function alCambiarEstadoSolicitud(evento) {
+    var select = evento.target;
+    var solicitud;
+    var estadoAnterior;
+
+    if (!select || select.tagName !== 'SELECT') {
+      return;
+    }
+
+    if (select.id.indexOf('solicitudes-estado-') !== 0) {
+      return;
+    }
+
+    solicitud = window.Estado.solicitudPorId(
+      select.getAttribute('data-solicitud')
+    );
+
+    if (!solicitud) {
+      return;
+    }
+
+    estadoAnterior = solicitud.estado;
+
+    if (select.value === estadoAnterior) {
+      cambioEstadoPendiente = null;
+      window.Vistas.limpiarConfirmacionEstado();
+      return;
+    }
+
+    cambioEstadoPendiente = {
+      idSolicitud: solicitud.id,
+      estadoAnterior: estadoAnterior,
+      estadoNuevo: select.value
+    };
+
+    window.Vistas.mostrarConfirmacionEstado(
+      solicitud,
+      estadoAnterior,
+      select.value,
+      false
+    );
+  }
+
+  function confirmarCambioEstado() {
+    var pendiente = cambioEstadoPendiente;
+    var resultado;
+
+    if (!pendiente) {
+      return;
+    }
+
+    resultado = window.Estado.cambiarEstadoSolicitud(
+      pendiente.idSolicitud,
+      pendiente.estadoNuevo
+    );
+
+    cambioEstadoPendiente = null;
+    window.Vistas.actualizar();
+
+    if (!resultado.ok) {
+      window.Vistas.limpiarConfirmacionEstado();
+      return;
+    }
+
+    window.Vistas.mostrarConfirmacionEstado(
+      resultado.solicitud,
+      resultado.anterior,
+      resultado.solicitud.estado,
+      true
+    );
+  }
+
+  function cancelarCambioEstado() {
+    var pendiente = cambioEstadoPendiente;
+    var select;
+
+    cambioEstadoPendiente = null;
+    window.Vistas.limpiarConfirmacionEstado();
+
+    if (!pendiente) {
+      return;
+    }
+
+    select = porId('solicitudes-estado-' + pendiente.idSolicitud);
+
+    if (select) {
+      select.value = pendiente.estadoAnterior;
+      select.focus();
+    }
+  }
+
+  function enlazarCambioEstadoSolicitudes() {
+    var cuerpo = porId('solicitudes-cuerpo');
+    var confirmar = porId('solicitudes-confirmar');
+    var cancelar = porId('solicitudes-cancelar');
+
+    if (cuerpo) {
+      cuerpo.addEventListener('change', alCambiarEstadoSolicitud);
+    }
+
+    if (confirmar) {
+      confirmar.addEventListener('click', confirmarCambioEstado);
+    }
+
+    if (cancelar) {
+      cancelar.addEventListener('click', cancelarCambioEstado);
+    }
+  }
+
   function enlazarCierre() {
     var boton = porId('cerrar-sesion');
 
@@ -506,6 +627,7 @@
     enlazarAcceso();
     enlazarCierre();
     enlazarRegistroSolicitud();
+    enlazarCambioEstadoSolicitudes();
     prepararSaltoContenido();
     evitarEnvioDeFormularios();
     prepararCargaInicial();
