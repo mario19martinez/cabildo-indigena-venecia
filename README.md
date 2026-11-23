@@ -4,7 +4,7 @@ Repositorio: <https://github.com/mario19martinez/cabildo-indigena-venecia>
 
 ## Descripción
 
-Prototipo académico de interfaz web para la gestión del Cabildo Indígena de Venecia, desarrollado como evidencia integradora del SENA: **GA6-220501096 (AA3 + AA4)** y **GA7-220501096-AA1-EV02**.
+Prototipo académico de interfaz web para la gestión del Cabildo Indígena de Venecia, desarrollado como evidencia integradora del SENA: **GA6-220501096 (AA3 + AA4)** y **GA7-220501096-AA1 (EV02, EV04 y EV05)**.
 
 La plataforma contempla tres roles: **Administrador**, **Líder** y **Miembro**. Las pantallas se derivan exclusivamente de las historias de usuario y los requisitos funcionales aprobados en `docs/historias.md` y `docs/requisitos.md`; no existen módulos ni funcionalidades fuera de ese alcance.
 
@@ -35,6 +35,8 @@ plantilla.html      Plantilla de referencia del armazón (no es una vista)
 componentes.html    Catálogo de componentes y estados (no es una vista)
 docs/               Documentación de análisis, diseño e interfaces
 ```
+
+El material de referencia del SENA (`Referencias/`) no se versiona; se conserva únicamente en el entorno local.
 
 ## Instalación
 
