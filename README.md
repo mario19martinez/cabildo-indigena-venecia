@@ -1,5 +1,7 @@
 # Plataforma de Gestión — Cabildo Indígena de Venecia
 
+Repositorio: <https://github.com/mario19martinez/cabildo-indigena-venecia>
+
 ## Descripción
 
 Prototipo académico de interfaz web para la gestión del Cabildo Indígena de Venecia, desarrollado como evidencia integradora del SENA: **GA6-220501096 (AA3 + AA4)** y **GA7-220501096-AA1-EV02**.
@@ -38,8 +40,8 @@ docs/               Documentación de análisis, diseño e interfaces
 
 No hay dependencias, paquetes ni proceso de compilación: el proyecto no usa `npm`, ni bundlers, ni frameworks, y no incluye `package.json`.
 
-1. Descargue o clone el repositorio en una carpeta local. Mientras el repositorio remoto no esté publicado, utilice la carpeta del proyecto tal como se entrega.
-2. Verifique que la carpeta conserve la estructura anterior; `index.html`, `styles.css` y `js/` deben quedar en la raíz.
+1. Clone el repositorio público con `git clone https://github.com/mario19martinez/cabildo-indigena-venecia.git` o descargue el ZIP desde la página del repositorio.
+2. Verifique que la estructura coincida con la anterior; `index.html`, `styles.css` y `js/` deben quedar en la raíz.
 
 No se requiere instalar nada más ni ejecutar comandos adicionales.
 
