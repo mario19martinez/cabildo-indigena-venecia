@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Noticias del Cabildo — Maqueta AA3-EV02</title>
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body class="baja-fidelidad">
+  <a class="salto-contenido" href="#contenido">Saltar al contenido</a>
+
+  <header class="encabezado-sitio">
+    <div class="contenedor encabezado-sitio__interior">
+      <div class="identidad-sitio">
+        <p class="nombre-sitio">Cabildo Indígena de Venecia</p>
+        <p class="sello-mockup">Maqueta de baja fidelidad · AA3-EV02</p>
+      </div>
+      <nav class="menu-principal" aria-label="Navegación principal">
+        <ul class="menu-principal__lista">
+          <li><a class="menu-principal__enlace" href="index.html" aria-current="page">Noticias</a></li>
+          <li><a class="menu-principal__enlace" href="iniciar-sesion.html">Iniciar sesión</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="contenido" class="contenido-principal">
+    <div class="contenedor">
+      <h1 class="titulo-pantalla">Noticias del Cabildo</h1>
+      <p class="trazabilidad">HU-05 · RF-07</p>
+
+      <p>Listado público de noticias del Cabildo Indígena de Venecia. Se consulta sin iniciar sesión y no ofrece vista de detalle individual.</p>
+
+      <section class="tarjeta" aria-labelledby="titulo-noticias">
+        <h2 class="tarjeta__titulo" id="titulo-noticias">Noticias publicadas</h2>
+        <ul class="lista-noticias">
+          <li class="noticia">
+            <article>
+              <h3 class="noticia__titulo">Asamblea general del Cabildo</h3>
+              <p class="noticia__fecha"><time datetime="2026-10-12">12 de octubre de 2026</time></p>
+            </article>
+          </li>
+          <li class="noticia">
+            <article>
+              <h3 class="noticia__titulo">Jornada de salud en la vereda Venecia</h3>
+              <p class="noticia__fecha"><time datetime="2026-09-03">3 de septiembre de 2026</time></p>
+            </article>
+          </li>
+          <li class="noticia">
+            <article>
+              <h3 class="noticia__titulo">Convocatoria a minga comunitaria</h3>
+              <p class="noticia__fecha"><time datetime="2026-08-21">21 de agosto de 2026</time></p>
+            </article>
+          </li>
+        </ul>
+      </section>
+
+      <section class="ejemplo-visual" aria-labelledby="titulo-vacio">
+        <p class="etiqueta-ejemplo">Ejemplo visual · no es un estado activo</p>
+        <h2 class="tarjeta__titulo" id="titulo-vacio">Estado vacío del listado</h2>
+        <p>Variante de esta misma pantalla: sustituye al listado cuando no existen noticias publicadas. No se presenta al mismo tiempo que las noticias.</p>
+        <div class="estado-vacio">
+          <p>No hay noticias publicadas.</p>
+        </div>
+      </section>
+
+      <p class="aviso">Los títulos y las fechas son datos exclusivamente demostrativos, creados para esta maqueta. Las noticias no tienen detalle individual ni acciones asociadas.</p>
+    </div>
+  </main>
+
+  <aside class="ficha-mockup" aria-labelledby="ficha-titulo">
+    <div class="contenedor">
+      <h2 class="ficha-mockup__titulo" id="ficha-titulo">Ficha de la pantalla · documentación, no forma parte de la interfaz</h2>
+      <dl class="ficha-mockup__lista">
+        <div class="ficha-mockup__fila">
+          <dt>Nombre</dt>
+          <dd>Noticias públicas — <code>prototipo/index.html</code></dd>
+        </div>
+        <div class="ficha-mockup__fila">
+          <dt>Historias de usuario</dt>
+          <dd>HU-05</dd>
+        </div>
+        <div class="ficha-mockup__fila">
+          <dt>Requisitos funcionales</dt>
+          <dd>RF-07 (con las restricciones R-05 y R-02)</dd>
+        </div>
+        <div class="ficha-mockup__fila">
+          <dt>Descripción</dt>
+          <dd>Entrada pública del prototipo. Muestra el listado de noticias con título y fecha, sin detalle individual. Usa encabezado del sitio, menú principal, tarjeta de listado, ejemplo del estado vacío, ficha y pie.</dd>
+        </div>
+        <div class="ficha-mockup__fila">
+          <dt>Usabilidad y accesibilidad</dt>
+          <dd>Un solo <code>h1</code> y jerarquía de encabezados sin saltos; cada noticia es un <code>article</code> con su título y una fecha marcada con <code>time datetime</code>; las noticias no llevan enlaces para no sugerir un detalle inexistente; foco visible de 3 px; una columna a 360 px y sin desplazamiento horizontal.</dd>
+        </div>
+      </dl>
+    </div>
+  </aside>
+
+  <footer class="pie-sitio">
+    <div class="contenedor">
+      <p>Maqueta de baja fidelidad de la evidencia GA6-220501096 (AA3-EV02). Datos ficticios con fines demostrativos.</p>
+      <p>Simulación sin backend, sin base de datos y sin almacenamiento persistente.</p>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Todas las solicitudes — Maqueta AA3-EV02</title>
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body class="baja-fidelidad">
+  <a class="salto-contenido" href="#contenido">Saltar al contenido</a>
+
+  <header class="encabezado-sitio">
+    <div class="contenedor encabezado-sitio__interior">
+      <div class="identidad-sitio">
+        <p class="nombre-sitio">Cabildo Indígena de Venecia</p>
+        <p class="sello-mockup">Maqueta de baja fidelidad · AA3-EV02</p>
+        <p class="etiqueta-rol">Rol representado: Líder</p>
+      </div>
+      <nav class="menu-principal" aria-label="Navegación principal">
+        <ul class="menu-principal__lista">
+          <li><a class="menu-principal__enlace" href="inicio.html">Inicio</a></li>
+          <li><a class="menu-principal__enlace" href="solicitudes.html" aria-current="page">Todas las solicitudes</a></li>
+          <li><a class="menu-principal__enlace" href="comuneros.html">Comuneros</a></li>
+          <li><a class="menu-principal__enlace" href="crear-cuenta.html">Crear cuenta</a></li>
+          <li><a class="menu-principal__enlace" href="index.html">Noticias</a></li>
+          <li><a class="menu-principal__enlace" href="index.html">Cerrar sesión (simulación)</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="contenido" class="contenido-principal">
+    <div class="contenedor">
+      <h1 class="titulo-pantalla">Todas las solicitudes</h1>
+      <p class="trazabilidad">HU-09 · RF-11, RF-12</p>
+
+      <p>Consulta de las solicitudes de todos los comuneros, con comunero, tipo de trámite, fecha, estado y observaciones. El Administrador también puede consultar esta pantalla y cambiar el estado, según HU-09.</p>
+
+      <section class="tarjeta" aria-labelledby="titulo-listado">
+        <h2 class="tarjeta__titulo" id="titulo-listado">Solicitudes registradas</h2>
+
+        <table class="tabla-datos" role="table">
+          <caption class="tabla-datos__leyenda">Datos de ejemplo con fines demostrativos.</caption>
+          <thead role="rowgroup">
+            <tr role="row">
+              <th scope="col" role="columnheader">Comunero</th>
+              <th scope="col" role="columnheader">Trámite y observaciones</th>
+              <th scope="col" role="columnheader">Fecha</th>
+              <th scope="col" role="columnheader">Estado</th>
+              <th scope="col" role="columnheader">Cambiar estado</th>
+            </tr>
+          </thead>
+          <tbody role="rowgroup">
+            <tr role="row">
+              <td role="cell" data-etiqueta="Comunero">Ana Benavides</td>
+              <td role="cell" data-etiqueta="Trámite y observaciones">Solicitud de certificado de residencia<span class="celda-secundaria">Requiere constancia para trámite bancario.</span></td>
+              <td role="cell" data-etiqueta="Fecha"><time datetime="2026-10-02">2 de octubre de 2026</time></td>
+              <td role="cell" data-etiqueta="Estado"><span class="etiqueta-estado etiqueta-estado--pendiente">Pendiente</span></td>
+              <td role="cell" data-etiqueta="Cambiar estado">
+                <div class="campo">
+                  <label class="campo__etiqueta" for="estado-solicitud-1">Nuevo estado</label>
+                  <select class="campo__control" id="estado-solicitud-1">
+                    <option value="pendiente" selected>Pendiente</option>
+                    <option value="en-revision">En revisión</option>
+                    <option value="aprobada">Aprobada</option>
+                    <option value="rechazada">Rechazada</option>
+                    <option value="completada">Completada</option>
+                  </select>
+                </div>
+              </td>
+            </tr>
+            <tr role="row">
+              <td role="cell" data-etiqueta="Comunero">Ana Benavides</td>
+              <td role="cell" data-etiqueta="Trámite y observaciones">Actualización de ficha censal<span class="celda-secundaria">Informó cambio de dirección en la vereda.</span></td>
+              <td role="cell" data-etiqueta="Fecha"><time datetime="2026-09-14">14 de septiembre de 2026</time></td>
+              <td role="cell" data-etiqueta="Estado"><span class="etiqueta-estado etiqueta-estado--en-revision">En revisión</span></td>
+              <td role="cell" data-etiqueta="Cambiar estado">
+                <div class="campo">
+                  <label class="campo__etiqueta" for="estado-solicitud-2">Nuevo estado</label>
+                  <select class="campo__control" id="estado-solicitud-2">
+                    <option value="pendiente">Pendiente</option>
+                    <option value="en-revision" selected>En revisión</option>
+                    <option value="aprobada">Aprobada</option>
+                    <option value="rechazada">Rechazada</option>
+                    <option value="completada">Completada</option>
+                  </select>
+                </div>
+              </td>
+            </tr>
+            <tr role="row">
+              <td role="cell" data-etiqueta="Comunero">Luis Cárdenas</td>
+              <td role="cell" data-etiqueta="Trámite y observaciones">Constancia de pertenencia<span class="celda-secundaria">Sin observaciones adicionales.</span></td>
+              <td role="cell" data-etiqueta="Fecha"><time datetime="2026-08-30">30 de agosto de 2026</time></td>
+              <td role="cell" data-etiqueta="Estado"><span class="etiqueta-estado etiqueta-estado--aprobada">Aprobada</span></td>
+              <td role="cell" data-etiqueta="Cambiar estado">
+                <div class="campo">
+                  <label class="campo__etiqueta" for="estado-solicitud-3">Nuevo estado</label>
+                  <select class="campo__control" id="estado-solicitud-3">
+                    <option value="pendiente">Pendiente</option>
+                    <option value="en-revision">En revisión</option>
+                    <option value="aprobada" selected>Aprobada</option>
+                    <option value="rechazada">Rechazada</option>
+                    <option value="completada">Completada</option>
+                  </select>
+                </div>
+              </td>
+            </tr>
+            <tr role="row">
+              <td role="cell" data-etiqueta="Comunero">Marta Yupanqui</td>
+              <td role="cell" data-etiqueta="Trámite y observaciones">Solicitud de certificado de residencia<span class="celda-secundaria">Documento para matrícula educativa.</span></td>
+              <td role="cell" data-etiqueta="Fecha"><time datetime="2026-07-03">3 de julio de 2026</time></td>
+              <td role="cell" data-etiqueta="Estado"><span class="etiqueta-estado etiqueta-estado--rechazada">Rechazada</span></td>
+              <td role="cell" data-etiqueta="Cambiar estado">
+                <div class="campo">
+                  <label class="campo__etiqueta" for="estado-solicitud-4">Nuevo estado</label>
+                  <select class="campo__control" id="estado-solicitud-4">
+                    <option value="pendiente">Pendiente</option>
+                    <option value="en-revision">En revisión</option>
+                    <option value="aprobada">Aprobada</option>
+                    <option value="rechazada" selected>Rechazada</option>
+                    <option value="completada">Completada</option>
+                  </select>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <p class="aviso">Los selectores son representaciones visuales: no guardan cambios ni actualizan la tabla. No hay edición ni eliminación de solicitudes.</p>
+        <p>Estados disponibles: pendiente, en revisión, aprobada, rechazada y completada. No se definen transiciones obligatorias entre ellos.</p>
+      </section>
+
+      <section class="ejemplo-visual" aria-labelledby="titulo-confirmacion">
+        <p class="etiqueta-ejemplo">Ejemplo visual · no es un estado activo</p>
+        <h2 class="tarjeta__titulo" id="titulo-confirmacion">Confirmación del cambio de estado</h2>
+        <p>Variante de esta misma pantalla: muestra la confirmación que pediría el cambio de estado y el estado resultante de una solicitud.</p>
+        <p>¿Confirma cambiar el estado de la solicitud «Solicitud de certificado de residencia» de «Pendiente» a «En revisión»?</p>
+        <p class="mensaje-exito">Estado actualizado.</p>
+        <dl class="resumen">
+          <div class="resumen__fila">
+            <dt>Estado anterior</dt>
+            <dd><span class="etiqueta-estado etiqueta-estado--pendiente">Pendiente</span></dd>
+          </div>
+          <div class="resumen__fila">
+            <dt>Estado actualizado</dt>
+            <dd><span class="etiqueta-estado etiqueta-estado--en-revision">En revisión</span></dd>
+          </div>
+        </dl>
+        <p>Representación estática: no se guardó ningún cambio en esta maqueta y la consulta del miembro conserva sus propios datos de ejemplo.</p>
+      </section>
+
+      <section class="ejemplo-visual" aria-labelledby="titulo-vacio">
+        <p class="etiqueta-ejemplo">Ejemplo visual · no es un estado activo</p>
+        <h2 class="tarjeta__titulo" id="titulo-vacio">Estado vacío del listado</h2>
+        <p>Variante de esta misma pantalla: sustituye a la tabla cuando no hay solicitudes registradas.</p>
+        <div class="estado-vacio">
+          <p>No hay solicitudes registradas.</p>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <aside class="ficha-mockup" aria-labelledby="ficha-titulo">
+    <div class="contenedor">
+      <h2 class="ficha-mockup__titulo" id="ficha-titulo">Ficha de la pantalla · documentación, no forma parte de la interfaz</h2>
+      <dl class="ficha-mockup__lista">
+        <div class="ficha-mockup__fila">
+          <dt>Nombre</dt>
+          <dd>Todas las solicitudes — <code>prototipo/solicitudes.html</code></dd>
+        </div>
+        <div class="ficha-mockup__fila">
+          <dt>Historias de usuario</dt>
+          <dd>HU-09</dd>
+        </div>
+        <div class="ficha-mockup__fila">
+          <dt>Requisitos funcionales</dt>
+          <dd>RF-11 y RF-12 (con RF-02 como control de acceso, y las restricciones R-02 y R-10)</dd>
+        </div>
+        <div class="ficha-mockup__fila">
+          <dt>Descripción</dt>
+          <dd>Listado de todas las solicitudes con comunero, trámite y observaciones, fecha y estado. Cada fila ofrece un selector con los cinco estados aprobados. La confirmación y el estado resultante se presentan solo como variante estática; no se implementa el cambio ni se afirma que se haya guardado. Incluye el estado vacío.</dd>
+        </div>
+        <div class="ficha-mockup__fila">
+          <dt>Usabilidad y accesibilidad</dt>
+          <dd>Tabla con <code>caption</code>, encabezados <code>th scope="col"</code> y roles explícitos que sostienen la semántica cuando el CSS apila las filas; en celular cada celda muestra su etiqueta con <code>data-etiqueta</code>, sin desplazamiento horizontal; cada selector tiene etiqueta asociada con <code>for</code> e <code>id</code>; el estado se lee por texto y no solo por color o borde; el rol representado se anuncia y el acceso del Administrador se documenta sin duplicar pantallas.</dd>
+        </div>
+      </dl>
+    </div>
+  </aside>
+
+  <footer class="pie-sitio">
+    <div class="contenedor">
+      <p>Maqueta de baja fidelidad de la evidencia GA6-220501096 (AA3-EV02). Datos ficticios con fines demostrativos.</p>
+      <p>Sin sesión funcional ni persistencia: los cambios de estado son solo representaciones visuales y no se conservan al recargar.</p>
+    </div>
+  </footer>
+</body>
+</html>

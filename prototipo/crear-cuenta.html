@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Crear cuenta de acceso — Maqueta AA3-EV02</title>
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body class="baja-fidelidad">
+  <a class="salto-contenido" href="#contenido">Saltar al contenido</a>
+
+  <header class="encabezado-sitio">
+    <div class="contenedor encabezado-sitio__interior">
+      <div class="identidad-sitio">
+        <p class="nombre-sitio">Cabildo Indígena de Venecia</p>
+        <p class="sello-mockup">Maqueta de baja fidelidad · AA3-EV02</p>
+        <p class="etiqueta-rol">Rol representado: Líder</p>
+      </div>
+      <nav class="menu-principal" aria-label="Navegación principal">
+        <ul class="menu-principal__lista">
+          <li><a class="menu-principal__enlace" href="inicio.html">Inicio</a></li>
+          <li><a class="menu-principal__enlace" href="solicitudes.html">Todas las solicitudes</a></li>
+          <li><a class="menu-principal__enlace" href="comuneros.html">Comuneros</a></li>
+          <li><a class="menu-principal__enlace" href="crear-cuenta.html" aria-current="page">Crear cuenta</a></li>
+          <li><a class="menu-principal__enlace" href="index.html">Noticias</a></li>
+          <li><a class="menu-principal__enlace" href="index.html">Cerrar sesión (simulación)</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="contenido" class="contenido-principal">
+    <div class="contenedor contenido-angosto">
+      <h1 class="titulo-pantalla">Crear cuenta de acceso</h1>
+      <p class="trazabilidad">HU-03 · RF-04</p>
+
+      <p>El Líder crea la cuenta de un comunero ya registrado que todavía no tenga una. El rol Miembro se asigna automáticamente y no existe registro público ni recuperación de contraseña.</p>
+
+      <p class="aviso">El rol no se elige: la cuenta se crea siempre como Miembro. Este formulario no valida ni guarda datos.</p>
+
+      <section class="tarjeta" aria-labelledby="form-titulo">
+        <h2 class="tarjeta__titulo" id="form-titulo">Datos de la cuenta</h2>
+        <form class="formulario" novalidate>
+          <div class="campo">
+            <label class="campo__etiqueta" for="comunero-cuenta">Comunero</label>
+            <select class="campo__control" id="comunero-cuenta" aria-describedby="ayuda-comunero">
+              <option value="" selected>Seleccione un comunero</option>
+              <option value="ana-benavides">Ana Benavides · 1.045.223.111</option>
+              <option value="rosa-quispe">Rosa Quispe · 1.063.442.190</option>
+            </select>
+            <p class="campo__ayuda" id="ayuda-comunero">Solo aparecen comuneros registrados que aún no tienen cuenta. Los datos son de ejemplo.</p>
+          </div>
+
+          <div class="campo">
+            <label class="campo__etiqueta" for="correo-cuenta">Correo electrónico</label>
+            <input class="campo__control" id="correo-cuenta" type="email" autocomplete="off" aria-describedby="ayuda-correo">
+            <p class="campo__ayuda" id="ayuda-correo">Debe tener formato de correo y no estar asociado a otra cuenta. Ejemplo: nombre@ejemplo.com.</p>
+          </div>
+
+          <div class="campo">
+            <label class="campo__etiqueta" for="contrasena-cuenta">Contraseña</label>
+            <input class="campo__control" id="contrasena-cuenta" type="password" autocomplete="new-password" aria-describedby="ayuda-contrasena">
+            <p class="campo__ayuda" id="ayuda-contrasena">Credencial ficticia para la maqueta: no se valida ni se almacena.</p>
+          </div>
+
+          <div class="campo">
+            <p class="campo__etiqueta">Rol asignado automáticamente</p>
+            <p><span class="etiqueta-rol">Miembro</span></p>
+            <p class="campo__ayuda">No existe un selector de rol en esta pantalla.</p>
+          </div>
+
+          <p class="aviso">El control siguiente vuelve al inicio: no crea la cuenta ni guarda los datos. La confirmación solo aparece como ejemplo visual más abajo.</p>
+
+          <div class="acciones">
+            <a class="boton-principal" href="inicio.html">Crear cuenta (simulación)</a>
+            <a class="boton-secundario" href="comuneros.html">Volver a comuneros</a>
+          </div>
+        </form>
+      </section>
+
+      <section class="ejemplo-visual" aria-labelledby="titulo-error-formato">
+        <p class="etiqueta-ejemplo">Ejemplo visual · no es un estado activo</p>
+        <h2 class="tarjeta__titulo" id="titulo-error-formato">Correo con formato inválido</h2>
+        <p>Variante de esta misma pantalla: el mensaje aparece junto al campo cuando el correo no tiene formato válido.</p>
+
+        <div class="campo campo--error">
+          <label class="campo__etiqueta" for="correo-formato">Correo electrónico</label>
+          <input class="campo__control" id="correo-formato" type="email" value="ana.cabildo" aria-invalid="true" aria-describedby="error-formato">
+          <p class="mensaje-error" id="error-formato">Ingrese un correo con formato válido, por ejemplo nombre@ejemplo.com.</p>
+        </div>
+      </section>
+
+      <section class="ejemplo-visual" aria-labelledby="titulo-error-repetido">
+        <p class="etiqueta-ejemplo">Ejemplo visual · no es un estado activo</p>
+        <h2 class="tarjeta__titulo" id="titulo-error-repetido">Correo ya registrado</h2>
+        <p>Variante de esta misma pantalla: el mensaje aparece junto al campo cuando el correo ya pertenece a otra cuenta.</p>
+
+        <div class="campo campo--error">
+          <label class="campo__etiqueta" for="correo-repetido">Correo electrónico</label>
+          <input class="campo__control" id="correo-repetido" type="email" value="marta@cabildo.ejemplo" aria-invalid="true" aria-describedby="error-repetido">
+          <p class="mensaje-error" id="error-repetido">Ese correo ya está asociado a otra cuenta.</p>
+        </div>
+      </section>
+
+      <section class="ejemplo-visual" aria-labelledby="titulo-error-comunero">
+        <p class="etiqueta-ejemplo">Ejemplo visual · no es un estado activo</p>
+        <h2 class="tarjeta__titulo" id="titulo-error-comunero">Comunero con cuenta existente</h2>
+        <p>Variante de esta misma pantalla: el mensaje aparece junto al campo cuando el comunero seleccionado ya tiene una cuenta.</p>
+
+        <div class="campo campo--error">
+          <label class="campo__etiqueta" for="comunero-ocupado">Comunero</label>
+          <select class="campo__control" id="comunero-ocupado" aria-invalid="true" aria-describedby="error-comunero">
+            <option value="marta-yupanqui" selected>Marta Yupanqui · 1.012.887.443</option>
+          </select>
+          <p class="mensaje-error" id="error-comunero">Este comunero ya tiene una cuenta de acceso. Seleccione un comunero sin cuenta.</p>
+        </div>
+      </section>
+
+      <section class="ejemplo-visual" aria-labelledby="titulo-confirmacion">
+        <p class="etiqueta-ejemplo">Ejemplo visual · no es un estado activo</p>
+        <h2 class="tarjeta__titulo" id="titulo-confirmacion">Cuenta creada</h2>
+        <p>Variante de esta misma pantalla: representa la confirmación que vería el Líder al completar el formulario. No es el resultado de la navegación.</p>
+        <p class="mensaje-exito">Cuenta creada.</p>
+        <dl class="resumen">
+          <div class="resumen__fila">
+            <dt>Comunero</dt>
+            <dd>Ana Benavides</dd>
+          </div>
+          <div class="resumen__fila">
+            <dt>Correo</dt>
+            <dd>ana@cabildo.ejemplo</dd>
+          </div>
+          <div class="resumen__fila">
+            <dt>Rol</dt>
+            <dd><span class="etiqueta-rol">Miembro</span></dd>
+          </div>
+        </dl>
+        <p>Representación estática: no se creó ninguna cuenta y no se guardó ningún dato.</p>
+      </section>
+
+      <section class="ejemplo-visual" aria-labelledby="titulo-vacio">
+        <p class="etiqueta-ejemplo">Ejemplo visual · no es un estado activo</p>
+        <h2 class="tarjeta__titulo" id="titulo-vacio">Sin comuneros disponibles</h2>
+        <p>Variante de esta misma pantalla: en este caso no se muestra el formulario, porque no hay comuneros registrados a quienes asignar una cuenta.</p>
+        <div class="estado-vacio">
+          <p>No hay comuneros registrados sin cuenta.</p>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <aside class="ficha-mockup" aria-labelledby="ficha-titulo">
+    <div class="contenedor">
+      <h2 class="ficha-mockup__titulo" id="ficha-titulo">Ficha de la pantalla · documentación, no forma parte de la interfaz</h2>
+      <dl class="ficha-mockup__lista">
+        <div class="ficha-mockup__fila">
+          <dt>Nombre</dt>
+          <dd>Crear cuenta de acceso — <code>prototipo/crear-cuenta.html</code></dd>
+        </div>
+        <div class="ficha-mockup__fila">
+          <dt>Historias de usuario</dt>
+          <dd>HU-03 (criterios 1 a 9)</dd>
+        </div>
+        <div class="ficha-mockup__fila">
+          <dt>Requisitos funcionales</dt>
+          <dd>RF-04 (con las restricciones R-01 y R-08)</dd>
+        </div>
+        <div class="ficha-mockup__fila">
+          <dt>Descripción</dt>
+          <dd>Formulario del Líder para crear la cuenta de acceso de un comunero registrado que aún no tiene una: comunero, correo y contraseña, con el rol Miembro asignado automáticamente y sin selector de rol. Incluye las variantes de correo inválido, correo repetido, comunero con cuenta existente, confirmación y ausencia de comuneros disponibles.</dd>
+        </div>
+        <div class="ficha-mockup__fila">
+          <dt>Usabilidad y accesibilidad</dt>
+          <dd>Etiquetas asociadas con <code>for</code> e <code>id</code>; ayudas enlazadas con <code>aria-describedby</code>; los errores van junto al campo con <code>aria-invalid</code>, nunca en ventanas emergentes; el rol asignado se comunica como texto y etiqueta, de modo que no se sugiere una elección inexistente; una sola columna a 360 px dentro de un contenedor de 640 px como máximo; las dos acciones se apilan a 360 px y pasan a fila desde 768 px.</dd>
+        </div>
+        <div class="ficha-mockup__fila">
+          <dt>Nota de alcance</dt>
+          <dd>La creación de cuentas por parte del Administrador sigue pendiente (P-07) y no se representa en esta entrega. No hay autorregistro, recuperación de contraseña ni validación funcional: las variantes de error y la confirmación son representaciones estáticas. El registro del comunero no crea cuenta (R-08); esta pantalla es la que la crea.</dd>
+        </div>
+      </dl>
+    </div>
+  </aside>
+
+  <footer class="pie-sitio">
+    <div class="contenedor">
+      <p>Maqueta de baja fidelidad de la evidencia GA6-220501096 (AA3-EV02). Datos ficticios con fines demostrativos.</p>
+      <p>Sin validación funcional, sin autenticación real, sin backend, sin base de datos y sin almacenamiento persistente.</p>
+    </div>
+  </footer>
+</body>
+</html>

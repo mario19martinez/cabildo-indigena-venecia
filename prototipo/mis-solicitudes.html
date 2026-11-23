@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mis solicitudes — Maqueta AA3-EV02</title>
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body class="baja-fidelidad">
+  <a class="salto-contenido" href="#contenido">Saltar al contenido</a>
+
+  <header class="encabezado-sitio">
+    <div class="contenedor encabezado-sitio__interior">
+      <div class="identidad-sitio">
+        <p class="nombre-sitio">Cabildo Indígena de Venecia</p>
+        <p class="sello-mockup">Maqueta de baja fidelidad · AA3-EV02</p>
+      </div>
+      <nav class="menu-principal" aria-label="Navegación principal">
+        <ul class="menu-principal__lista">
+          <li><a class="menu-principal__enlace" href="inicio.html">Inicio</a></li>
+          <li><a class="menu-principal__enlace" href="registrar-solicitud.html">Registrar solicitud</a></li>
+          <li><a class="menu-principal__enlace" href="mis-solicitudes.html" aria-current="page">Mis solicitudes</a></li>
+          <li><a class="menu-principal__enlace" href="mis-certificados.html">Mis certificados</a></li>
+          <li><a class="menu-principal__enlace" href="index.html">Noticias</a></li>
+          <li><a class="menu-principal__enlace" href="index.html">Cerrar sesión (simulación)</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="contenido" class="contenido-principal">
+    <div class="contenedor">
+      <h1 class="titulo-pantalla">Mis solicitudes</h1>
+      <p class="trazabilidad">HU-07 · RF-09</p>
+
+      <p>Solo las solicitudes del miembro autenticado, con tipo, fecha, estado y observaciones. No hay acciones de edición ni eliminación.</p>
+
+      <section class="tarjeta" aria-labelledby="titulo-listado">
+        <h2 class="tarjeta__titulo" id="titulo-listado">Solicitudes registradas</h2>
+
+        <table class="tabla-datos" role="table">
+          <caption class="tabla-datos__leyenda">Datos de ejemplo con fines demostrativos.</caption>
+          <thead role="rowgroup">
+            <tr role="row">
+              <th scope="col" role="columnheader">Tipo de trámite</th>
+              <th scope="col" role="columnheader">Fecha</th>
+              <th scope="col" role="columnheader">Estado</th>
+              <th scope="col" role="columnheader">Observaciones</th>
+            </tr>
+          </thead>
+          <tbody role="rowgroup">
+            <tr role="row">
+              <td role="cell" data-etiqueta="Tipo de trámite">Solicitud de certificado de residencia</td>
+              <td role="cell" data-etiqueta="Fecha"><time datetime="2026-10-02">2 de octubre de 2026</time></td>
+              <td role="cell" data-etiqueta="Estado"><span class="etiqueta-estado etiqueta-estado--pendiente">Pendiente</span></td>
+              <td role="cell" data-etiqueta="Observaciones">Requiere constancia para trámite bancario.</td>
+            </tr>
+            <tr role="row">
+              <td role="cell" data-etiqueta="Tipo de trámite">Actualización de ficha censal</td>
+              <td role="cell" data-etiqueta="Fecha"><time datetime="2026-09-14">14 de septiembre de 2026</time></td>
+              <td role="cell" data-etiqueta="Estado"><span class="etiqueta-estado etiqueta-estado--en-revision">En revisión</span></td>
+              <td role="cell" data-etiqueta="Observaciones">Se informó cambio de dirección en la vereda.</td>
+            </tr>
+            <tr role="row">
+              <td role="cell" data-etiqueta="Tipo de trámite">Constancia de pertenencia</td>
+              <td role="cell" data-etiqueta="Fecha"><time datetime="2026-08-30">30 de agosto de 2026</time></td>
+              <td role="cell" data-etiqueta="Estado"><span class="etiqueta-estado etiqueta-estado--aprobada">Aprobada</span></td>
+              <td role="cell" data-etiqueta="Observaciones">Sin observaciones adicionales.</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <p>Los tipos de trámite son textos libres de ejemplo, no un catálogo oficial ni opciones obligatorias.</p>
+        <p><a href="registrar-solicitud.html">Registrar una solicitud</a></p>
+      </section>
+
+      <section class="ejemplo-visual" aria-labelledby="titulo-vacio">
+        <p class="etiqueta-ejemplo">Ejemplo visual · no es un estado activo</p>
+        <h2 class="tarjeta__titulo" id="titulo-vacio">Estado vacío del listado</h2>
+        <p>Variante de esta misma pantalla: sustituye a la tabla cuando el miembro no tiene solicitudes registradas.</p>
+        <div class="estado-vacio">
+          <p>No tiene solicitudes registradas.</p>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <aside class="ficha-mockup" aria-labelledby="ficha-titulo">
+    <div class="contenedor">
+      <h2 class="ficha-mockup__titulo" id="ficha-titulo">Ficha de la pantalla · documentación, no forma parte de la interfaz</h2>
+      <dl class="ficha-mockup__lista">
+        <div class="ficha-mockup__fila">
+          <dt>Nombre</dt>
+          <dd>Mis solicitudes — <code>prototipo/mis-solicitudes.html</code></dd>
+        </div>
+        <div class="ficha-mockup__fila">
+          <dt>Historias de usuario</dt>
+          <dd>HU-07</dd>
+        </div>
+        <div class="ficha-mockup__fila">
+          <dt>Requisitos funcionales</dt>
+          <dd>RF-09 (con la restricción R-02)</dd>
+        </div>
+        <div class="ficha-mockup__fila">
+          <dt>Descripción</dt>
+          <dd>Listado de solo lectura con las solicitudes del miembro: tipo de trámite, fecha, estado y observaciones. Incluye el estado vacío y un acceso directo al formulario de registro. Sin acciones por fila.</dd>
+        </div>
+        <div class="ficha-mockup__fila">
+          <dt>Usabilidad y accesibilidad</dt>
+          <dd>Tabla con <code>caption</code>, encabezados <code>th scope="col"</code> y roles explícitos que sostienen la semántica cuando el CSS apila las filas; en celular cada celda muestra su etiqueta con <code>data-etiqueta</code>, sin desplazamiento horizontal; el estado se lee por texto y no solo por color; sin controles de edición ni eliminación.</dd>
+        </div>
+      </dl>
+    </div>
+  </aside>
+
+  <footer class="pie-sitio">
+    <div class="contenedor">
+      <p>Maqueta de baja fidelidad de la evidencia GA6-220501096 (AA3-EV02). Datos ficticios con fines demostrativos.</p>
+      <p>Sin sesión funcional ni persistencia: el listado es una representación estática y no refleja cambios realizados en otras maquetas.</p>
+    </div>
+  </footer>
+</body>
+</html>

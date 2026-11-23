@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Registrar solicitud — Maqueta AA3-EV02</title>
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body class="baja-fidelidad">
+  <a class="salto-contenido" href="#contenido">Saltar al contenido</a>
+
+  <header class="encabezado-sitio">
+    <div class="contenedor encabezado-sitio__interior">
+      <div class="identidad-sitio">
+        <p class="nombre-sitio">Cabildo Indígena de Venecia</p>
+        <p class="sello-mockup">Maqueta de baja fidelidad · AA3-EV02</p>
+      </div>
+      <nav class="menu-principal" aria-label="Navegación principal">
+        <ul class="menu-principal__lista">
+          <li><a class="menu-principal__enlace" href="inicio.html">Inicio</a></li>
+          <li><a class="menu-principal__enlace" href="registrar-solicitud.html" aria-current="page">Registrar solicitud</a></li>
+          <li><a class="menu-principal__enlace" href="mis-solicitudes.html">Mis solicitudes</a></li>
+          <li><a class="menu-principal__enlace" href="mis-certificados.html">Mis certificados</a></li>
+          <li><a class="menu-principal__enlace" href="index.html">Noticias</a></li>
+          <li><a class="menu-principal__enlace" href="index.html">Cerrar sesión (simulación)</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="contenido" class="contenido-principal">
+    <div class="contenedor contenido-angosto">
+      <h1 class="titulo-pantalla">Registrar solicitud</h1>
+      <p class="trazabilidad">HU-06 · RF-08</p>
+
+      <p>El tipo de trámite es obligatorio y las observaciones son opcionales. La solicitud queda asociada al comunero del miembro autenticado.</p>
+
+      <section class="tarjeta" aria-labelledby="form-titulo">
+        <h2 class="tarjeta__titulo" id="form-titulo">Datos de la solicitud</h2>
+        <form class="formulario" novalidate>
+          <div class="campo">
+            <label class="campo__etiqueta" for="tipo-tramite">Tipo de trámite</label>
+            <input class="campo__control" id="tipo-tramite" type="text" autocomplete="off" aria-describedby="ayuda-tramite">
+            <p class="campo__ayuda" id="ayuda-tramite">Texto libre. No existe un catálogo de tipos.</p>
+          </div>
+
+          <div class="campo">
+            <label class="campo__etiqueta" for="observaciones">Observaciones (opcional)</label>
+            <textarea class="campo__control area-texto" id="observaciones" rows="4" aria-describedby="ayuda-observaciones"></textarea>
+            <p class="campo__ayuda" id="ayuda-observaciones">Puede ampliar la información de la solicitud.</p>
+          </div>
+
+          <p class="aviso">La fecha y el estado «pendiente» se asignan automáticamente. El control siguiente solo navega a «Mis solicitudes»: no guarda los datos ni valida los campos.</p>
+
+          <a class="boton-principal" href="mis-solicitudes.html">Registrar solicitud (simulación)</a>
+        </form>
+      </section>
+
+      <section class="ejemplo-visual" aria-labelledby="titulo-error">
+        <p class="etiqueta-ejemplo">Ejemplo visual · no es un estado activo</p>
+        <h2 class="tarjeta__titulo" id="titulo-error">Tipo de trámite vacío</h2>
+        <p>Variante de esta misma pantalla: el mensaje aparece junto al campo cuando el tipo de trámite está vacío.</p>
+
+        <div class="campo campo--error">
+          <label class="campo__etiqueta" for="tipo-tramite-error">Tipo de trámite</label>
+          <input class="campo__control" id="tipo-tramite-error" type="text" aria-invalid="true" aria-describedby="error-tramite">
+          <p class="mensaje-error" id="error-tramite">Ingrese el tipo de trámite.</p>
+        </div>
+      </section>
+
+      <section class="ejemplo-visual" aria-labelledby="titulo-confirmacion">
+        <p class="etiqueta-ejemplo">Ejemplo visual · no es un estado activo</p>
+        <h2 class="tarjeta__titulo" id="titulo-confirmacion">Solicitud registrada</h2>
+        <p>Variante de esta misma pantalla: confirma el registro tras completar el formulario. Es una representación estática y no el resultado de la navegación simulada.</p>
+        <p class="mensaje-exito">La solicitud se registró correctamente.</p>
+      </section>
+    </div>
+  </main>
+
+  <aside class="ficha-mockup" aria-labelledby="ficha-titulo">
+    <div class="contenedor">
+      <h2 class="ficha-mockup__titulo" id="ficha-titulo">Ficha de la pantalla · documentación, no forma parte de la interfaz</h2>
+      <dl class="ficha-mockup__lista">
+        <div class="ficha-mockup__fila">
+          <dt>Nombre</dt>
+          <dd>Registrar solicitud — <code>prototipo/registrar-solicitud.html</code></dd>
+        </div>
+        <div class="ficha-mockup__fila">
+          <dt>Historias de usuario</dt>
+          <dd>HU-06</dd>
+        </div>
+        <div class="ficha-mockup__fila">
+          <dt>Requisitos funcionales</dt>
+          <dd>RF-08 (con la restricción R-02)</dd>
+        </div>
+        <div class="ficha-mockup__fila">
+          <dt>Descripción</dt>
+          <dd>Formulario del miembro para registrar una solicitud con tipo de trámite de texto libre y observaciones opcionales. Informa que la fecha y el estado se asignan automáticamente. Incluye las variantes de error y de confirmación.</dd>
+        </div>
+        <div class="ficha-mockup__fila">
+          <dt>Usabilidad y accesibilidad</dt>
+          <dd>Etiquetas asociadas con <code>for</code> e <code>id</code>; textos de ayuda enlazados con <code>aria-describedby</code>; el error va junto al campo con <code>aria-invalid</code>, nunca en una ventana emergente; la confirmación es una variante rotulada como ejemplo y no afirma que la navegación haya guardado datos; una sola columna a 360 px con el formulario en una columna centrada de 640 px como máximo.</dd>
+        </div>
+      </dl>
+    </div>
+  </aside>
+
+  <footer class="pie-sitio">
+    <div class="contenedor">
+      <p>Maqueta de baja fidelidad de la evidencia GA6-220501096 (AA3-EV02). Datos ficticios con fines demostrativos.</p>
+      <p>Sin validación funcional, sin backend, sin base de datos y sin almacenamiento persistente.</p>
+    </div>
+  </footer>
+</body>
+</html>

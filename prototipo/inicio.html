@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Área autenticada — Maqueta AA3-EV02</title>
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body class="baja-fidelidad">
+  <a class="salto-contenido" href="#contenido">Saltar al contenido</a>
+
+  <header class="encabezado-sitio">
+    <div class="contenedor encabezado-sitio__interior">
+      <div class="identidad-sitio">
+        <p class="nombre-sitio">Cabildo Indígena de Venecia</p>
+        <p class="sello-mockup">Maqueta de baja fidelidad · AA3-EV02</p>
+      </div>
+      <nav class="menu-principal" aria-label="Navegación principal">
+        <ul class="menu-principal__lista">
+          <li><a class="menu-principal__enlace" href="inicio.html" aria-current="page">Inicio</a></li>
+          <li><a class="menu-principal__enlace" href="index.html">Noticias</a></li>
+          <li><a class="menu-principal__enlace" href="index.html">Cerrar sesión (simulación)</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="contenido" class="contenido-principal">
+    <div class="contenedor">
+      <h1 class="titulo-pantalla">Área autenticada</h1>
+      <p class="trazabilidad">HU-01, HU-02 · RF-02, RF-03</p>
+
+      <p>Punto de entrada de la zona privada. Distribuye hacia las funciones disponibles según el rol del usuario autenticado y no incluye estadísticas, indicadores ni reportes.</p>
+
+      <p class="aviso">Sesión simulada: esta maqueta no valida credenciales ni conserva el acceso al cambiar de página. El enlace «Cerrar sesión» solo vuelve a la zona pública.</p>
+
+      <section aria-labelledby="titulo-accesos">
+        <h2 class="titulo-seccion" id="titulo-accesos">Accesos por rol</h2>
+        <p>La visibilidad del menú depende del rol. En esta maqueta la lista es una representación visual y no un control de acceso funcional.</p>
+
+        <div class="rejilla">
+          <article class="tarjeta tarjeta--rol" aria-labelledby="rol-miembro">
+            <h3 id="rol-miembro">Miembro</h3>
+            <ul class="lista-accesos">
+              <li>Inicio <span class="marca-pendiente">Pantalla actual</span></li>
+              <li><a href="registrar-solicitud.html">Registrar solicitud</a></li>
+              <li><a href="mis-solicitudes.html">Mis solicitudes</a></li>
+              <li><a href="mis-certificados.html">Mis certificados</a></li>
+              <li><a href="index.html">Noticias</a></li>
+              <li><a href="index.html">Cerrar sesión</a></li>
+            </ul>
+          </article>
+
+          <article class="tarjeta tarjeta--rol" aria-labelledby="rol-lider">
+            <h3 id="rol-lider">Líder</h3>
+            <ul class="lista-accesos">
+              <li>Inicio <span class="marca-pendiente">Pantalla actual</span></li>
+              <li><a href="solicitudes.html">Todas las solicitudes</a></li>
+              <li><a href="comuneros.html">Comuneros</a></li>
+              <li><a href="crear-cuenta.html">Crear cuenta</a></li>
+              <li><a href="index.html">Noticias</a></li>
+              <li><a href="index.html">Cerrar sesión</a></li>
+            </ul>
+          </article>
+
+          <article class="tarjeta tarjeta--rol" aria-labelledby="rol-administrador">
+            <h3 id="rol-administrador">Administrador</h3>
+            <ul class="lista-accesos">
+              <li>Inicio <span class="marca-pendiente">Pantalla actual</span></li>
+              <li><a href="solicitudes.html">Todas las solicitudes</a></li>
+              <li><a href="comuneros.html">Comuneros</a></li>
+              <li><a href="cuentas.html">Cuentas de usuario</a></li>
+              <li><a href="index.html">Noticias</a></li>
+              <li><a href="index.html">Cerrar sesión</a></li>
+            </ul>
+          </article>
+        </div>
+
+        <p class="aviso">Todas las opciones de los tres roles tienen ya una pantalla construida. El distintivo «Pantalla actual» señala la pantalla abierta; la visibilidad de cada menú sigue siendo una representación visual.</p>
+      </section>
+
+      <section aria-labelledby="titulo-alcance">
+        <h2 class="titulo-seccion" id="titulo-alcance">Alcance de esta pantalla</h2>
+        <p class="aviso">Sin estadísticas, indicadores ni reportes. Tampoco incluye administración de sesiones ni cambios de estado de las cuentas.</p>
+      </section>
+    </div>
+  </main>
+
+  <aside class="ficha-mockup" aria-labelledby="ficha-titulo">
+    <div class="contenedor">
+      <h2 class="ficha-mockup__titulo" id="ficha-titulo">Ficha de la pantalla · documentación, no forma parte de la interfaz</h2>
+      <dl class="ficha-mockup__lista">
+        <div class="ficha-mockup__fila">
+          <dt>Nombre</dt>
+          <dd>Área principal autenticada — <code>prototipo/inicio.html</code></dd>
+        </div>
+        <div class="ficha-mockup__fila">
+          <dt>Historias de usuario</dt>
+          <dd>HU-01 y HU-02</dd>
+        </div>
+        <div class="ficha-mockup__fila">
+          <dt>Requisitos funcionales</dt>
+          <dd>RF-02 y RF-03 (con la restricción R-10)</dd>
+        </div>
+        <div class="ficha-mockup__fila">
+          <dt>Descripción</dt>
+          <dd>Destino del acceso y distribuidor de funciones por rol. Presenta el menú de cada rol como representación visual, señala la pantalla actual y ofrece el cierre de sesión simulado hacia la zona pública.</dd>
+        </div>
+        <div class="ficha-mockup__fila">
+          <dt>Usabilidad y accesibilidad</dt>
+          <dd>Navegación con <code>aria-current</code> en la pantalla actual; tres tarjetas con encabezado propio y listas de opciones; todas las opciones de función son enlaces reales a pantallas existentes; la rejilla pasa de una columna a 360 px a tres columnas desde 768 px; foco visible de 3 px y avisos textuales que no dependen solo del color.</dd>
+        </div>
+      </dl>
+    </div>
+  </aside>
+
+  <footer class="pie-sitio">
+    <div class="contenedor">
+      <p>Maqueta de baja fidelidad de la evidencia GA6-220501096 (AA3-EV02). Datos ficticios con fines demostrativos.</p>
+      <p>No hay autenticación funcional, backend, base de datos ni almacenamiento persistente.</p>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mis certificados — Maqueta AA3-EV02</title>
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body class="baja-fidelidad">
+  <a class="salto-contenido" href="#contenido">Saltar al contenido</a>
+
+  <header class="encabezado-sitio">
+    <div class="contenedor encabezado-sitio__interior">
+      <div class="identidad-sitio">
+        <p class="nombre-sitio">Cabildo Indígena de Venecia</p>
+        <p class="sello-mockup">Maqueta de baja fidelidad · AA3-EV02</p>
+      </div>
+      <nav class="menu-principal" aria-label="Navegación principal">
+        <ul class="menu-principal__lista">
+          <li><a class="menu-principal__enlace" href="inicio.html">Inicio</a></li>
+          <li><a class="menu-principal__enlace" href="registrar-solicitud.html">Registrar solicitud</a></li>
+          <li><a class="menu-principal__enlace" href="mis-solicitudes.html">Mis solicitudes</a></li>
+          <li><a class="menu-principal__enlace" href="mis-certificados.html" aria-current="page">Mis certificados</a></li>
+          <li><a class="menu-principal__enlace" href="index.html">Noticias</a></li>
+          <li><a class="menu-principal__enlace" href="index.html">Cerrar sesión (simulación)</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="contenido" class="contenido-principal">
+    <div class="contenedor">
+      <h1 class="titulo-pantalla">Mis certificados</h1>
+      <p class="trazabilidad">HU-08 · RF-10</p>
+
+      <p>Consulta de solo lectura de los certificados del miembro autenticado. No se abren, descargan, imprimen, generan ni validan individualmente.</p>
+
+      <section class="tarjeta" aria-labelledby="titulo-listado">
+        <h2 class="tarjeta__titulo" id="titulo-listado">Certificados registrados</h2>
+
+        <table class="tabla-datos" role="table">
+          <caption class="tabla-datos__leyenda">Datos de ejemplo con fines demostrativos.</caption>
+          <thead role="rowgroup">
+            <tr role="row">
+              <th scope="col" role="columnheader">Código de validación</th>
+              <th scope="col" role="columnheader">Fecha de generación</th>
+              <th scope="col" role="columnheader">Estado</th>
+              <th scope="col" role="columnheader">Tipo de solicitud</th>
+            </tr>
+          </thead>
+          <tbody role="rowgroup">
+            <tr role="row">
+              <td role="cell" data-etiqueta="Código de validación">CV-2026-0014</td>
+              <td role="cell" data-etiqueta="Fecha de generación"><time datetime="2026-10-20">20 de octubre de 2026</time></td>
+              <td role="cell" data-etiqueta="Estado"><span class="etiqueta-estado etiqueta-estado--vigente">Vigente</span></td>
+              <td role="cell" data-etiqueta="Tipo de solicitud">Solicitud de certificado de residencia</td>
+            </tr>
+            <tr role="row">
+              <td role="cell" data-etiqueta="Código de validación">CV-2026-0007</td>
+              <td role="cell" data-etiqueta="Fecha de generación"><time datetime="2026-09-02">2 de septiembre de 2026</time></td>
+              <td role="cell" data-etiqueta="Estado"><span class="etiqueta-estado etiqueta-estado--anulado">Anulado</span></td>
+              <td role="cell" data-etiqueta="Tipo de solicitud">Constancia de pertenencia</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <p>El tipo de solicitud proviene de la solicitud asociada al certificado; no es un campo propio del certificado. Los códigos son datos de ejemplo.</p>
+      </section>
+
+      <section class="ejemplo-visual" aria-labelledby="titulo-vacio">
+        <p class="etiqueta-ejemplo">Ejemplo visual · no es un estado activo</p>
+        <h2 class="tarjeta__titulo" id="titulo-vacio">Estado vacío del listado</h2>
+        <p>Variante de esta misma pantalla: sustituye a la tabla cuando el miembro no tiene certificados registrados.</p>
+        <div class="estado-vacio">
+          <p>No tiene certificados registrados.</p>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <aside class="ficha-mockup" aria-labelledby="ficha-titulo">
+    <div class="contenedor">
+      <h2 class="ficha-mockup__titulo" id="ficha-titulo">Ficha de la pantalla · documentación, no forma parte de la interfaz</h2>
+      <dl class="ficha-mockup__lista">
+        <div class="ficha-mockup__fila">
+          <dt>Nombre</dt>
+          <dd>Mis certificados — <code>prototipo/mis-certificados.html</code></dd>
+        </div>
+        <div class="ficha-mockup__fila">
+          <dt>Historias de usuario</dt>
+          <dd>HU-08</dd>
+        </div>
+        <div class="ficha-mockup__fila">
+          <dt>Requisitos funcionales</dt>
+          <dd>RF-10 (con las restricciones R-04 y R-02)</dd>
+        </div>
+        <div class="ficha-mockup__fila">
+          <dt>Descripción</dt>
+          <dd>Listado de solo lectura con código de validación, fecha de generación, estado y tipo de solicitud. No incluye ninguna acción individual ni por fila. Presenta el estado vacío.</dd>
+        </div>
+        <div class="ficha-mockup__fila">
+          <dt>Usabilidad y accesibilidad</dt>
+          <dd>Tabla con <code>caption</code>, encabezados <code>th scope="col"</code> y roles explícitos; cada fila muestra su etiqueta en celular mediante <code>data-etiqueta</code>; el estado vigente o anulado se distingue por texto y borde, no solo por color; ningún elemento de la tabla es interactivo, de modo que no se sugiere una acción inexistente.</dd>
+        </div>
+      </dl>
+    </div>
+  </aside>
+
+  <footer class="pie-sitio">
+    <div class="contenedor">
+      <p>Maqueta de baja fidelidad de la evidencia GA6-220501096 (AA3-EV02). Datos ficticios con fines demostrativos.</p>
+      <p>Sin sesión funcional ni persistencia: el listado es una representación estática y no refleja cambios realizados en otras maquetas.</p>
+    </div>
+  </footer>
+</body>
+</html>

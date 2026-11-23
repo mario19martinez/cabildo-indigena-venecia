@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Registrar comunero — Maqueta AA3-EV02</title>
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body class="baja-fidelidad">
+  <a class="salto-contenido" href="#contenido">Saltar al contenido</a>
+
+  <header class="encabezado-sitio">
+    <div class="contenedor encabezado-sitio__interior">
+      <div class="identidad-sitio">
+        <p class="nombre-sitio">Cabildo Indígena de Venecia</p>
+        <p class="sello-mockup">Maqueta de baja fidelidad · AA3-EV02</p>
+        <p class="etiqueta-rol">Rol representado: Líder</p>
+      </div>
+      <nav class="menu-principal" aria-label="Navegación principal">
+        <ul class="menu-principal__lista">
+          <li><a class="menu-principal__enlace" href="inicio.html">Inicio</a></li>
+          <li><a class="menu-principal__enlace" href="solicitudes.html">Todas las solicitudes</a></li>
+          <li><a class="menu-principal__enlace" href="comuneros.html">Comuneros</a></li>
+          <li><a class="menu-principal__enlace" href="crear-cuenta.html">Crear cuenta</a></li>
+          <li><a class="menu-principal__enlace" href="index.html">Noticias</a></li>
+          <li><a class="menu-principal__enlace" href="index.html">Cerrar sesión (simulación)</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="contenido" class="contenido-principal">
+    <div class="contenedor contenido-angosto">
+      <h1 class="titulo-pantalla">Registrar comunero</h1>
+      <p class="trazabilidad">HU-10 · RF-13</p>
+
+      <ol class="pasos" aria-label="Pasos del registro del comunero">
+        <li class="pasos__item pasos__item--actual" aria-current="step"><span class="pasos__numero">1</span> Datos del comunero (paso actual)</li>
+        <li class="pasos__item"><span class="pasos__numero">2</span> Ficha censal</li>
+      </ol>
+
+      <p>El registro se compone de dos pasos consecutivos. Documento, nombres, apellidos, fecha de nacimiento y sexo son obligatorios; el teléfono y la familia son opcionales. El Administrador también puede registrar comuneros, según HU-10.</p>
+
+      <p class="aviso">El comunero no se guarda ni aparece en el listado hasta completar la ficha censal del paso 2 y confirmar el registro. Cancelar descarta el borrador y vuelve al listado.</p>
+
+      <section class="tarjeta" aria-labelledby="form-titulo">
+        <h2 class="tarjeta__titulo" id="form-titulo">Paso 1 · Datos del comunero</h2>
+        <form class="formulario" novalidate>
+          <div class="campo">
+            <label class="campo__etiqueta" for="documento">Documento</label>
+            <input class="campo__control" id="documento" type="text" autocomplete="off" aria-describedby="ayuda-documento">
+            <p class="campo__ayuda" id="ayuda-documento">Debe ser único: no puede repetirse en otro comunero.</p>
+          </div>
+
+          <div class="campo">
+            <label class="campo__etiqueta" for="nombres">Nombres</label>
+            <input class="campo__control" id="nombres" type="text" autocomplete="off">
+          </div>
+
+          <div class="campo">
+            <label class="campo__etiqueta" for="apellidos">Apellidos</label>
+            <input class="campo__control" id="apellidos" type="text" autocomplete="off">
+          </div>
+
+          <div class="campo">
+            <label class="campo__etiqueta" for="fecha-nacimiento">Fecha de nacimiento</label>
+            <input class="campo__control" id="fecha-nacimiento" type="date">
+          </div>
+
+          <div class="campo">
+            <label class="campo__etiqueta" for="sexo">Sexo</label>
+            <select class="campo__control" id="sexo" aria-describedby="ayuda-sexo">
+              <option value="" selected>Seleccione una opción</option>
+              <option value="femenino">Femenino</option>
+              <option value="masculino">Masculino</option>
+              <option value="otro">Otro</option>
+              <option value="no especifica">No especifica</option>
+            </select>
+            <p class="campo__ayuda" id="ayuda-sexo">Valores de referencia del esquema documental.</p>
+          </div>
+
+          <div class="campo">
+            <label class="campo__etiqueta" for="telefono">Teléfono (opcional)</label>
+            <input class="campo__control" id="telefono" type="tel" autocomplete="off">
+          </div>
+
+          <div class="campo">
+            <label class="campo__etiqueta" for="familia">Familia (opcional)</label>
+            <select class="campo__control" id="familia" aria-describedby="ayuda-familia">
+              <option value="" selected>Sin familia asignada</option>
+              <option value="amaru">Familia Amaru</option>
+              <option value="quispe">Familia Quispe</option>
+              <option value="yupanqui">Familia Yupanqui</option>
+            </select>
+            <p class="campo__ayuda" id="ayuda-familia">Solo familias existentes. No se crean ni se editan familias desde la plataforma. Las familias listadas son datos de ejemplo.</p>
+          </div>
+
+          <p class="aviso">Este registro no crea una cuenta de acceso: la creación de cuentas corresponde a otra función. Los controles siguientes solo navegan; no validan ni guardan los datos.</p>
+
+          <div class="acciones">
+            <a class="boton-principal" href="registrar-ficha-censal.html">Continuar a la ficha censal (simulación)</a>
+            <a class="boton-secundario" href="comuneros.html">Cancelar</a>
+          </div>
+        </form>
+      </section>
+
+      <section class="ejemplo-visual" aria-labelledby="titulo-error-documento">
+        <p class="etiqueta-ejemplo">Ejemplo visual · no es un estado activo</p>
+        <h2 class="tarjeta__titulo" id="titulo-error-documento">Documento repetido</h2>
+        <p>Variante de esta misma pantalla: el mensaje aparece junto al campo cuando el documento ya pertenece a otro comunero.</p>
+
+        <div class="campo campo--error">
+          <label class="campo__etiqueta" for="documento-error">Documento</label>
+          <input class="campo__control" id="documento-error" type="text" value="1.045.223.111" autocomplete="off" aria-invalid="true" aria-describedby="error-documento">
+          <p class="mensaje-error" id="error-documento">El documento ya está registrado para otro comunero.</p>
+        </div>
+      </section>
+
+      <section class="ejemplo-visual" aria-labelledby="titulo-error-obligatorio">
+        <p class="etiqueta-ejemplo">Ejemplo visual · no es un estado activo</p>
+        <h2 class="tarjeta__titulo" id="titulo-error-obligatorio">Campo obligatorio vacío</h2>
+        <p>Variante de esta misma pantalla: el mensaje aparece junto al campo cuando falta un dato obligatorio.</p>
+
+        <div class="campo campo--error">
+          <label class="campo__etiqueta" for="nombres-error">Nombres</label>
+          <input class="campo__control" id="nombres-error" type="text" autocomplete="off" aria-invalid="true" aria-describedby="error-nombres">
+          <p class="mensaje-error" id="error-nombres">Ingrese los nombres del comunero.</p>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <aside class="ficha-mockup" aria-labelledby="ficha-titulo">
+    <div class="contenedor">
+      <h2 class="ficha-mockup__titulo" id="ficha-titulo">Ficha de la pantalla · documentación, no forma parte de la interfaz</h2>
+      <dl class="ficha-mockup__lista">
+        <div class="ficha-mockup__fila">
+          <dt>Nombre</dt>
+          <dd>Registrar comunero, paso 1 — <code>prototipo/registrar-comunero.html</code></dd>
+        </div>
+        <div class="ficha-mockup__fila">
+          <dt>Historias de usuario</dt>
+          <dd>HU-10 (criterios 1, 2, 3, 4, 7, 9 y 10)</dd>
+        </div>
+        <div class="ficha-mockup__fila">
+          <dt>Requisitos funcionales</dt>
+          <dd>RF-13 (con las restricciones R-02 y R-08)</dd>
+        </div>
+        <div class="ficha-mockup__fila">
+          <dt>Descripción</dt>
+          <dd>Primer paso del proceso único de registro: documento, nombres, apellidos, fecha de nacimiento, sexo, teléfono opcional y familia opcional. El indicador de pasos muestra la posición dentro del proceso y los avisos explican que el comunero no se incorpora hasta confirmar la ficha censal. Incluye las variantes de documento repetido y de campo obligatorio vacío.</dd>
+        </div>
+        <div class="ficha-mockup__fila">
+          <dt>Usabilidad y accesibilidad</dt>
+          <dd>Etiquetas asociadas con <code>for</code> e <code>id</code>; ayudas enlazadas con <code>aria-describedby</code>; los errores van junto al campo con <code>aria-invalid</code>, nunca en ventanas emergentes; el paso actual se anuncia con <code>aria-current="step"</code>; una sola columna a 360 px dentro de un contenedor de 640 px como máximo; las acciones se apilan a 360 px y pasan a fila desde 768 px.</dd>
+        </div>
+        <div class="ficha-mockup__fila">
+          <dt>Nota técnica</dt>
+          <dd>La familia se mantiene opcional según HU-10 y RF-13, aunque el esquema documental declare la columna como obligatoria. La diferencia queda anotada para la etapa de base de datos y no se modifica el esquema.</dd>
+        </div>
+      </dl>
+    </div>
+  </aside>
+
+  <footer class="pie-sitio">
+    <div class="contenedor">
+      <p>Maqueta de baja fidelidad de la evidencia GA6-220501096 (AA3-EV02). Datos ficticios con fines demostrativos.</p>
+      <p>Sin validación funcional, sin backend, sin base de datos y sin almacenamiento persistente: los pasos no conservan información entre páginas.</p>
+    </div>
+  </footer>
+</body>
+</html>

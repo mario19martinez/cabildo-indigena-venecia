@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Comuneros — Maqueta AA3-EV02</title>
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body class="baja-fidelidad">
+  <a class="salto-contenido" href="#contenido">Saltar al contenido</a>
+
+  <header class="encabezado-sitio">
+    <div class="contenedor encabezado-sitio__interior">
+      <div class="identidad-sitio">
+        <p class="nombre-sitio">Cabildo Indígena de Venecia</p>
+        <p class="sello-mockup">Maqueta de baja fidelidad · AA3-EV02</p>
+        <p class="etiqueta-rol">Rol representado: Líder</p>
+      </div>
+      <nav class="menu-principal" aria-label="Navegación principal">
+        <ul class="menu-principal__lista">
+          <li><a class="menu-principal__enlace" href="inicio.html">Inicio</a></li>
+          <li><a class="menu-principal__enlace" href="solicitudes.html">Todas las solicitudes</a></li>
+          <li><a class="menu-principal__enlace" href="comuneros.html" aria-current="page">Comuneros</a></li>
+          <li><a class="menu-principal__enlace" href="crear-cuenta.html">Crear cuenta</a></li>
+          <li><a class="menu-principal__enlace" href="index.html">Noticias</a></li>
+          <li><a class="menu-principal__enlace" href="index.html">Cerrar sesión (simulación)</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="contenido" class="contenido-principal">
+    <div class="contenedor">
+      <h1 class="titulo-pantalla">Comuneros</h1>
+      <p class="trazabilidad">HU-10 · RF-13</p>
+
+      <p>Registro del censo. Esta pantalla permite comprobar el resultado del registro de un comunero y no ofrece edición ni eliminación. El Administrador también puede registrar comuneros, según HU-10.</p>
+
+      <section class="tarjeta" aria-labelledby="titulo-listado">
+        <h2 class="tarjeta__titulo" id="titulo-listado">Comuneros registrados</h2>
+
+        <table class="tabla-datos" role="table">
+          <caption class="tabla-datos__leyenda">Datos de ejemplo con fines demostrativos.</caption>
+          <thead role="rowgroup">
+            <tr role="row">
+              <th scope="col" role="columnheader">Documento</th>
+              <th scope="col" role="columnheader">Comunero</th>
+              <th scope="col" role="columnheader">Sexo</th>
+              <th scope="col" role="columnheader">Familia</th>
+              <th scope="col" role="columnheader">Teléfono</th>
+            </tr>
+          </thead>
+          <tbody role="rowgroup">
+            <tr role="row">
+              <td role="cell" data-etiqueta="Documento">1.045.223.111</td>
+              <td role="cell" data-etiqueta="Comunero">Ana Benavides</td>
+              <td role="cell" data-etiqueta="Sexo">Femenino</td>
+              <td role="cell" data-etiqueta="Familia">Familia Amaru</td>
+              <td role="cell" data-etiqueta="Teléfono">300 123 4567</td>
+            </tr>
+            <tr role="row">
+              <td role="cell" data-etiqueta="Documento">1.098.334.552</td>
+              <td role="cell" data-etiqueta="Comunero">Luis Cárdenas</td>
+              <td role="cell" data-etiqueta="Sexo">Masculino</td>
+              <td role="cell" data-etiqueta="Familia">Sin familia asignada</td>
+              <td role="cell" data-etiqueta="Teléfono">311 884 2210</td>
+            </tr>
+            <tr role="row">
+              <td role="cell" data-etiqueta="Documento">1.012.887.443</td>
+              <td role="cell" data-etiqueta="Comunero">Marta Yupanqui</td>
+              <td role="cell" data-etiqueta="Sexo">Femenino</td>
+              <td role="cell" data-etiqueta="Familia">Familia Yupanqui</td>
+              <td role="cell" data-etiqueta="Teléfono">320 447 9081</td>
+            </tr>
+            <tr role="row">
+              <td role="cell" data-etiqueta="Documento">1.063.442.190</td>
+              <td role="cell" data-etiqueta="Comunero">Rosa Quispe</td>
+              <td role="cell" data-etiqueta="Sexo">Femenino</td>
+              <td role="cell" data-etiqueta="Familia">Familia Quispe</td>
+              <td role="cell" data-etiqueta="Teléfono">301 220 6674</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <p class="aviso">La familia es opcional: si se asigna una, debe existir previamente. Las familias de ejemplo son datos demostrativos y no se crean ni se editan desde esta pantalla.</p>
+
+        <p><a class="boton-principal" href="registrar-comunero.html">Registrar comunero</a></p>
+        <p class="campo__ayuda">El registro se realiza en dos pasos: datos del comunero y ficha censal. Solo al completar ambos pasos y confirmar, el comunero aparecería en este listado.</p>
+      </section>
+
+      <section class="ejemplo-visual" aria-labelledby="titulo-vacio">
+        <p class="etiqueta-ejemplo">Ejemplo visual · no es un estado activo</p>
+        <h2 class="tarjeta__titulo" id="titulo-vacio">Estado vacío del listado</h2>
+        <p>Variante de esta misma pantalla: sustituye a la tabla cuando todavía no hay comuneros registrados.</p>
+        <div class="estado-vacio">
+          <p>No hay comuneros registrados.</p>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <aside class="ficha-mockup" aria-labelledby="ficha-titulo">
+    <div class="contenedor">
+      <h2 class="ficha-mockup__titulo" id="ficha-titulo">Ficha de la pantalla · documentación, no forma parte de la interfaz</h2>
+      <dl class="ficha-mockup__lista">
+        <div class="ficha-mockup__fila">
+          <dt>Nombre</dt>
+          <dd>Comuneros — <code>prototipo/comuneros.html</code></dd>
+        </div>
+        <div class="ficha-mockup__fila">
+          <dt>Historias de usuario</dt>
+          <dd>HU-10</dd>
+        </div>
+        <div class="ficha-mockup__fila">
+          <dt>Requisitos funcionales</dt>
+          <dd>RF-13 (con las restricciones R-02 y R-08)</dd>
+        </div>
+        <div class="ficha-mockup__fila">
+          <dt>Descripción</dt>
+          <dd>Listado de solo lectura con documento, comunero, sexo, familia y teléfono. Es la vista donde se comprueba que el nuevo comunero aparece tras completar su registro (criterio 8 de HU-10). Ofrece el acceso al registro en dos pasos e incluye el estado vacío. No hay edición ni eliminación, ni gestión de familias.</dd>
+        </div>
+        <div class="ficha-mockup__fila">
+          <dt>Usabilidad y accesibilidad</dt>
+          <dd>Tabla con <code>caption</code>, encabezados <code>th scope="col"</code> y roles explícitos; en celular cada celda muestra su etiqueta con <code>data-etiqueta</code>, sin desplazamiento horizontal; los comuneros sin familia muestran el texto exacto «Sin familia asignada», de modo que la ausencia de dato no depende del color ni de una celda vacía; el único control de la pantalla es el enlace de registro, de 48 px de alto.</dd>
+        </div>
+        <div class="ficha-mockup__fila">
+          <dt>Nota técnica</dt>
+          <dd>El esquema documental declara <code>comunero.id_familia</code> como obligatorio, mientras HU-10 y RF-13 aprobados lo establecen como opcional. Esta maqueta sigue los requisitos aprobados y deja la diferencia anotada para la etapa de base de datos; no se modifica el esquema.</dd>
+        </div>
+      </dl>
+    </div>
+  </aside>
+
+  <footer class="pie-sitio">
+    <div class="contenedor">
+      <p>Maqueta de baja fidelidad de la evidencia GA6-220501096 (AA3-EV02). Datos ficticios con fines demostrativos.</p>
+      <p>Sin backend, base de datos ni persistencia: el listado es una representación estática y no refleja registros hechos en otras maquetas.</p>
+    </div>
+  </footer>
+</body>
+</html>

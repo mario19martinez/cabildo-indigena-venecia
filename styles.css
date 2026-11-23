@@ -1,0 +1,922 @@
+/* =========================================================
+   Plataforma de Gestión — Cabildo Indígena de Venecia
+   Evidencia GA6-220501096 (AA3 + AA4)
+   Archivo único de estilos del proyecto.
+
+   Dos capas sobre los mismos componentes:
+
+   1. Interfaz final (AA4-EV02): la paleta institucional vive en
+      :root y se aplica a plantilla.html, componentes.html y a las
+      pantallas definitivas.
+   2. Maquetas de baja fidelidad (AA3-EV02): body.baja-fidelidad
+      redefine los mismos tokens en escala de grises; prototipo/
+      conserva así su presentación sin duplicar reglas.
+
+   Reglas que este archivo respeta:
+   - Es el único CSS del proyecto: no hay otros archivos .css.
+   - Las pantallas no usan <style> ni atributos style="".
+   - Los componentes toman el color solo de los tokens
+     semánticos, nunca de valores hexadecimales sueltos.
+   ========================================================= */
+
+:root {
+  /* 1. Paleta de marca aprobada */
+  --verde: #174A35;
+  --verde-hover: #103725;
+  --crema: #F5F1E7;
+  --gris: #292D2A;
+  --blanco: #FFFFFF;
+  --borde: #D6D2C9;
+  --texto-secundario: #626762;
+  --error: #A12622;
+  --foco: #B78328;
+
+  /* 2. Tokens semánticos de la interfaz final */
+  --superficie: var(--blanco);
+  --fondo: var(--crema);
+  /* Relleno secundario para paneles, avisos y encabezados de tabla */
+  --relleno: #EBE6D8;
+  --texto: var(--gris);
+  --texto-suave: var(--texto-secundario);
+  /* Separadores decorativos; no delimitan controles */
+  --linea: var(--borde);
+  /* Bordes de controles: contraste >= 3:1 sobre fondo y superficie */
+  --linea-control: var(--texto-secundario);
+  --linea-fuerte: var(--gris);
+  --acento: var(--verde);
+  --acento-hover: var(--verde-hover);
+  --texto-acento: var(--blanco);
+  --fondo-encabezado: var(--verde);
+  --texto-encabezado: var(--blanco);
+  /* Segundo tono del foco: garantiza 3:1 sobre fondos claros */
+  --foco-contraste: var(--gris);
+
+  /* 3. Medidas compartidas */
+  --ancho-maximo: 1200px;
+  --radio: 4px;
+}
+
+/* Capa de baja fidelidad: las doce maquetas de prototipo/
+   conservan la escala de grises aunque la interfaz final use
+   la paleta institucional. Solo cambian valores de token. */
+body.baja-fidelidad {
+  --superficie: #FFFFFF;
+  --fondo: #F2F2F0;
+  --relleno: #E7E7E4;
+  --texto: #232623;
+  --texto-suave: #4A4E4A;
+  --linea: #8A8F8A;
+  --linea-control: #8A8F8A;
+  --linea-fuerte: #3A3E3A;
+  --acento: #333733;
+  --acento-hover: #141714;
+  --texto-acento: #FFFFFF;
+  --fondo-encabezado: #FFFFFF;
+  --texto-encabezado: #232623;
+  --error: #232623;
+  --foco: #0B0D0B;
+  --foco-contraste: #FFFFFF;
+}
+
+/* 1. Base ------------------------------------------------- */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background-color: var(--fondo);
+  color: var(--texto);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  overflow-wrap: break-word;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0 0 8px;
+  line-height: 1.25;
+}
+
+p {
+  margin: 0 0 12px;
+}
+
+ul {
+  margin: 0;
+}
+
+a {
+  color: var(--texto);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+a:hover {
+  text-decoration-thickness: 2px;
+}
+
+code {
+  font-family: Consolas, "Courier New", monospace;
+  font-size: 0.9375em;
+}
+
+/* Foco visible en todo elemento interactivo.
+   Indicador de dos tonos: el anillo dorado aporta la identidad y
+   el anillo oscuro exterior garantiza 3:1 sobre fondos claros
+   (crema 12,39:1, blanco 13,97:1). Sobre el encabezado verde el
+   dorado alcanza 3,04:1. La suma mantiene el foco perceptible en
+   ambos contextos sin depender de un solo color. */
+:focus-visible {
+  outline: 3px solid var(--foco);
+  outline-offset: 0;
+  box-shadow: 0 0 0 6px var(--foco-contraste);
+}
+
+/* Enlace de salto para navegación con teclado */
+.salto-contenido {
+  position: absolute;
+  top: -200px;
+  left: 8px;
+  z-index: 10;
+  padding: 8px 12px;
+  border: 2px solid var(--foco);
+  background-color: var(--superficie);
+  color: var(--texto);
+  font-weight: 700;
+}
+
+.salto-contenido:focus {
+  top: 8px;
+}
+
+/* 2. Layout ---------------------------------------------- */
+
+.contenedor {
+  width: 100%;
+  max-width: var(--ancho-maximo);
+  margin-inline: auto;
+  padding-inline: 16px;
+}
+
+.encabezado-sitio {
+  background-color: var(--fondo-encabezado);
+  color: var(--texto-encabezado);
+  border-bottom: 2px solid var(--linea-fuerte);
+}
+
+.encabezado-sitio a {
+  color: var(--texto-encabezado);
+}
+
+.encabezado-sitio__interior {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding-block: 12px;
+}
+
+.identidad-sitio {
+  display: grid;
+  gap: 4px;
+}
+
+.nombre-sitio {
+  margin: 0;
+  font-size: 1.125rem;
+  font-weight: 700;
+}
+
+.sello-mockup {
+  justify-self: start;
+  margin: 0;
+  padding: 2px 8px;
+  border: 1px dashed var(--linea);
+  color: var(--texto-suave);
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.contenido-principal {
+  padding-block: 24px 32px;
+}
+
+/* Columna centrada para pantallas de formulario breve */
+.contenido-angosto {
+  max-width: 640px;
+  margin-inline: auto;
+}
+
+.titulo-pantalla {
+  font-size: 1.75rem;
+}
+
+.titulo-seccion {
+  font-size: 1.25rem;
+  margin-top: 8px;
+}
+
+.trazabilidad {
+  display: inline-block;
+  margin: 0 0 16px;
+  padding: 4px 10px;
+  border-left: 4px solid var(--linea-fuerte);
+  background-color: var(--superficie);
+  color: var(--texto-suave);
+  font-size: 0.875rem;
+}
+
+/* 3. Menú ------------------------------------------------ */
+
+.menu-principal__lista {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 20px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.menu-principal__enlace {
+  display: inline-block;
+  padding: 10px 2px;
+  color: inherit;
+  font-weight: 700;
+}
+
+.menu-principal__enlace[aria-current="page"] {
+  border-bottom: 3px solid var(--texto-encabezado);
+  text-decoration: none;
+}
+
+/* 4. Componentes ----------------------------------------- */
+
+.tarjeta {
+  margin-bottom: 16px;
+  padding: 16px;
+  border: 1px solid var(--linea);
+  border-radius: var(--radio);
+  background-color: var(--superficie);
+}
+
+.tarjeta__titulo {
+  font-size: 1.25rem;
+}
+
+.tarjeta--rol {
+  margin-bottom: 0;
+}
+
+.tarjeta--rol h3,
+.tarjeta--rol h4 {
+  font-size: 1.0625rem;
+}
+
+.rejilla {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: 1fr;
+  margin-top: 8px;
+}
+
+/* Listado de noticias */
+.lista-noticias {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.noticia {
+  padding-block: 12px;
+  border-top: 1px solid var(--linea);
+}
+
+.noticia:first-child {
+  padding-top: 0;
+  border-top: 0;
+}
+
+.noticia__titulo {
+  margin-bottom: 4px;
+  font-size: 1.0625rem;
+}
+
+.noticia__fecha {
+  margin: 0;
+  color: var(--texto-suave);
+  font-size: 0.875rem;
+}
+
+/* Listas de accesos por rol */
+.lista-accesos {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.lista-accesos li {
+  margin-bottom: 10px;
+}
+
+.marca-pendiente {
+  display: block;
+  width: fit-content;
+  margin: 4px 0 0;
+  padding: 1px 6px;
+  border: 1px dashed var(--linea);
+  color: var(--texto-suave);
+  font-size: 0.75rem;
+  line-height: 1.4;
+}
+
+/* Rol representado en la maqueta */
+.etiqueta-rol {
+  display: inline-block;
+  justify-self: start;
+  margin: 0;
+  padding: 2px 8px;
+  border: 2px solid var(--linea-fuerte);
+  border-radius: var(--radio);
+  background-color: var(--relleno);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+/* Estado de un registro: el texto siempre acompaña al borde */
+.etiqueta-estado {
+  display: inline-block;
+  padding: 1px 8px;
+  border: 1px solid var(--linea-fuerte);
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.etiqueta-estado--pendiente {
+  border-style: dashed;
+}
+
+.etiqueta-estado--en-revision {
+  background-color: var(--relleno);
+}
+
+.etiqueta-estado--aprobada,
+.etiqueta-estado--vigente {
+  border: 3px double var(--linea-fuerte);
+}
+
+.etiqueta-estado--anulado {
+  border-style: dashed;
+  background-color: var(--relleno);
+}
+
+.etiqueta-estado--rechazada {
+  border-style: dotted;
+  border-width: 3px;
+}
+
+/* Estado «completada» de una solicitud (HU-09, RF-12) */
+.etiqueta-estado--completada {
+  border: 2px solid var(--linea-fuerte);
+  background-color: var(--relleno);
+}
+
+/* Estado de una cuenta de acceso: solo lectura */
+.etiqueta-estado--activo {
+  border: 3px double var(--linea-fuerte);
+}
+
+.etiqueta-estado--inactivo {
+  border-style: dashed;
+  background-color: var(--relleno);
+}
+
+.etiqueta-estado--bloqueado {
+  background-color: var(--linea-fuerte);
+  color: var(--texto-acento);
+}
+
+/* Tabla de registros: apilada en celular, tabla desde 768 px.
+   Los roles ARIA del marcado sostienen la semántica cuando el
+   CSS cambia el display de la tabla. */
+.tabla-datos {
+  display: block;
+  width: 100%;
+  font-size: 0.9375rem;
+}
+
+.tabla-datos__leyenda {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--texto-suave);
+  font-size: 0.875rem;
+  text-align: left;
+}
+
+.tabla-datos thead {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.tabla-datos tbody,
+.tabla-datos tr,
+.tabla-datos td {
+  display: block;
+}
+
+.tabla-datos tr {
+  margin-bottom: 12px;
+  padding: 4px 12px;
+  border: 1px solid var(--linea);
+  border-radius: var(--radio);
+  background-color: var(--superficie);
+}
+
+.tabla-datos tr:last-child {
+  margin-bottom: 0;
+}
+
+.tabla-datos td {
+  display: grid;
+  grid-template-columns: minmax(96px, 40%) 1fr;
+  gap: 8px;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--linea);
+}
+
+.tabla-datos td:last-child {
+  border-bottom: 0;
+}
+
+.tabla-datos td::before {
+  content: attr(data-etiqueta);
+  font-weight: 700;
+}
+
+/* Texto secundario dentro de una celda: se mantiene en la
+   columna del dato cuando la fila está apilada. */
+.celda-secundaria {
+  display: block;
+  margin-top: 2px;
+  color: var(--texto-suave);
+  font-size: 0.875rem;
+}
+
+.tabla-datos td .celda-secundaria {
+  grid-column: 2;
+}
+
+/* Formulario */
+.formulario {
+  display: grid;
+  gap: 16px;
+}
+
+.campo {
+  display: grid;
+  gap: 4px;
+}
+
+.campo__etiqueta {
+  display: block;
+  font-weight: 700;
+}
+
+.campo__control {
+  width: 100%;
+  padding: 10px 12px;
+  border: 2px solid var(--linea-control);
+  border-radius: var(--radio);
+  background-color: var(--superficie);
+  color: var(--texto);
+  font: inherit;
+}
+
+.campo__control:hover {
+  border-color: var(--linea-fuerte);
+}
+
+.area-texto {
+  min-height: 96px;
+  resize: vertical;
+}
+
+.campo__ayuda {
+  margin: 0;
+  color: var(--texto-suave);
+  font-size: 0.875rem;
+}
+
+.campo--error .campo__control {
+  border-style: dashed;
+  border-color: var(--linea-fuerte);
+}
+
+.mensaje-error {
+  margin: 0;
+  color: var(--error);
+  font-weight: 700;
+}
+
+.mensaje-exito {
+  margin: 0;
+  padding: 10px 12px;
+  border: 2px solid var(--linea-fuerte);
+  border-radius: var(--radio);
+  background-color: var(--superficie);
+  font-weight: 700;
+}
+
+/* Los prefijos «Error:» y «Confirmación:» pertenecen solo a la
+   capa de maqueta. En la interfaz final el texto completo se
+   escribe en el HTML, de modo que sea seleccionable y traducible. */
+body.baja-fidelidad .mensaje-error::before {
+  content: "Error: ";
+}
+
+body.baja-fidelidad .mensaje-exito::before {
+  content: "Confirmación: ";
+}
+
+/* Botones y acciones */
+.boton-principal {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 12px 20px;
+  border: 2px solid var(--acento);
+  border-radius: var(--radio);
+  background-color: var(--acento);
+  color: var(--texto-acento);
+  font-weight: 700;
+  text-align: center;
+  text-decoration: none;
+}
+
+.boton-principal:hover {
+  border-color: var(--acento-hover);
+  background-color: var(--acento-hover);
+}
+
+.boton-secundario {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 12px 20px;
+  border: 2px solid var(--linea-fuerte);
+  border-radius: var(--radio);
+  background-color: var(--superficie);
+  color: var(--texto);
+  font-weight: 700;
+  text-align: center;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.boton-secundario:hover {
+  background-color: var(--relleno);
+}
+
+/* Fila de acciones: en columna a 360 px y en fila desde 768 px */
+.acciones {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 4px;
+}
+
+.acciones .boton-principal,
+.acciones .boton-secundario {
+  width: 100%;
+}
+
+/* Indicador de pasos de un proceso consecutivo */
+.pasos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 12px;
+  margin: 0 0 16px;
+  padding: 0;
+  list-style: none;
+}
+
+.pasos__item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  border: 1px solid var(--linea);
+  border-radius: 999px;
+  background-color: var(--superficie);
+  font-size: 0.9375rem;
+}
+
+.pasos__numero {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: 24px;
+  height: 24px;
+  border: 2px solid var(--linea-fuerte);
+  border-radius: 999px;
+  font-size: 0.8125rem;
+  font-weight: 700;
+}
+
+.pasos__item--actual {
+  border: 2px solid var(--linea-fuerte);
+  font-weight: 700;
+}
+
+.pasos__item--completado {
+  border-style: dashed;
+}
+
+.pasos__item--completado .pasos__numero {
+  background-color: var(--relleno);
+}
+
+/* Avisos y ejemplos visuales */
+.aviso {
+  margin: 0 0 12px;
+  padding: 10px 12px;
+  border-left: 4px solid var(--linea-fuerte);
+  background-color: var(--relleno);
+  font-size: 0.9375rem;
+}
+
+.ejemplo-visual {
+  margin-bottom: 16px;
+  padding: 16px;
+  border: 2px dashed var(--linea);
+  border-radius: var(--radio);
+  background-color: var(--relleno);
+}
+
+.etiqueta-ejemplo {
+  display: inline-block;
+  margin: 0 0 8px;
+  padding: 2px 8px;
+  background-color: var(--linea-fuerte);
+  color: var(--texto-acento);
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.estado-vacio {
+  padding: 16px;
+  border: 1px dashed var(--linea);
+  background-color: var(--superficie);
+  color: var(--texto-suave);
+  text-align: center;
+}
+
+.estado-vacio p {
+  margin: 0;
+}
+
+/* Bloque de código de la guía de componentes.
+   Se ajusta en lugar de desplazarse: no genera scroll horizontal. */
+.bloque-codigo {
+  margin: 0 0 12px;
+  padding: 12px;
+  border: 1px solid var(--linea);
+  border-radius: var(--radio);
+  background-color: var(--superficie);
+  color: var(--texto);
+  font-size: 0.875rem;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+/* Panel de solo lectura: repite datos sin ofrecer controles */
+.resumen {
+  margin: 0;
+  padding: 12px;
+  border: 1px solid var(--linea);
+  border-radius: var(--radio);
+  background-color: var(--superficie);
+}
+
+.resumen__fila {
+  display: grid;
+  gap: 2px;
+  padding-block: 8px;
+  border-bottom: 1px solid var(--linea);
+}
+
+.resumen__fila:first-child {
+  padding-top: 0;
+}
+
+.resumen__fila:last-child {
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+
+.resumen dt {
+  font-size: 0.875rem;
+  font-weight: 700;
+}
+
+.resumen dd {
+  margin: 0;
+}
+
+/* Ficha de la pantalla: documentación, no interfaz */
+.ficha-mockup {
+  margin-top: 8px;
+  padding-block: 20px;
+  border-top: 4px solid var(--linea-fuerte);
+  background-color: var(--relleno);
+}
+
+.ficha-mockup__titulo {
+  font-size: 1rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.ficha-mockup__lista {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+}
+
+.ficha-mockup__fila {
+  display: grid;
+  gap: 2px;
+}
+
+.ficha-mockup dt {
+  font-size: 0.875rem;
+  font-weight: 700;
+}
+
+.ficha-mockup dd {
+  margin: 0;
+}
+
+/* Pie */
+.pie-sitio {
+  padding-block: 16px;
+  border-top: 1px solid var(--linea);
+  background-color: var(--superficie);
+  color: var(--texto-suave);
+  font-size: 0.875rem;
+}
+
+.pie-sitio p {
+  margin: 0 0 4px;
+}
+
+.pie-sitio p:last-child {
+  margin-bottom: 0;
+}
+
+/* 5. Adaptación a tableta y escritorio ------------------- */
+
+@media (min-width: 768px) {
+  .encabezado-sitio__interior {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .contenido-principal {
+    padding-block: 32px 40px;
+  }
+
+  .titulo-pantalla {
+    font-size: 2rem;
+  }
+
+  .rejilla {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .ficha-mockup__fila {
+    grid-template-columns: 220px 1fr;
+    gap: 16px;
+  }
+
+  .resumen__fila {
+    grid-template-columns: 220px 1fr;
+    gap: 16px;
+    align-items: baseline;
+  }
+
+  .acciones {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .acciones .boton-principal,
+  .acciones .boton-secundario {
+    width: auto;
+  }
+
+  .tabla-datos {
+    display: table;
+    border-collapse: collapse;
+  }
+
+  .tabla-datos thead {
+    display: table-header-group;
+    position: static;
+    width: auto;
+    height: auto;
+    margin: 0;
+    overflow: visible;
+    clip-path: none;
+    white-space: normal;
+  }
+
+  .tabla-datos tbody {
+    display: table-row-group;
+  }
+
+  .tabla-datos tr {
+    display: table-row;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background-color: transparent;
+  }
+
+  .tabla-datos th,
+  .tabla-datos td {
+    display: table-cell;
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--linea);
+    text-align: left;
+    vertical-align: top;
+  }
+
+  .tabla-datos td:last-child {
+    border-bottom: 1px solid var(--linea);
+  }
+
+  .tabla-datos th {
+    background-color: var(--relleno);
+    font-weight: 700;
+  }
+
+  .tabla-datos td::before {
+    content: none;
+  }
+}
+
+@media (min-width: 1200px) {
+  .tarjeta,
+  .ejemplo-visual {
+    padding: 24px;
+  }
+
+  .contenido-principal {
+    padding-block: 40px 48px;
+  }
+}
+
+/* 6. Comportamiento de la aplicación de una sola página --- */
+
+/* El atributo hidden debe vencer a los display de los componentes:
+   .tabla-datos es display:block y .rejilla es display:grid. Sin esta
+   regla, una vista o un estado oculto podrían seguir viéndose. */
+[hidden] {
+  display: none !important;
+}
+
+/* Los botones nativos no heredan la tipografía. Se igualan a los
+   enlaces con las mismas clases sin tocar font-weight, que cada
+   componente define por separado. */
+.boton-principal,
+.boton-secundario {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  cursor: pointer;
+}

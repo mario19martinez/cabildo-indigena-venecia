@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Plantilla común — Cabildo Indígena de Venecia</title>
+  <meta name="description" content="Plantilla HTML5 de referencia para las pantallas de la Plataforma de Gestión del Cabildo Indígena de Venecia.">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="salto-contenido" href="#contenido">Saltar al contenido</a>
+
+  <!--
+    PLANTILLA COMÚN · ARCHIVO DE REFERENCIA
+    No es una pantalla de la plataforma y no se enlaza desde ningún menú.
+
+    Cómo se usa:
+    1. Copie este archivo en la raíz y renómbrelo en kebab-case.
+    2. Cambie title, description, h1, trazabilidad y el contenido de main.
+    3. Elija una variante de navegación y convierta cada span de la lista
+       en un enlace <a class="menu-principal__enlace"> hacia la pantalla
+       correspondiente. Marque la pantalla abierta con aria-current="page".
+    4. Quite este comentario y el aviso de referencia que aparece en main.
+    5. No agregue bloques de estilo, atributos de estilo ni scripts
+       en la pantalla: los estilos viven solo en styles.css.
+
+    Variantes de navegación:
+    - Pública: Noticias · Iniciar sesión.
+    - Miembro: Inicio · Registrar solicitud · Mis solicitudes ·
+      Mis certificados · Noticias · Cerrar sesión.
+    - Líder: Inicio · Todas las solicitudes · Comuneros · Crear cuenta ·
+      Noticias · Cerrar sesión.
+    - Administrador: Inicio · Todas las solicitudes · Comuneros ·
+      Cuentas de usuario · Noticias · Cerrar sesión.
+  -->
+
+  <header class="encabezado-sitio">
+    <div class="contenedor encabezado-sitio__interior">
+      <div class="identidad-sitio">
+        <p class="nombre-sitio">Cabildo Indígena de Venecia</p>
+      </div>
+      <nav class="menu-principal" aria-label="Navegación principal">
+        <ul class="menu-principal__lista">
+          <li><span class="menu-principal__enlace" aria-current="page">Inicio</span></li>
+          <li><span class="menu-principal__enlace">Función uno</span></li>
+          <li><span class="menu-principal__enlace">Función dos</span></li>
+          <li><span class="menu-principal__enlace">Noticias</span></li>
+          <li><span class="menu-principal__enlace">Cerrar sesión</span></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="contenido" class="contenido-principal">
+    <div class="contenedor">
+      <h1 class="titulo-pantalla">Título de la pantalla</h1>
+      <p class="trazabilidad">HU-xx · RF-xx</p>
+
+      <p class="aviso">Archivo de referencia: al copiar esta plantilla, sustituya este aviso, el título, la trazabilidad y todo el contenido de ejemplo por el de la pantalla correspondiente.</p>
+
+      <section class="tarjeta" aria-labelledby="titulo-ejemplo">
+        <h2 class="tarjeta__titulo" id="titulo-ejemplo">Contenido de la pantalla</h2>
+        <p>Esta tarjeta es un contenedor de ejemplo. Reemplace su contenido por el de la pantalla: un listado, un formulario, un resumen de solo lectura o una confirmación.</p>
+        <p>Use solo las clases documentadas en <code>docs/componentes.md</code> y muestre los códigos HU y RF que la pantalla cumple.</p>
+      </section>
+    </div>
+  </main>
+
+  <footer class="pie-sitio">
+    <div class="contenedor">
+      <p>Cabildo Indígena de Venecia · Plataforma de gestión.</p>
+      <p>Prototipo académico con datos ficticios. Sin backend, API ni almacenamiento persistente.</p>
+    </div>
+  </footer>
+</body>
+</html>

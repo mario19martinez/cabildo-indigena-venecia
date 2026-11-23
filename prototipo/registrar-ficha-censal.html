@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ficha censal — Maqueta AA3-EV02</title>
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body class="baja-fidelidad">
+  <a class="salto-contenido" href="#contenido">Saltar al contenido</a>
+
+  <header class="encabezado-sitio">
+    <div class="contenedor encabezado-sitio__interior">
+      <div class="identidad-sitio">
+        <p class="nombre-sitio">Cabildo Indígena de Venecia</p>
+        <p class="sello-mockup">Maqueta de baja fidelidad · AA3-EV02</p>
+        <p class="etiqueta-rol">Rol representado: Líder</p>
+      </div>
+      <nav class="menu-principal" aria-label="Navegación principal">
+        <ul class="menu-principal__lista">
+          <li><a class="menu-principal__enlace" href="inicio.html">Inicio</a></li>
+          <li><a class="menu-principal__enlace" href="solicitudes.html">Todas las solicitudes</a></li>
+          <li><a class="menu-principal__enlace" href="comuneros.html">Comuneros</a></li>
+          <li><a class="menu-principal__enlace" href="crear-cuenta.html">Crear cuenta</a></li>
+          <li><a class="menu-principal__enlace" href="index.html">Noticias</a></li>
+          <li><a class="menu-principal__enlace" href="index.html">Cerrar sesión (simulación)</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="contenido" class="contenido-principal">
+    <div class="contenedor contenido-angosto">
+      <h1 class="titulo-pantalla">Ficha censal</h1>
+      <p class="trazabilidad">HU-10 · RF-14</p>
+
+      <ol class="pasos" aria-label="Pasos del registro del comunero">
+        <li class="pasos__item pasos__item--completado"><span class="pasos__numero">1</span> Datos del comunero (completado)</li>
+        <li class="pasos__item pasos__item--actual" aria-current="step"><span class="pasos__numero">2</span> Ficha censal (paso actual)</li>
+      </ol>
+
+      <p>Segundo y último paso del registro. La ficha censal queda asociada al comunero del paso 1 y no es un módulo independiente del menú. El Administrador también puede registrar comuneros, según HU-10.</p>
+
+      <section class="tarjeta" aria-labelledby="titulo-resumen">
+        <h2 class="tarjeta__titulo" id="titulo-resumen">Comunero del paso 1</h2>
+        <p class="aviso">Datos ficticios de ejemplo: la maqueta no conserva ni traslada información entre páginas. Si se llega aquí directamente, estos valores no provienen de un formulario completado.</p>
+
+        <dl class="resumen">
+          <div class="resumen__fila">
+            <dt>Documento</dt>
+            <dd>1.045.223.111</dd>
+          </div>
+          <div class="resumen__fila">
+            <dt>Nombres</dt>
+            <dd>Ana</dd>
+          </div>
+          <div class="resumen__fila">
+            <dt>Apellidos</dt>
+            <dd>Benavides</dd>
+          </div>
+          <div class="resumen__fila">
+            <dt>Fecha de nacimiento</dt>
+            <dd>12 de marzo de 1990</dd>
+          </div>
+          <div class="resumen__fila">
+            <dt>Sexo</dt>
+            <dd>Femenino</dd>
+          </div>
+          <div class="resumen__fila">
+            <dt>Teléfono</dt>
+            <dd>300 123 4567</dd>
+          </div>
+          <div class="resumen__fila">
+            <dt>Familia</dt>
+            <dd>Familia Amaru</dd>
+          </div>
+        </dl>
+      </section>
+
+      <section class="tarjeta" aria-labelledby="form-titulo">
+        <h2 class="tarjeta__titulo" id="form-titulo">Paso 2 · Ficha censal</h2>
+        <form class="formulario" novalidate>
+          <div class="campo">
+            <label class="campo__etiqueta" for="nivel-educativo">Nivel educativo</label>
+            <input class="campo__control" id="nivel-educativo" type="text" autocomplete="off" aria-describedby="ayuda-nivel">
+            <p class="campo__ayuda" id="ayuda-nivel">Texto libre. No hay un catálogo de niveles definido en los requisitos.</p>
+          </div>
+
+          <div class="campo">
+            <label class="campo__etiqueta" for="ocupacion">Ocupación</label>
+            <input class="campo__control" id="ocupacion" type="text" autocomplete="off" aria-describedby="ayuda-ocupacion">
+            <p class="campo__ayuda" id="ayuda-ocupacion">Texto libre.</p>
+          </div>
+
+          <div class="campo">
+            <label class="campo__etiqueta" for="observaciones-ficha">Observaciones (opcional)</label>
+            <textarea class="campo__control area-texto" id="observaciones-ficha" rows="4"></textarea>
+          </div>
+
+          <div class="campo">
+            <p class="campo__etiqueta">Fecha de registro</p>
+            <p class="campo__ayuda">Se asigna automáticamente al confirmar el registro. No es un campo editable.</p>
+          </div>
+
+          <p class="aviso">El comunero se incorpora al listado solo cuando se completan los dos pasos y se confirma el registro. Confirmar solo navega al listado: no guarda datos. Cancelar descarta el borrador y el comunero no queda registrado.</p>
+
+          <div class="acciones">
+            <a class="boton-principal" href="comuneros.html">Confirmar registro completo (simulación)</a>
+            <a class="boton-secundario" href="registrar-comunero.html">Volver al paso 1</a>
+            <a class="boton-secundario" href="comuneros.html">Cancelar</a>
+          </div>
+        </form>
+      </section>
+
+      <section class="ejemplo-visual" aria-labelledby="titulo-confirmacion">
+        <p class="etiqueta-ejemplo">Ejemplo visual · no es un estado activo</p>
+        <h2 class="tarjeta__titulo" id="titulo-confirmacion">Confirmación del registro</h2>
+        <p>Variante de esta misma pantalla: representa la confirmación que vería el usuario al completar los dos pasos. No es el resultado de la navegación.</p>
+        <p class="mensaje-exito">Comunero registrado.</p>
+        <dl class="resumen">
+          <div class="resumen__fila">
+            <dt>Comunero</dt>
+            <dd>Ana Benavides</dd>
+          </div>
+          <div class="resumen__fila">
+            <dt>Documento</dt>
+            <dd>1.045.223.111</dd>
+          </div>
+          <div class="resumen__fila">
+            <dt>Ficha censal</dt>
+            <dd>Asociada al comunero registrado</dd>
+          </div>
+        </dl>
+        <p>Representación estática: no se guardó ningún dato y el listado de comuneros conserva sus propios ejemplos.</p>
+      </section>
+    </div>
+  </main>
+
+  <aside class="ficha-mockup" aria-labelledby="ficha-titulo">
+    <div class="contenedor">
+      <h2 class="ficha-mockup__titulo" id="ficha-titulo">Ficha de la pantalla · documentación, no forma parte de la interfaz</h2>
+      <dl class="ficha-mockup__lista">
+        <div class="ficha-mockup__fila">
+          <dt>Nombre</dt>
+          <dd>Ficha censal, paso 2 — <code>prototipo/registrar-ficha-censal.html</code></dd>
+        </div>
+        <div class="ficha-mockup__fila">
+          <dt>Historias de usuario</dt>
+          <dd>HU-10 (criterios 5, 6 y 8)</dd>
+        </div>
+        <div class="ficha-mockup__fila">
+          <dt>Requisitos funcionales</dt>
+          <dd>RF-14 (con la restricción R-02)</dd>
+        </div>
+        <div class="ficha-mockup__fila">
+          <dt>Descripción</dt>
+          <dd>Segundo paso del proceso único de registro: nivel educativo, ocupación y observaciones opcionales, con la fecha de registro informada como automática. Repite los datos del paso 1 en un panel de solo lectura rotulado como ficticio. Incluye la confirmación como variante estática. No es un módulo del menú ni se alcanza desde él.</dd>
+        </div>
+        <div class="ficha-mockup__fila">
+          <dt>Usabilidad y accesibilidad</dt>
+          <dd>Etiquetas asociadas con <code>for</code> e <code>id</code>; la fecha automática se informa como texto, sin control editable; el indicador de pasos marca el paso completado y el actual con texto, no solo con color; las tres acciones se apilan a 360 px y pasan a fila desde 768 px, con el botón principal primero; el panel de resumen mantiene una columna a 360 px y dos desde 768 px.</dd>
+        </div>
+        <div class="ficha-mockup__fila">
+          <dt>Nota técnica</dt>
+          <dd>No se representa validación de obligatoriedad para nivel educativo ni ocupación porque HU-10 solo identifica las observaciones como opcionales y ningún requisito aprobado exige esos campos; el esquema documental los admite nulos. Tampoco se agregan catálogos de valores no definidos. La familia sigue siendo opcional según HU-10 y RF-13.</dd>
+        </div>
+      </dl>
+    </div>
+  </aside>
+
+  <footer class="pie-sitio">
+    <div class="contenedor">
+      <p>Maqueta de baja fidelidad de la evidencia GA6-220501096 (AA3-EV02). Datos ficticios con fines demostrativos.</p>
+      <p>Sin validación funcional, sin backend, sin base de datos y sin almacenamiento persistente: los pasos no conservan información entre páginas.</p>
+    </div>
+  </footer>
+</body>
+</html>

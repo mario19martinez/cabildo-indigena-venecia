@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Noticias del Cabildo — Cabildo Indígena de Venecia</title>
+  <meta name="description" content="Plataforma de Gestión del Cabildo Indígena de Venecia. Prototipo académico con datos ficticios, sin backend ni almacenamiento persistente.">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="salto-contenido" href="#contenido">Saltar al contenido</a>
+
+  <header class="encabezado-sitio">
+    <div class="contenedor encabezado-sitio__interior">
+      <div class="identidad-sitio">
+        <p class="nombre-sitio">Cabildo Indígena de Venecia</p>
+      </div>
+      <nav class="menu-principal" aria-label="Navegación principal">
+        <ul class="menu-principal__lista" id="menu-principal"></ul>
+      </nav>
+      <button class="boton-secundario" type="button" id="cerrar-sesion" hidden>Cerrar sesión</button>
+    </div>
+  </header>
+
+  <main id="contenido" class="contenido-principal">
+    <noscript>
+      <div class="contenedor">
+        <p class="aviso">Esta aplicación necesita JavaScript para mostrar las vistas y permitir la navegación.</p>
+      </div>
+    </noscript>
+
+    <div class="contenedor">
+      <p class="aviso" role="note">Simulación académica con datos ficticios en memoria. La sesión, los roles y los datos se pierden al recargar o cerrar la página. No hay backend, API ni almacenamiento persistente.</p>
+      <p class="aviso" id="aviso-ruta" role="status" hidden></p>
+    </div>
+
+    <!-- 1. Noticias públicas · #/noticias -->
+    <section id="vista-noticias" data-vista="noticias" aria-labelledby="noticias-titulo" hidden>
+      <div class="contenedor">
+        <h1 class="titulo-pantalla" id="noticias-titulo" tabindex="-1">Noticias del Cabildo</h1>
+        <p class="trazabilidad">HU-05 · RF-07</p>
+
+        <p>Listado público de noticias del Cabildo Indígena de Venecia. Se consulta sin iniciar sesión y no ofrece vista de detalle individual.</p>
+
+        <section class="tarjeta" id="noticias-listado" aria-labelledby="noticias-titulo-noticias">
+          <h2 class="tarjeta__titulo" id="noticias-titulo-noticias">Noticias publicadas</h2>
+          <ul class="lista-noticias" id="noticias-lista"></ul>
+        </section>
+
+        <section class="tarjeta" id="noticias-vacio" aria-labelledby="noticias-titulo-vacio" hidden>
+          <h2 class="tarjeta__titulo" id="noticias-titulo-vacio">Estado vacío del listado</h2>
+          <div class="estado-vacio">
+            <p>No hay noticias publicadas.</p>
+          </div>
+        </section>
+
+        <p class="aviso">Los títulos y las fechas son datos exclusivamente demostrativos. Las noticias no tienen detalle individual ni acciones asociadas.</p>
+      </div>
+    </section>
+
+    <!-- 2. Iniciar sesión · #/iniciar-sesion -->
+    <section id="vista-iniciar-sesion" data-vista="iniciar-sesion" aria-labelledby="iniciar-sesion-titulo" hidden>
+      <div class="contenedor contenido-angosto">
+        <h1 class="titulo-pantalla" id="iniciar-sesion-titulo" tabindex="-1">Iniciar sesión</h1>
+        <p class="trazabilidad">HU-01 · RF-01, RF-02</p>
+
+        <p>Acceso al área autenticada con correo y contraseña. Las cuentas son ficticias y no existe registro público ni recuperación de contraseña.</p>
+
+        <section class="tarjeta" aria-labelledby="iniciar-sesion-form-titulo">
+          <h2 class="tarjeta__titulo" id="iniciar-sesion-form-titulo">Datos de acceso</h2>
+          <form class="formulario" id="iniciar-sesion-formulario" novalidate>
+            <div class="campo">
+              <label class="campo__etiqueta" for="iniciar-sesion-correo">Correo electrónico</label>
+              <input class="campo__control" id="iniciar-sesion-correo" type="email" autocomplete="username" placeholder="nombre@ejemplo.com" aria-describedby="iniciar-sesion-error-correo">
+              <p class="mensaje-error" id="iniciar-sesion-error-correo" hidden>Ingrese su correo electrónico.</p>
+            </div>
+
+            <div class="campo">
+              <label class="campo__etiqueta" for="iniciar-sesion-contrasena">Contraseña</label>
+              <input class="campo__control" id="iniciar-sesion-contrasena" type="password" autocomplete="current-password" aria-describedby="iniciar-sesion-error-contrasena">
+              <p class="mensaje-error" id="iniciar-sesion-error-contrasena" hidden>Ingrese su contraseña.</p>
+            </div>
+
+            <p class="mensaje-error" id="iniciar-sesion-error-general" role="alert" tabindex="-1" hidden></p>
+
+            <p class="aviso">El ingreso es simulado: la sesión vive solo en memoria y se pierde al recargar. Las cuentas son ficticias; no use credenciales reales.</p>
+
+            <div class="acciones">
+              <button class="boton-principal" type="submit">Ingresar</button>
+            </div>
+
+            <p><a href="#/noticias">Volver a noticias</a></p>
+          </form>
+        </section>
+
+        <section class="tarjeta" aria-labelledby="iniciar-sesion-credenciales-titulo">
+          <h2 class="tarjeta__titulo" id="iniciar-sesion-credenciales-titulo">Cuentas de demostración</h2>
+          <p class="aviso">Credenciales ficticias de ejemplo. Las cuentas inactivas o bloqueadas no se muestran y no permiten el ingreso.</p>
+          <dl class="resumen" id="iniciar-sesion-credenciales"></dl>
+        </section>
+      </div>
+    </section>
+
+    <!-- 3. Inicio autenticado · #/inicio -->
+    <section id="vista-inicio" data-vista="inicio" aria-labelledby="inicio-titulo" hidden>
+      <div class="contenedor">
+        <h1 class="titulo-pantalla" id="inicio-titulo" tabindex="-1">Área autenticada</h1>
+        <p class="trazabilidad">HU-01, HU-02 · RF-02, RF-03</p>
+
+        <p>Punto de entrada de la zona privada. Distribuye hacia las funciones disponibles según el rol del usuario autenticado y no incluye estadísticas, indicadores ni reportes.</p>
+
+        <p class="aviso">Sesión simulada en memoria: al recargar o cerrar la página se pierden la sesión y los cambios. El menú muestra únicamente las opciones del rol activo.</p>
+
+        <section aria-labelledby="inicio-titulo-accesos">
+          <h2 class="titulo-seccion" id="inicio-titulo-accesos">Accesos del rol activo</h2>
+          <p class="aviso" id="inicio-sesion-resumen"></p>
+          <p>Solo se muestra la tarjeta del rol de la sesión. Las demás tarjetas permanecen ocultas y las guardas de ruta aplican los mismos permisos.</p>
+
+          <div class="rejilla">
+            <article class="tarjeta tarjeta--rol" data-rol="miembro" aria-labelledby="inicio-rol-miembro">
+              <h3 id="inicio-rol-miembro">Miembro</h3>
+              <ul class="lista-accesos">
+                <li>Inicio</li>
+                <li><a href="#/registrar-solicitud">Registrar solicitud</a></li>
+                <li><a href="#/mis-solicitudes">Mis solicitudes</a></li>
+                <li><a href="#/mis-certificados">Mis certificados</a></li>
+                <li><a href="#/noticias">Noticias</a></li>
+              </ul>
+            </article>
+
+            <article class="tarjeta tarjeta--rol" data-rol="lider" aria-labelledby="inicio-rol-lider">
+              <h3 id="inicio-rol-lider">Líder</h3>
+              <ul class="lista-accesos">
+                <li>Inicio</li>
+                <li><a href="#/solicitudes">Todas las solicitudes</a></li>
+                <li><a href="#/comuneros">Comuneros</a></li>
+                <li><a href="#/crear-cuenta">Crear cuenta</a></li>
+                <li><a href="#/noticias">Noticias</a></li>
+              </ul>
+            </article>
+
+            <article class="tarjeta tarjeta--rol" data-rol="administrador" aria-labelledby="inicio-rol-administrador">
+              <h3 id="inicio-rol-administrador">Administrador</h3>
+              <ul class="lista-accesos">
+                <li>Inicio</li>
+                <li><a href="#/solicitudes">Todas las solicitudes</a></li>
+                <li><a href="#/comuneros">Comuneros</a></li>
+                <li><a href="#/cuentas">Cuentas de usuario</a></li>
+                <li><a href="#/noticias">Noticias</a></li>
+              </ul>
+            </article>
+          </div>
+
+          <p class="aviso">La tarjeta visible corresponde al rol de la sesión. El menú, las guardas de ruta y las tablas filtradas usan la misma información de la sesión en memoria.</p>
+        </section>
+
+        <section aria-labelledby="inicio-titulo-alcance">
+          <h2 class="titulo-seccion" id="inicio-titulo-alcance">Alcance de esta vista</h2>
+          <p class="aviso">Sin estadísticas, indicadores ni reportes. Tampoco incluye administración de sesiones ni cambios de estado de las cuentas.</p>
+        </section>
+      </div>
+    </section>
+
+    <!-- 4. Registrar solicitud · #/registrar-solicitud -->
+    <section id="vista-registrar-solicitud" data-vista="registrar-solicitud" aria-labelledby="registrar-solicitud-titulo" hidden>
+      <div class="contenedor contenido-angosto">
+        <h1 class="titulo-pantalla" id="registrar-solicitud-titulo" tabindex="-1">Registrar solicitud</h1>
+        <p class="trazabilidad">HU-06 · RF-02, RF-08, RF-09</p>
+
+        <p>El tipo de trámite es obligatorio y las observaciones son opcionales. La solicitud queda asociada al comunero del miembro autenticado.</p>
+
+        <section class="tarjeta" aria-labelledby="registrar-solicitud-form-titulo">
+          <h2 class="tarjeta__titulo" id="registrar-solicitud-form-titulo">Datos de la solicitud</h2>
+          <form class="formulario" id="registrar-solicitud-formulario" novalidate>
+            <div class="campo">
+              <label class="campo__etiqueta" for="registrar-solicitud-tipo-tramite">Tipo de trámite</label>
+              <input class="campo__control" id="registrar-solicitud-tipo-tramite" type="text" autocomplete="off" aria-describedby="registrar-solicitud-ayuda-tramite registrar-solicitud-error-tramite">
+              <p class="campo__ayuda" id="registrar-solicitud-ayuda-tramite">Texto libre. No existe un catálogo de tipos.</p>
+              <p class="mensaje-error" id="registrar-solicitud-error-tramite" hidden>Ingrese el tipo de trámite.</p>
+            </div>
+
+            <div class="campo">
+              <label class="campo__etiqueta" for="registrar-solicitud-observaciones">Observaciones (opcional)</label>
+              <textarea class="campo__control area-texto" id="registrar-solicitud-observaciones" rows="4" aria-describedby="registrar-solicitud-ayuda-observaciones"></textarea>
+              <p class="campo__ayuda" id="registrar-solicitud-ayuda-observaciones">Puede ampliar la información de la solicitud.</p>
+            </div>
+
+            <p class="aviso">La fecha y el estado «pendiente» se asignan automáticamente al registrar. La solicitud se guarda solo en memoria: al recargar la página se descarta y se restaura la semilla de ejemplo.</p>
+
+            <div class="acciones">
+              <button class="boton-principal" id="registrar-solicitud-boton" type="submit">Registrar solicitud</button>
+            </div>
+          </form>
+        </section>
+
+        <section class="tarjeta" id="registrar-solicitud-confirmacion" aria-labelledby="registrar-solicitud-titulo-confirmacion" hidden>
+          <h2 class="tarjeta__titulo" id="registrar-solicitud-titulo-confirmacion" tabindex="-1">Solicitud registrada</h2>
+          <p class="mensaje-exito" role="status">La solicitud se registró correctamente.</p>
+          <dl class="resumen">
+            <div class="resumen__fila">
+              <dt>Tipo de trámite</dt>
+              <dd id="registrar-solicitud-resumen-tipo"></dd>
+            </div>
+            <div class="resumen__fila">
+              <dt>Fecha</dt>
+              <dd id="registrar-solicitud-resumen-fecha"></dd>
+            </div>
+            <div class="resumen__fila">
+              <dt>Estado</dt>
+              <dd id="registrar-solicitud-resumen-estado"></dd>
+            </div>
+          </dl>
+          <p><a href="#/mis-solicitudes">Consultar mis solicitudes</a></p>
+        </section>
+      </div>
+    </section>
+
+    <!-- 5. Mis solicitudes · #/mis-solicitudes -->
+    <section id="vista-mis-solicitudes" data-vista="mis-solicitudes" aria-labelledby="mis-solicitudes-titulo" hidden>
+      <div class="contenedor">
+        <h1 class="titulo-pantalla" id="mis-solicitudes-titulo" tabindex="-1">Mis solicitudes</h1>
+        <p class="trazabilidad">HU-07 · RF-09</p>
+
+        <p>Solo las solicitudes del miembro autenticado, con tipo, fecha, estado y observaciones. No hay acciones de edición ni eliminación.</p>
+
+        <section class="tarjeta" id="mis-solicitudes-listado" aria-labelledby="mis-solicitudes-titulo-listado">
+          <h2 class="tarjeta__titulo" id="mis-solicitudes-titulo-listado">Solicitudes registradas</h2>
+
+          <table class="tabla-datos" role="table">
+            <caption class="tabla-datos__leyenda">Datos de ejemplo con fines demostrativos.</caption>
+            <thead role="rowgroup">
+              <tr role="row">
+                <th scope="col" role="columnheader">Tipo de trámite</th>
+                <th scope="col" role="columnheader">Fecha</th>
+                <th scope="col" role="columnheader">Estado</th>
+                <th scope="col" role="columnheader">Observaciones</th>
+              </tr>
+            </thead>
+            <tbody role="rowgroup" id="mis-solicitudes-cuerpo"></tbody>
+          </table>
+
+          <p>Los tipos de trámite son textos libres de ejemplo, no un catálogo oficial ni opciones obligatorias.</p>
+          <p><a href="#/registrar-solicitud">Registrar una solicitud</a></p>
+        </section>
+
+        <section class="tarjeta" id="mis-solicitudes-vacio" aria-labelledby="mis-solicitudes-titulo-vacio" hidden>
+          <h2 class="tarjeta__titulo" id="mis-solicitudes-titulo-vacio">Estado vacío del listado</h2>
+          <div class="estado-vacio">
+            <p>No tiene solicitudes registradas.</p>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <!-- 6. Mis certificados · #/mis-certificados -->
+    <section id="vista-mis-certificados" data-vista="mis-certificados" aria-labelledby="mis-certificados-titulo" hidden>
+      <div class="contenedor">
+        <h1 class="titulo-pantalla" id="mis-certificados-titulo" tabindex="-1">Mis certificados</h1>
+        <p class="trazabilidad">HU-08 · RF-10</p>
+
+        <p>Consulta de solo lectura de los certificados del miembro autenticado. No se abren, descargan, imprimen, generan ni validan individualmente.</p>
+
+        <section class="tarjeta" id="mis-certificados-listado" aria-labelledby="mis-certificados-titulo-listado">
+          <h2 class="tarjeta__titulo" id="mis-certificados-titulo-listado">Certificados registrados</h2>
+
+          <table class="tabla-datos" role="table">
+            <caption class="tabla-datos__leyenda">Datos de ejemplo con fines demostrativos.</caption>
+            <thead role="rowgroup">
+              <tr role="row">
+                <th scope="col" role="columnheader">Código de validación</th>
+                <th scope="col" role="columnheader">Fecha de generación</th>
+                <th scope="col" role="columnheader">Estado</th>
+                <th scope="col" role="columnheader">Tipo de solicitud</th>
+              </tr>
+            </thead>
+            <tbody role="rowgroup" id="mis-certificados-cuerpo"></tbody>
+          </table>
+
+          <p>El tipo de solicitud proviene de la solicitud asociada al certificado; no es un campo propio del certificado. Los códigos son datos de ejemplo.</p>
+        </section>
+
+        <section class="tarjeta" id="mis-certificados-vacio" aria-labelledby="mis-certificados-titulo-vacio" hidden>
+          <h2 class="tarjeta__titulo" id="mis-certificados-titulo-vacio">Estado vacío del listado</h2>
+          <div class="estado-vacio">
+            <p>No tiene certificados registrados.</p>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <!-- 7. Todas las solicitudes · #/solicitudes -->
+    <section id="vista-solicitudes" data-vista="solicitudes" aria-labelledby="solicitudes-titulo" hidden>
+      <div class="contenedor">
+        <h1 class="titulo-pantalla" id="solicitudes-titulo" tabindex="-1">Todas las solicitudes</h1>
+        <p class="trazabilidad">HU-09 · RF-02, RF-11, RF-12</p>
+
+        <p>Consulta de las solicitudes de todos los comuneros, con comunero, tipo de trámite, fecha, estado y observaciones. El Administrador también puede consultar esta vista y cambiar el estado, según HU-09.</p>
+
+        <section class="tarjeta" id="solicitudes-listado" aria-labelledby="solicitudes-titulo-listado">
+          <h2 class="tarjeta__titulo" id="solicitudes-titulo-listado">Solicitudes registradas</h2>
+
+          <table class="tabla-datos" role="table">
+            <caption class="tabla-datos__leyenda">Datos de ejemplo con fines demostrativos.</caption>
+            <thead role="rowgroup">
+              <tr role="row">
+                <th scope="col" role="columnheader">Comunero</th>
+                <th scope="col" role="columnheader">Trámite y observaciones</th>
+                <th scope="col" role="columnheader">Fecha</th>
+                <th scope="col" role="columnheader">Estado</th>
+                <th scope="col" role="columnheader">Cambiar estado</th>
+              </tr>
+            </thead>
+            <tbody role="rowgroup" id="solicitudes-cuerpo"></tbody>
+          </table>
+
+          <p class="aviso">Los selectores no tienen efecto en este bloque: están deshabilitados y no guardan cambios ni actualizan la tabla. El cambio de estado se habilitará en el Bloque 3. No hay edición ni eliminación de solicitudes.</p>
+          <p>Estados disponibles: pendiente, en revisión, aprobada, rechazada y completada. No se definen transiciones obligatorias entre ellos.</p>
+        </section>
+
+        <section class="tarjeta" id="solicitudes-confirmacion" aria-labelledby="solicitudes-titulo-confirmacion" hidden>
+          <h2 class="tarjeta__titulo" id="solicitudes-titulo-confirmacion">Confirmación del cambio de estado</h2>
+          <p>¿Confirma cambiar el estado de la solicitud «Solicitud de certificado de residencia» de «Pendiente» a «En revisión»?</p>
+          <p class="mensaje-exito" role="status">Estado actualizado.</p>
+          <dl class="resumen">
+            <div class="resumen__fila">
+              <dt>Estado anterior</dt>
+              <dd><span class="etiqueta-estado etiqueta-estado--pendiente">Pendiente</span></dd>
+            </div>
+            <div class="resumen__fila">
+              <dt>Estado actualizado</dt>
+              <dd><span class="etiqueta-estado etiqueta-estado--en-revision">En revisión</span></dd>
+            </div>
+          </dl>
+        </section>
+
+        <section class="tarjeta" id="solicitudes-vacio" aria-labelledby="solicitudes-titulo-vacio" hidden>
+          <h2 class="tarjeta__titulo" id="solicitudes-titulo-vacio">Estado vacío del listado</h2>
+          <div class="estado-vacio">
+            <p>No hay solicitudes registradas.</p>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <!-- 8. Comuneros · #/comuneros -->
+    <section id="vista-comuneros" data-vista="comuneros" aria-labelledby="comuneros-titulo" hidden>
+      <div class="contenedor">
+        <h1 class="titulo-pantalla" id="comuneros-titulo" tabindex="-1">Comuneros</h1>
+        <p class="trazabilidad">HU-10 · RF-13</p>
+
+        <p>Registro del censo. Esta vista permite comprobar el resultado del registro de un comunero y no ofrece edición ni eliminación. El Administrador también puede registrar comuneros, según HU-10.</p>
+
+        <section class="tarjeta" id="comuneros-listado" aria-labelledby="comuneros-titulo-listado">
+          <h2 class="tarjeta__titulo" id="comuneros-titulo-listado">Comuneros registrados</h2>
+
+          <table class="tabla-datos" role="table">
+            <caption class="tabla-datos__leyenda">Datos de ejemplo con fines demostrativos.</caption>
+            <thead role="rowgroup">
+              <tr role="row">
+                <th scope="col" role="columnheader">Documento</th>
+                <th scope="col" role="columnheader">Comunero</th>
+                <th scope="col" role="columnheader">Sexo</th>
+                <th scope="col" role="columnheader">Familia</th>
+                <th scope="col" role="columnheader">Teléfono</th>
+              </tr>
+            </thead>
+            <tbody role="rowgroup" id="comuneros-cuerpo"></tbody>
+          </table>
+
+          <p class="aviso">La familia es opcional: si se asigna una, debe existir previamente. Las familias de ejemplo son datos demostrativos y no se crean ni se editan desde esta vista.</p>
+
+          <p><a class="boton-principal" href="#/registrar-comunero">Registrar comunero</a></p>
+          <p class="campo__ayuda">El registro se realiza en dos pasos: datos del comunero y ficha censal. Solo al completar ambos pasos y confirmar, el comunero aparecería en este listado.</p>
+        </section>
+
+        <section class="tarjeta" id="comuneros-vacio" aria-labelledby="comuneros-titulo-vacio" hidden>
+          <h2 class="tarjeta__titulo" id="comuneros-titulo-vacio">Estado vacío del listado</h2>
+          <div class="estado-vacio">
+            <p>No hay comuneros registrados.</p>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <!-- 9. Registrar comunero · #/registrar-comunero -->
+    <section id="vista-registrar-comunero" data-vista="registrar-comunero" aria-labelledby="registrar-comunero-titulo" hidden>
+      <div class="contenedor contenido-angosto">
+        <h1 class="titulo-pantalla" id="registrar-comunero-titulo" tabindex="-1">Registrar comunero</h1>
+        <p class="trazabilidad">HU-10 · RF-13</p>
+
+        <ol class="pasos" aria-label="Pasos del registro del comunero">
+          <li class="pasos__item pasos__item--actual" aria-current="step"><span class="pasos__numero">1</span> Datos del comunero (paso actual)</li>
+          <li class="pasos__item"><span class="pasos__numero">2</span> Ficha censal</li>
+        </ol>
+
+        <p>El registro se compone de dos pasos consecutivos. Documento, nombres, apellidos, fecha de nacimiento y sexo son obligatorios; el teléfono y la familia son opcionales. El Administrador también puede registrar comuneros, según HU-10.</p>
+
+        <p class="aviso">El comunero no se guarda ni aparece en el listado hasta completar la ficha censal del paso 2 y confirmar el registro. En este bloque no se guarda ningún borrador y «Continuar» permanece deshabilitado: la ficha censal se habilitará en el Bloque 4.</p>
+
+        <section class="tarjeta" aria-labelledby="registrar-comunero-form-titulo">
+          <h2 class="tarjeta__titulo" id="registrar-comunero-form-titulo">Paso 1 · Datos del comunero</h2>
+          <form class="formulario" novalidate>
+            <div class="campo">
+              <label class="campo__etiqueta" for="registrar-comunero-documento">Documento</label>
+              <input class="campo__control" id="registrar-comunero-documento" type="text" autocomplete="off" aria-describedby="registrar-comunero-ayuda-documento registrar-comunero-error-documento">
+              <p class="campo__ayuda" id="registrar-comunero-ayuda-documento">Debe ser único: no puede repetirse en otro comunero.</p>
+              <p class="mensaje-error" id="registrar-comunero-error-documento" hidden>El documento ya está registrado para otro comunero.</p>
+            </div>
+
+            <div class="campo">
+              <label class="campo__etiqueta" for="registrar-comunero-nombres">Nombres</label>
+              <input class="campo__control" id="registrar-comunero-nombres" type="text" autocomplete="off" aria-describedby="registrar-comunero-error-nombres">
+              <p class="mensaje-error" id="registrar-comunero-error-nombres" hidden>Ingrese los nombres del comunero.</p>
+            </div>
+
+            <div class="campo">
+              <label class="campo__etiqueta" for="registrar-comunero-apellidos">Apellidos</label>
+              <input class="campo__control" id="registrar-comunero-apellidos" type="text" autocomplete="off">
+            </div>
+
+            <div class="campo">
+              <label class="campo__etiqueta" for="registrar-comunero-fecha-nacimiento">Fecha de nacimiento</label>
+              <input class="campo__control" id="registrar-comunero-fecha-nacimiento" type="date">
+            </div>
+
+            <div class="campo">
+              <label class="campo__etiqueta" for="registrar-comunero-sexo">Sexo</label>
+              <select class="campo__control" id="registrar-comunero-sexo" aria-describedby="registrar-comunero-ayuda-sexo">
+                <option value="" selected>Seleccione una opción</option>
+                <option value="femenino">Femenino</option>
+                <option value="masculino">Masculino</option>
+                <option value="otro">Otro</option>
+                <option value="no especifica">No especifica</option>
+              </select>
+              <p class="campo__ayuda" id="registrar-comunero-ayuda-sexo">Valores de referencia del esquema documental.</p>
+            </div>
+
+            <div class="campo">
+              <label class="campo__etiqueta" for="registrar-comunero-telefono">Teléfono (opcional)</label>
+              <input class="campo__control" id="registrar-comunero-telefono" type="tel" autocomplete="off">
+            </div>
+
+            <div class="campo">
+              <label class="campo__etiqueta" for="registrar-comunero-familia">Familia (opcional)</label>
+              <select class="campo__control" id="registrar-comunero-familia" aria-describedby="registrar-comunero-ayuda-familia">
+                <option value="" selected>Sin familia asignada</option>
+              </select>
+              <p class="campo__ayuda" id="registrar-comunero-ayuda-familia">Solo familias existentes. No se crean ni se editan familias desde la plataforma. Las familias listadas son datos de ejemplo.</p>
+            </div>
+
+            <p class="aviso">Este registro no crea una cuenta de acceso: la creación de cuentas corresponde a otra función. Los campos no validan ni guardan los datos en este bloque.</p>
+
+            <p class="aviso">Función pendiente para el Bloque 4: el paso 2 y la validación del borrador censal todavía no están implementados. No es posible avanzar a una ficha ficticia.</p>
+
+            <div class="acciones">
+              <button class="boton-principal" type="button" disabled>Continuar a la ficha censal</button>
+              <a class="boton-secundario" href="#/comuneros">Cancelar</a>
+            </div>
+          </form>
+        </section>
+      </div>
+    </section>
+
+    <!-- 10. Ficha censal · #/ficha-censal -->
+    <section id="vista-ficha-censal" data-vista="ficha-censal" aria-labelledby="ficha-censal-titulo" hidden>
+      <div class="contenedor contenido-angosto">
+        <h1 class="titulo-pantalla" id="ficha-censal-titulo" tabindex="-1">Ficha censal</h1>
+        <p class="trazabilidad">HU-10 · RF-14</p>
+
+        <ol class="pasos" aria-label="Pasos del registro del comunero">
+          <li class="pasos__item pasos__item--completado"><span class="pasos__numero">1</span> Datos del comunero (completado)</li>
+          <li class="pasos__item pasos__item--actual" aria-current="step"><span class="pasos__numero">2</span> Ficha censal (paso actual)</li>
+        </ol>
+
+        <p>Segundo y último paso del registro. La ficha censal queda asociada al comunero del paso 1 y no es un módulo independiente del menú. El Administrador también puede registrar comuneros, según HU-10.</p>
+
+        <section class="tarjeta" aria-labelledby="ficha-censal-titulo-resumen">
+          <h2 class="tarjeta__titulo" id="ficha-censal-titulo-resumen">Comunero del paso 1</h2>
+          <p class="aviso">Datos ficticios de ejemplo: en el Bloque 1 no existe un borrador guardado, así que estos valores no provienen de un formulario completado.</p>
+
+          <dl class="resumen">
+            <div class="resumen__fila">
+              <dt>Documento</dt>
+              <dd>1.045.223.111</dd>
+            </div>
+            <div class="resumen__fila">
+              <dt>Nombres</dt>
+              <dd>Ana</dd>
+            </div>
+            <div class="resumen__fila">
+              <dt>Apellidos</dt>
+              <dd>Benavides</dd>
+            </div>
+            <div class="resumen__fila">
+              <dt>Fecha de nacimiento</dt>
+              <dd>12 de marzo de 1990</dd>
+            </div>
+            <div class="resumen__fila">
+              <dt>Sexo</dt>
+              <dd>Femenino</dd>
+            </div>
+            <div class="resumen__fila">
+              <dt>Teléfono</dt>
+              <dd>300 123 4567</dd>
+            </div>
+            <div class="resumen__fila">
+              <dt>Familia</dt>
+              <dd>Familia Amaru</dd>
+            </div>
+          </dl>
+        </section>
+
+        <section class="tarjeta" aria-labelledby="ficha-censal-form-titulo">
+          <h2 class="tarjeta__titulo" id="ficha-censal-form-titulo">Paso 2 · Ficha censal</h2>
+          <form class="formulario" novalidate>
+            <div class="campo">
+              <label class="campo__etiqueta" for="ficha-censal-nivel-educativo">Nivel educativo</label>
+              <input class="campo__control" id="ficha-censal-nivel-educativo" type="text" autocomplete="off" aria-describedby="ficha-censal-ayuda-nivel">
+              <p class="campo__ayuda" id="ficha-censal-ayuda-nivel">Texto libre. No hay un catálogo de niveles definido en los requisitos.</p>
+            </div>
+
+            <div class="campo">
+              <label class="campo__etiqueta" for="ficha-censal-ocupacion">Ocupación</label>
+              <input class="campo__control" id="ficha-censal-ocupacion" type="text" autocomplete="off" aria-describedby="ficha-censal-ayuda-ocupacion">
+              <p class="campo__ayuda" id="ficha-censal-ayuda-ocupacion">Texto libre.</p>
+            </div>
+
+            <div class="campo">
+              <label class="campo__etiqueta" for="ficha-censal-observaciones">Observaciones (opcional)</label>
+              <textarea class="campo__control area-texto" id="ficha-censal-observaciones" rows="4"></textarea>
+            </div>
+
+            <div class="campo">
+              <p class="campo__etiqueta">Fecha de registro</p>
+              <p class="campo__ayuda">Se asigna automáticamente al confirmar el registro. No es un campo editable.</p>
+            </div>
+
+            <p class="aviso">El comunero se incorporará al listado solo cuando el proceso sea funcional y se confirme el registro. La ficha censal se habilitará en el Bloque 4: confirmar no guarda datos y cancelar no modifica el listado.</p>
+
+            <div class="acciones">
+              <button class="boton-principal" type="button" data-pendiente="bloque-4">Confirmar registro completo</button>
+              <a class="boton-secundario" href="#/registrar-comunero">Volver al paso 1</a>
+              <a class="boton-secundario" href="#/comuneros">Cancelar</a>
+            </div>
+          </form>
+        </section>
+
+        <section class="tarjeta" id="ficha-censal-confirmacion" aria-labelledby="ficha-censal-titulo-confirmacion" hidden>
+          <h2 class="tarjeta__titulo" id="ficha-censal-titulo-confirmacion">Confirmación del registro</h2>
+          <p class="mensaje-exito" role="status">Comunero registrado.</p>
+          <dl class="resumen">
+            <div class="resumen__fila">
+              <dt>Comunero</dt>
+              <dd>Ana Benavides</dd>
+            </div>
+            <div class="resumen__fila">
+              <dt>Documento</dt>
+              <dd>1.045.223.111</dd>
+            </div>
+            <div class="resumen__fila">
+              <dt>Ficha censal</dt>
+              <dd>Asociada al comunero registrado</dd>
+            </div>
+          </dl>
+        </section>
+      </div>
+    </section>
+
+    <!-- 11. Crear cuenta de acceso · #/crear-cuenta -->
+    <section id="vista-crear-cuenta" data-vista="crear-cuenta" aria-labelledby="crear-cuenta-titulo" hidden>
+      <div class="contenedor contenido-angosto">
+        <h1 class="titulo-pantalla" id="crear-cuenta-titulo" tabindex="-1">Crear cuenta de acceso</h1>
+        <p class="trazabilidad">HU-03 · RF-04</p>
+
+        <p>El Líder crea la cuenta de un comunero ya registrado que todavía no tenga una. El rol Miembro se asigna automáticamente y no existe registro público ni recuperación de contraseña.</p>
+
+        <p class="aviso">El rol no se elige: la cuenta se crea siempre como Miembro. La creación de cuentas se habilitará en el Bloque 3.</p>
+
+        <section class="tarjeta" id="crear-cuenta-formulario" aria-labelledby="crear-cuenta-form-titulo">
+          <h2 class="tarjeta__titulo" id="crear-cuenta-form-titulo">Datos de la cuenta</h2>
+          <form class="formulario" novalidate>
+            <div class="campo">
+              <label class="campo__etiqueta" for="crear-cuenta-comunero">Comunero</label>
+              <select class="campo__control" id="crear-cuenta-comunero" aria-describedby="crear-cuenta-ayuda-comunero crear-cuenta-error-comunero">
+                <option value="" selected>Seleccione un comunero</option>
+              </select>
+              <p class="campo__ayuda" id="crear-cuenta-ayuda-comunero">Solo aparecen comuneros registrados que aún no tienen cuenta. Los datos son de ejemplo.</p>
+              <p class="mensaje-error" id="crear-cuenta-error-comunero" hidden>Este comunero ya tiene una cuenta de acceso. Seleccione un comunero sin cuenta.</p>
+            </div>
+
+            <div class="campo">
+              <label class="campo__etiqueta" for="crear-cuenta-correo">Correo electrónico</label>
+              <input class="campo__control" id="crear-cuenta-correo" type="email" autocomplete="off" aria-describedby="crear-cuenta-ayuda-correo crear-cuenta-error-formato crear-cuenta-error-repetido">
+              <p class="campo__ayuda" id="crear-cuenta-ayuda-correo">Debe tener formato de correo y no estar asociado a otra cuenta. Ejemplo: nombre@ejemplo.com.</p>
+              <p class="mensaje-error" id="crear-cuenta-error-formato" hidden>Ingrese un correo con formato válido, por ejemplo nombre@ejemplo.com.</p>
+              <p class="mensaje-error" id="crear-cuenta-error-repetido" hidden>Ese correo ya está asociado a otra cuenta.</p>
+            </div>
+
+            <div class="campo">
+              <label class="campo__etiqueta" for="crear-cuenta-contrasena">Contraseña</label>
+              <input class="campo__control" id="crear-cuenta-contrasena" type="password" autocomplete="new-password" aria-describedby="crear-cuenta-ayuda-contrasena">
+              <p class="campo__ayuda" id="crear-cuenta-ayuda-contrasena">Credencial ficticia: no se valida ni se almacena.</p>
+            </div>
+
+            <div class="campo">
+              <p class="campo__etiqueta">Rol asignado automáticamente</p>
+              <p><span class="etiqueta-rol">Miembro</span></p>
+              <p class="campo__ayuda">No existe un selector de rol en esta vista.</p>
+            </div>
+
+            <p class="aviso">Función pendiente para el Bloque 3: este control no crea la cuenta ni guarda los datos. La confirmación permanece oculta hasta que el registro sea funcional.</p>
+
+            <div class="acciones">
+              <button class="boton-principal" type="button" data-pendiente="bloque-3">Crear cuenta</button>
+              <a class="boton-secundario" href="#/comuneros">Volver a comuneros</a>
+            </div>
+          </form>
+        </section>
+
+        <section class="tarjeta" id="crear-cuenta-confirmacion" aria-labelledby="crear-cuenta-titulo-confirmacion" hidden>
+          <h2 class="tarjeta__titulo" id="crear-cuenta-titulo-confirmacion">Cuenta creada</h2>
+          <p class="mensaje-exito" role="status">Cuenta creada.</p>
+          <dl class="resumen">
+            <div class="resumen__fila">
+              <dt>Comunero</dt>
+              <dd>Ana Benavides</dd>
+            </div>
+            <div class="resumen__fila">
+              <dt>Correo</dt>
+              <dd>ana@cabildo.ejemplo</dd>
+            </div>
+            <div class="resumen__fila">
+              <dt>Rol</dt>
+              <dd><span class="etiqueta-rol">Miembro</span></dd>
+            </div>
+          </dl>
+        </section>
+
+        <section class="tarjeta" id="crear-cuenta-vacio" aria-labelledby="crear-cuenta-titulo-vacio" hidden>
+          <h2 class="tarjeta__titulo" id="crear-cuenta-titulo-vacio">Sin comuneros disponibles</h2>
+          <div class="estado-vacio">
+            <p>No hay comuneros registrados sin cuenta.</p>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <!-- 12. Cuentas de usuario · #/cuentas -->
+    <section id="vista-cuentas" data-vista="cuentas" aria-labelledby="cuentas-titulo" hidden>
+      <div class="contenedor">
+        <h1 class="titulo-pantalla" id="cuentas-titulo" tabindex="-1">Cuentas de usuario</h1>
+        <p class="trazabilidad">HU-04 · RF-05, RF-06</p>
+
+        <p>Consulta de las cuentas con su correo, rol y estado. Solo el Administrador cambia roles; el Líder no accede a esta vista ni puede asignarlos. No se activan, desactivan ni bloquean cuentas.</p>
+
+        <section class="tarjeta" id="cuentas-listado" aria-labelledby="cuentas-titulo-listado">
+          <h2 class="tarjeta__titulo" id="cuentas-titulo-listado">Cuentas registradas</h2>
+
+          <table class="tabla-datos" role="table">
+            <caption class="tabla-datos__leyenda">Datos de ejemplo con fines demostrativos.</caption>
+            <thead role="rowgroup">
+              <tr role="row">
+                <th scope="col" role="columnheader">Correo</th>
+                <th scope="col" role="columnheader">Rol</th>
+                <th scope="col" role="columnheader">Estado</th>
+                <th scope="col" role="columnheader">Cambiar rol</th>
+              </tr>
+            </thead>
+            <tbody role="rowgroup" id="cuentas-cuerpo"></tbody>
+          </table>
+
+          <p class="aviso">Los selectores no tienen efecto en este bloque: están deshabilitados y no guardan cambios ni actualizan la tabla. El cambio de rol se habilitará en el Bloque 3. El estado de las cuentas es informativo y no se modifica desde esta vista.</p>
+          <p>Roles disponibles: Administrador, Líder y Miembro. El Líder no puede asignar ni cambiar roles. La fila del propio Administrador no ofrece selector.</p>
+        </section>
+
+        <section class="tarjeta" id="cuentas-confirmacion" aria-labelledby="cuentas-titulo-confirmacion" hidden>
+          <h2 class="tarjeta__titulo" id="cuentas-titulo-confirmacion">Confirmación del cambio de rol</h2>
+          <p>¿Confirma cambiar el rol de <strong>marta@cabildo.ejemplo</strong> de «Miembro» a «Líder»?</p>
+          <p class="mensaje-exito" role="status">Rol actualizado.</p>
+          <dl class="resumen">
+            <div class="resumen__fila">
+              <dt>Rol anterior</dt>
+              <dd><span class="etiqueta-rol">Miembro</span></dd>
+            </div>
+            <div class="resumen__fila">
+              <dt>Rol actualizado</dt>
+              <dd><span class="etiqueta-rol">Líder</span></dd>
+            </div>
+          </dl>
+        </section>
+
+        <section class="tarjeta" id="cuentas-vacio" aria-labelledby="cuentas-titulo-vacio" hidden>
+          <h2 class="tarjeta__titulo" id="cuentas-titulo-vacio">Estado vacío del listado</h2>
+          <div class="estado-vacio">
+            <p>No hay cuentas registradas.</p>
+          </div>
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <footer class="pie-sitio">
+    <div class="contenedor">
+      <p>Cabildo Indígena de Venecia · Plataforma de gestión.</p>
+      <p>Prototipo académico con datos ficticios. Sin backend, API ni almacenamiento persistente.</p>
+    </div>
+  </footer>
+
+  <script src="js/rutas.js"></script>
+  <script src="js/datos.js"></script>
+  <script src="js/estado.js"></script>
+  <script src="js/sesion.js"></script>
+  <script src="js/vistas.js"></script>
+  <script src="js/navegacion.js"></script>
+</body>
+</html>

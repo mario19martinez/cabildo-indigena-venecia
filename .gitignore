@@ -1,0 +1,24 @@
+# Dependencias (tecnologías proyectadas, no implementadas)
+node_modules/
+
+# Compilados y distribución
+dist/
+
+# Registros
+*.log
+
+# Variables de entorno
+.env
+.env.*
+
+# Metadatos del sistema operativo
+Thumbs.db
+desktop.ini
+.DS_Store
+
+# Configuración del editor
+.vscode/
+.idea/
+
+# Material de referencia local (permanece en disco, no se versiona)
+Referencias/

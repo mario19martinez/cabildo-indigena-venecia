@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Iniciar sesión — Maqueta AA3-EV02</title>
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body class="baja-fidelidad">
+  <a class="salto-contenido" href="#contenido">Saltar al contenido</a>
+
+  <header class="encabezado-sitio">
+    <div class="contenedor encabezado-sitio__interior">
+      <div class="identidad-sitio">
+        <p class="nombre-sitio">Cabildo Indígena de Venecia</p>
+        <p class="sello-mockup">Maqueta de baja fidelidad · AA3-EV02</p>
+      </div>
+      <nav class="menu-principal" aria-label="Navegación principal">
+        <ul class="menu-principal__lista">
+          <li><a class="menu-principal__enlace" href="index.html">Noticias</a></li>
+          <li><a class="menu-principal__enlace" href="iniciar-sesion.html" aria-current="page">Iniciar sesión</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="contenido" class="contenido-principal">
+    <div class="contenedor contenido-angosto">
+      <h1 class="titulo-pantalla">Iniciar sesión</h1>
+      <p class="trazabilidad">HU-01 · RF-01, RF-02</p>
+
+      <p>Acceso al área autenticada con correo y contraseña. Las cuentas son ficticias y no existe registro público ni recuperación de contraseña.</p>
+
+      <section class="tarjeta" aria-labelledby="form-titulo">
+        <h2 class="tarjeta__titulo" id="form-titulo">Datos de acceso</h2>
+        <form class="formulario" novalidate>
+          <div class="campo">
+            <label class="campo__etiqueta" for="correo">Correo electrónico</label>
+            <input class="campo__control" id="correo" type="email" autocomplete="username" placeholder="nombre@ejemplo.com">
+          </div>
+
+          <div class="campo">
+            <label class="campo__etiqueta" for="contrasena">Contraseña</label>
+            <input class="campo__control" id="contrasena" type="password" autocomplete="current-password">
+          </div>
+
+          <p class="aviso">Este control es un enlace de navegación, no un botón de ingreso: no valida credenciales ni inicia una sesión real. Sirve solo para recorrer la maqueta.</p>
+
+          <a class="boton-principal" href="inicio.html">Ingresar al área autenticada (simulación)</a>
+
+          <p><a href="index.html">Volver a noticias</a></p>
+        </form>
+      </section>
+
+      <section class="ejemplo-visual" aria-labelledby="titulo-error">
+        <p class="etiqueta-ejemplo">Ejemplo visual · no es un estado activo</p>
+        <h2 class="tarjeta__titulo" id="titulo-error">Error de credenciales</h2>
+        <p>Variante de esta misma pantalla: muestra los mensajes de error junto al campo correspondiente. No se presenta al mismo tiempo que el formulario en estado inicial.</p>
+
+        <div class="campo campo--error">
+          <label class="campo__etiqueta" for="correo-error">Correo electrónico</label>
+          <input class="campo__control" id="correo-error" type="email" value="comunero@ejemplo.com" aria-invalid="true" aria-describedby="error-correo">
+          <p class="mensaje-error" id="error-correo">Ingrese un correo registrado.</p>
+        </div>
+
+        <div class="campo campo--error">
+          <label class="campo__etiqueta" for="contrasena-error">Contraseña</label>
+          <input class="campo__control" id="contrasena-error" type="password" aria-invalid="true" aria-describedby="error-contrasena">
+          <p class="mensaje-error" id="error-contrasena">La contraseña no coincide con la registrada.</p>
+        </div>
+
+        <p class="aviso">Los mensajes se muestran junto al campo y nunca en una ventana emergente.</p>
+      </section>
+    </div>
+  </main>
+
+  <aside class="ficha-mockup" aria-labelledby="ficha-titulo">
+    <div class="contenedor">
+      <h2 class="ficha-mockup__titulo" id="ficha-titulo">Ficha de la pantalla · documentación, no forma parte de la interfaz</h2>
+      <dl class="ficha-mockup__lista">
+        <div class="ficha-mockup__fila">
+          <dt>Nombre</dt>
+          <dd>Inicio de sesión — <code>prototipo/iniciar-sesion.html</code></dd>
+        </div>
+        <div class="ficha-mockup__fila">
+          <dt>Historias de usuario</dt>
+          <dd>HU-01</dd>
+        </div>
+        <div class="ficha-mockup__fila">
+          <dt>Requisitos funcionales</dt>
+          <dd>RF-01 y RF-02 (con la restricción R-01)</dd>
+        </div>
+        <div class="ficha-mockup__fila">
+          <dt>Descripción</dt>
+          <dd>Único acceso a la zona autenticada. Presenta los campos de correo y contraseña, un aviso de simulación y un solo control principal, que es un enlace de navegación hacia el área autenticada. Incluye el ejemplo visual del error de credenciales.</dd>
+        </div>
+        <div class="ficha-mockup__fila">
+          <dt>Usabilidad y accesibilidad</dt>
+          <dd>Etiquetas asociadas con <code>for</code> e <code>id</code>; atributos <code>autocomplete</code> para correo y contraseña; el error va junto al campo con <code>aria-invalid</code> y <code>aria-describedby</code>, nunca con <code>alert()</code>; un único control principal de 48 px de alto, precedido de un aviso que lo identifica como simulación; foco visible de 3 px y una sola columna a 360 px.</dd>
+        </div>
+      </dl>
+    </div>
+  </aside>
+
+  <footer class="pie-sitio">
+    <div class="contenedor">
+      <p>Maqueta de baja fidelidad de la evidencia GA6-220501096 (AA3-EV02). Datos ficticios con fines demostrativos.</p>
+      <p>No hay autenticación funcional, backend, base de datos ni almacenamiento persistente.</p>
+    </div>
+  </footer>
+</body>
+</html>

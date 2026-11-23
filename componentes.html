@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Guía de componentes — Cabildo Indígena de Venecia</title>
+  <meta name="description" content="Guía visual de los componentes reutilizables de la Plataforma de Gestión del Cabildo Indígena de Venecia.">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="salto-contenido" href="#contenido">Saltar al contenido</a>
+
+  <header class="encabezado-sitio">
+    <div class="contenedor encabezado-sitio__interior">
+      <div class="identidad-sitio">
+        <p class="nombre-sitio">Cabildo Indígena de Venecia</p>
+      </div>
+      <nav class="menu-principal" aria-label="Navegación de la guía">
+        <ul class="menu-principal__lista">
+          <li><a class="menu-principal__enlace" href="#indice">Índice</a></li>
+          <li><a class="menu-principal__enlace" href="#accesibilidad">Accesibilidad</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="contenido" class="contenido-principal">
+    <div class="contenedor">
+      <h1 class="titulo-pantalla">Guía de componentes</h1>
+      <p class="trazabilidad">Documento de referencia · AA3-EV02 y AA4-EV02</p>
+
+      <p class="aviso">Documento de referencia del sistema visual. No forma parte de la navegación de la plataforma, no es un módulo funcional y no debe enlazarse desde las pantallas. Los ejemplos usan la paleta definitiva; las doce maquetas de <code>prototipo/</code> conservan la escala de grises.</p>
+
+      <section class="tarjeta" aria-labelledby="titulo-indice" id="indice">
+        <h2 class="tarjeta__titulo" id="titulo-indice">Índice de secciones</h2>
+        <ul class="lista-accesos">
+          <li><a href="#estructura">1. Estructura de página y tipografía</a></li>
+          <li><a href="#encabezado">2. Encabezado y navegación</a></li>
+          <li><a href="#tarjetas">3. Tarjetas, paneles y resumen</a></li>
+          <li><a href="#botones">4. Botones y acciones</a></li>
+          <li><a href="#formularios">5. Formularios y campos</a></li>
+          <li><a href="#tablas">6. Tablas adaptables</a></li>
+          <li><a href="#etiquetas">7. Etiquetas de rol y estado</a></li>
+          <li><a href="#mensajes">8. Mensajes y estados vacíos</a></li>
+          <li><a href="#pasos">9. Indicador de pasos</a></li>
+          <li><a href="#listas">10. Listas y rejilla</a></li>
+          <li><a href="#accesibilidad">11. Accesibilidad y contraste</a></li>
+          <li><a href="#no-usar">12. Clases que no deben usarse en la interfaz final</a></li>
+        </ul>
+      </section>
+
+      <section class="tarjeta" aria-labelledby="titulo-estructura" id="estructura">
+        <h2 class="tarjeta__titulo" id="titulo-estructura">1. Estructura de página y tipografía</h2>
+        <p>Toda pantalla parte de <code>plantilla.html</code>: salto al contenido, encabezado con identidad y navegación, contenido principal con un solo <code>h1</code>, trazabilidad y pie. La tipografía es Arial, Helvetica, sans-serif; base de 16 px y altura de línea de 1.5. El contenedor general mide como máximo 1200 px y el angosto, 640 px.</p>
+
+        <h3 class="titulo-seccion">Esqueleto mínimo</h3>
+        <pre class="bloque-codigo"><code>&lt;a class="salto-contenido" href="#contenido"&gt;Saltar al contenido&lt;/a&gt;
+
+&lt;header class="encabezado-sitio"&gt;
+  &lt;div class="contenedor encabezado-sitio__interior"&gt;...&lt;/div&gt;
+&lt;/header&gt;
+
+&lt;main id="contenido" class="contenido-principal"&gt;
+  &lt;div class="contenedor"&gt;
+    &lt;h1 class="titulo-pantalla"&gt;Título&lt;/h1&gt;
+    &lt;p class="trazabilidad"&gt;HU-xx · RF-xx&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/main&gt;
+
+&lt;footer class="pie-sitio"&gt;...&lt;/footer&gt;</code></pre>
+
+        <h3 class="titulo-seccion">Jerarquía visual</h3>
+        <p class="titulo-pantalla">Estilo del h1 de pantalla</p>
+        <p class="titulo-seccion">Estilo de un título de sección</p>
+        <p>El texto corrido conserva 16 px. La trazabilidad se muestra bajo el <code>h1</code> con los códigos exactos de las historias y los requisitos.</p>
+      </section>
+
+      <section class="tarjeta" aria-labelledby="titulo-encabezado" id="encabezado">
+        <h2 class="tarjeta__titulo" id="titulo-encabezado">2. Encabezado y navegación</h2>
+        <p>El encabezado definitivo es verde con texto blanco. La muestra siguiente es estática: sus opciones no son enlaces para no ofrecer destinos inexistentes mientras la guía se consulta de forma aislada.</p>
+
+        <div class="encabezado-sitio">
+          <div class="contenedor encabezado-sitio__interior">
+            <div class="identidad-sitio">
+              <p class="nombre-sitio">Cabildo Indígena de Venecia</p>
+            </div>
+            <nav class="menu-principal" aria-label="Ejemplo de navegación">
+              <ul class="menu-principal__lista">
+                <li><span class="menu-principal__enlace" aria-current="page">Inicio</span></li>
+                <li><span class="menu-principal__enlace">Todas las solicitudes</span></li>
+                <li><span class="menu-principal__enlace">Comuneros</span></li>
+                <li><span class="menu-principal__enlace">Noticias</span></li>
+                <li><span class="menu-principal__enlace">Cerrar sesión</span></li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+
+        <p>Variantes documentadas: pública, Miembro, Líder y Administrador. En una pantalla real cada opción es un enlace y solo la pantalla abierta lleva <code>aria-current="page"</code>.</p>
+
+        <pre class="bloque-codigo"><code>&lt;nav class="menu-principal" aria-label="Navegación principal"&gt;
+  &lt;ul class="menu-principal__lista"&gt;
+    &lt;li&gt;&lt;a class="menu-principal__enlace" href="prototipo/inicio.html" aria-current="page"&gt;Inicio&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a class="menu-principal__enlace" href="prototipo/solicitudes.html"&gt;Todas las solicitudes&lt;/a&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/nav&gt;</code></pre>
+
+        <p class="campo__ayuda">Las rutas del ejemplo apuntan a maquetas existentes para que el marcado sea verificable. Al copiarlo a una pantalla final, use la ruta del archivo en la raíz.</p>
+
+        <p class="campo__ayuda">El menú del Líder no incluye «Cuentas de usuario». Esa restricción se representa por ausencia, no con un enlace deshabilitado.</p>
+      </section>
+
+      <section class="tarjeta" aria-labelledby="titulo-tarjetas" id="tarjetas">
+        <h2 class="tarjeta__titulo" id="titulo-tarjetas">3. Tarjetas, paneles y resumen</h2>
+        <p>La tarjeta agrupa contenido y se asocia a su título con <code>aria-labelledby</code>. El panel de resumen repite datos en solo lectura.</p>
+
+        <h3 class="titulo-seccion">Tarjeta</h3>
+        <div class="tarjeta">
+          <p class="tarjeta__titulo">Título de la tarjeta</p>
+          <p>Contenido de ejemplo dentro de una tarjeta anidada para mostrar el borde, el relleno y el radio.</p>
+        </div>
+
+        <h3 class="titulo-seccion">Resumen de solo lectura</h3>
+        <dl class="resumen">
+          <div class="resumen__fila">
+            <dt>Comunero</dt>
+            <dd>Ana Benavides</dd>
+          </div>
+          <div class="resumen__fila">
+            <dt>Documento</dt>
+            <dd>1.045.223.111</dd>
+          </div>
+          <div class="resumen__fila">
+            <dt>Familia</dt>
+            <dd>Familia Amaru</dd>
+          </div>
+        </dl>
+
+        <pre class="bloque-codigo"><code>&lt;dl class="resumen"&gt;
+  &lt;div class="resumen__fila"&gt;
+    &lt;dt&gt;Documento&lt;/dt&gt;
+    &lt;dd&gt;1.045.223.111&lt;/dd&gt;
+  &lt;/div&gt;
+&lt;/dl&gt;</code></pre>
+      </section>
+
+      <section class="tarjeta" aria-labelledby="titulo-botones" id="botones">
+        <h2 class="tarjeta__titulo" id="titulo-botones">4. Botones y acciones</h2>
+        <p>El botón primario ejecuta la acción principal; el secundario ofrece una alternativa o una salida. En una pantalla se usa <code>a</code> para navegar y <code>button</code> para ejecutar. Las dos primeras muestras son inertes: solo reproducen el estilo.</p>
+
+        <div class="acciones">
+          <span class="boton-principal">Acción principal (ejemplo)</span>
+          <span class="boton-secundario">Acción secundaria (ejemplo)</span>
+        </div>
+
+        <p>El foco visible se comprueba con el teclado. El siguiente enlace sí es real y lleva al inicio de esta misma sección:</p>
+        <div class="acciones">
+          <a class="boton-secundario" href="#botones">Enlace de ejemplo para probar el foco</a>
+        </div>
+
+        <pre class="bloque-codigo"><code>&lt;div class="acciones"&gt;
+  &lt;a class="boton-principal" href="prototipo/inicio.html"&gt;Volver al inicio&lt;/a&gt;
+  &lt;a class="boton-secundario" href="prototipo/comuneros.html"&gt;Volver a comuneros&lt;/a&gt;
+&lt;/div&gt;</code></pre>
+
+        <p class="campo__ayuda">Altura mínima de 48 px. En celular se apilan a ancho completo; desde 768 px pasan a fila. No se define un estado deshabilitado porque ninguna historia aprobada lo exige.</p>
+      </section>
+
+      <section class="tarjeta" aria-labelledby="titulo-formularios" id="formularios">
+        <h2 class="tarjeta__titulo" id="titulo-formularios">5. Formularios y campos</h2>
+        <p>Cada control tiene etiqueta asociada. La ayuda se enlaza con <code>aria-describedby</code>. Este formulario es demostrativo: no envía datos ni valida.</p>
+
+        <form class="formulario" novalidate>
+          <div class="campo">
+            <label class="campo__etiqueta" for="demo-nombre">Nombres</label>
+            <input class="campo__control" id="demo-nombre" type="text" autocomplete="off" aria-describedby="ayuda-demo-nombre">
+            <p class="campo__ayuda" id="ayuda-demo-nombre">Texto libre. Este ejemplo no guarda información.</p>
+          </div>
+
+          <div class="campo campo--error">
+            <label class="campo__etiqueta" for="demo-correo-error">Correo electrónico</label>
+            <input class="campo__control" id="demo-correo-error" type="email" value="ana.cabildo" autocomplete="off" aria-invalid="true" aria-describedby="error-demo-correo">
+            <p class="mensaje-error" id="error-demo-correo">Error: ingrese un correo con formato válido, por ejemplo nombre@ejemplo.com.</p>
+          </div>
+
+          <div class="campo">
+            <label class="campo__etiqueta" for="demo-clave">Contraseña</label>
+            <input class="campo__control" id="demo-clave" type="password" autocomplete="new-password" aria-describedby="ayuda-demo-clave">
+            <p class="campo__ayuda" id="ayuda-demo-clave">Credencial ficticia de ejemplo. No se valida ni se almacena.</p>
+          </div>
+
+          <div class="campo">
+            <label class="campo__etiqueta" for="demo-tramite">Tipo de trámite</label>
+            <select class="campo__control" id="demo-tramite">
+              <option value="">Seleccione una opción</option>
+              <option value="certificado">Certificado de residencia</option>
+              <option value="constancia">Constancia de pertenencia</option>
+            </select>
+          </div>
+
+          <div class="campo">
+            <label class="campo__etiqueta" for="demo-fecha">Fecha de nacimiento</label>
+            <input class="campo__control" id="demo-fecha" type="date">
+          </div>
+
+          <div class="campo">
+            <label class="campo__etiqueta" for="demo-observaciones">Observaciones (opcional)</label>
+            <textarea class="campo__control area-texto" id="demo-observaciones" rows="4"></textarea>
+          </div>
+        </form>
+
+        <pre class="bloque-codigo"><code>&lt;div class="campo campo--error"&gt;
+  &lt;label class="campo__etiqueta" for="campo-ejemplo"&gt;Correo electrónico&lt;/label&gt;
+  &lt;input class="campo__control" id="campo-ejemplo" type="email"
+         aria-invalid="true" aria-describedby="error-ejemplo"&gt;
+  &lt;p class="mensaje-error" id="error-ejemplo"&gt;Error: ingrese un correo válido.&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+
+        <p class="campo__ayuda">El error va junto al campo y nunca en una ventana emergente. El borde de los controles usa <code>--linea-control</code>, con 5,78:1 sobre blanco.</p>
+      </section>
+
+      <section class="tarjeta" aria-labelledby="titulo-tablas" id="tablas">
+        <h2 class="tarjeta__titulo" id="titulo-tablas">6. Tablas adaptables</h2>
+        <p>La tabla se apila por debajo de 768 px: cada celda muestra su etiqueta con <code>data-etiqueta</code> y no hay desplazamiento horizontal. Desde 768 px vuelve a ser una tabla real.</p>
+
+        <table class="tabla-datos" role="table">
+          <caption class="tabla-datos__leyenda">Datos de ejemplo con fines demostrativos.</caption>
+          <thead role="rowgroup">
+            <tr role="row">
+              <th scope="col" role="columnheader">Trámite y observaciones</th>
+              <th scope="col" role="columnheader">Fecha</th>
+              <th scope="col" role="columnheader">Estado</th>
+              <th scope="col" role="columnheader">Comunero</th>
+            </tr>
+          </thead>
+          <tbody role="rowgroup">
+            <tr role="row">
+              <td role="cell" data-etiqueta="Trámite y observaciones">Certificado de residencia<span class="celda-secundaria">Requiere constancia para trámite bancario.</span></td>
+              <td role="cell" data-etiqueta="Fecha">12 de octubre de 2026</td>
+              <td role="cell" data-etiqueta="Estado"><span class="etiqueta-estado etiqueta-estado--pendiente">Pendiente</span></td>
+              <td role="cell" data-etiqueta="Comunero">Ana Benavides</td>
+            </tr>
+            <tr role="row">
+              <td role="cell" data-etiqueta="Trámite y observaciones">Actualización de ficha censal<span class="celda-secundaria">Informó cambio de dirección.</span></td>
+              <td role="cell" data-etiqueta="Fecha">3 de septiembre de 2026</td>
+              <td role="cell" data-etiqueta="Estado"><span class="etiqueta-estado etiqueta-estado--en-revision">En revisión</span></td>
+              <td role="cell" data-etiqueta="Comunero">Rosa Quispe</td>
+            </tr>
+            <tr role="row">
+              <td role="cell" data-etiqueta="Trámite y observaciones">Constancia de pertenencia<span class="celda-secundaria">Sin observaciones adicionales.</span></td>
+              <td role="cell" data-etiqueta="Fecha">21 de agosto de 2026</td>
+              <td role="cell" data-etiqueta="Estado"><span class="etiqueta-estado etiqueta-estado--completada">Completada</span></td>
+              <td role="cell" data-etiqueta="Comunero">Marta Yupanqui</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <p class="campo__ayuda">El marcado conserva <code>role="table"</code>, <code>role="rowgroup"</code>, <code>role="row"</code>, <code>role="cell"</code> y <code>role="columnheader"</code> porque el CSS cambia el <code>display</code> al apilar la tabla. El texto de <code>data-etiqueta</code> debe coincidir siempre con su columna.</p>
+      </section>
+
+      <section class="tarjeta" aria-labelledby="titulo-etiquetas" id="etiquetas">
+        <h2 class="tarjeta__titulo" id="titulo-etiquetas">7. Etiquetas de rol y estado</h2>
+        <p>Todas las etiquetas llevan texto real. El borde y el relleno acompañan, pero nunca son el único canal de información.</p>
+
+        <h3 class="titulo-seccion">Roles</h3>
+        <p>
+          <span class="etiqueta-rol">Administrador</span>
+          <span class="etiqueta-rol">Líder</span>
+          <span class="etiqueta-rol">Miembro</span>
+        </p>
+
+        <h3 class="titulo-seccion">Estados de una solicitud</h3>
+        <p>
+          <span class="etiqueta-estado etiqueta-estado--pendiente">Pendiente</span>
+          <span class="etiqueta-estado etiqueta-estado--en-revision">En revisión</span>
+          <span class="etiqueta-estado etiqueta-estado--aprobada">Aprobada</span>
+          <span class="etiqueta-estado etiqueta-estado--rechazada">Rechazada</span>
+          <span class="etiqueta-estado etiqueta-estado--completada">Completada</span>
+        </p>
+
+        <h3 class="titulo-seccion">Estados de un certificado</h3>
+        <p>
+          <span class="etiqueta-estado etiqueta-estado--vigente">Vigente</span>
+          <span class="etiqueta-estado etiqueta-estado--anulado">Anulado</span>
+        </p>
+
+        <h3 class="titulo-seccion">Estados de una cuenta de acceso</h3>
+        <p>
+          <span class="etiqueta-estado etiqueta-estado--activo">Activo</span>
+          <span class="etiqueta-estado etiqueta-estado--inactivo">Inactivo</span>
+          <span class="etiqueta-estado etiqueta-estado--bloqueado">Bloqueado</span>
+        </p>
+        <p class="campo__ayuda">El estado de una cuenta es informativo y de solo lectura: no se ofrecen controles para activar, desactivar o bloquear.</p>
+      </section>
+
+      <section class="tarjeta" aria-labelledby="titulo-mensajes" id="mensajes">
+        <h2 class="tarjeta__titulo" id="titulo-mensajes">8. Mensajes y estados vacíos</h2>
+        <p>En la interfaz final el texto completo se escribe en el HTML. Los prefijos automáticos «Error:» y «Confirmación:» se conservan solo en las maquetas.</p>
+
+        <h3 class="titulo-seccion">Aviso informativo</h3>
+        <p class="aviso">Este trámite no genera un certificado de forma inmediata.</p>
+
+        <h3 class="titulo-seccion">Confirmación</h3>
+        <p class="mensaje-exito" role="status">Confirmación: la solicitud quedó registrada en la simulación.</p>
+
+        <h3 class="titulo-seccion">Error junto al campo</h3>
+        <div class="campo campo--error">
+          <label class="campo__etiqueta" for="demo-documento-error">Documento</label>
+          <input class="campo__control" id="demo-documento-error" type="text" value="1045" autocomplete="off" aria-invalid="true" aria-describedby="error-demo-documento">
+          <p class="mensaje-error" id="error-demo-documento">Error: el documento debe tener al menos seis dígitos.</p>
+        </div>
+
+        <h3 class="titulo-seccion">Estado vacío</h3>
+        <div class="estado-vacio">
+          <p>No hay solicitudes registradas.</p>
+        </div>
+
+        <pre class="bloque-codigo"><code>&lt;p class="mensaje-exito" role="status"&gt;Confirmación: la solicitud quedó registrada.&lt;/p&gt;
+&lt;p class="mensaje-error" id="error-ejemplo"&gt;Error: el documento es obligatorio.&lt;/p&gt;</code></pre>
+
+        <p class="campo__ayuda">Una confirmación dinámica futura puede anunciarse con <code>role="status"</code>. El error siempre se enlaza con <code>aria-describedby</code> y el campo lleva <code>aria-invalid="true"</code>.</p>
+      </section>
+
+      <section class="tarjeta" aria-labelledby="titulo-pasos" id="pasos">
+        <h2 class="tarjeta__titulo" id="titulo-pasos">9. Indicador de pasos</h2>
+        <p>Se usa en procesos consecutivos. Cada lista tiene exactamente un elemento con <code>aria-current="step"</code> y el estado también se escribe en el texto.</p>
+
+        <h3 class="titulo-seccion">Paso 1 actual</h3>
+        <ol class="pasos" aria-label="Ejemplo de registro, paso 1 actual">
+          <li class="pasos__item pasos__item--actual" aria-current="step"><span class="pasos__numero">1</span> Datos del comunero (paso actual)</li>
+          <li class="pasos__item"><span class="pasos__numero">2</span> Ficha censal (pendiente)</li>
+        </ol>
+
+        <h3 class="titulo-seccion">Paso 2 actual</h3>
+        <ol class="pasos" aria-label="Ejemplo de registro, paso 2 actual">
+          <li class="pasos__item pasos__item--completado"><span class="pasos__numero">1</span> Datos del comunero (completado)</li>
+          <li class="pasos__item pasos__item--actual" aria-current="step"><span class="pasos__numero">2</span> Ficha censal (paso actual)</li>
+        </ol>
+
+        <pre class="bloque-codigo"><code>&lt;ol class="pasos" aria-label="Pasos del registro del comunero"&gt;
+  &lt;li class="pasos__item pasos__item--actual" aria-current="step"&gt;
+    &lt;span class="pasos__numero"&gt;1&lt;/span&gt; Datos del comunero (paso actual)
+  &lt;/li&gt;
+&lt;/ol&gt;</code></pre>
+      </section>
+
+      <section class="tarjeta" aria-labelledby="titulo-listas" id="listas">
+        <h2 class="tarjeta__titulo" id="titulo-listas">10. Listas y rejilla</h2>
+
+        <h3 class="titulo-seccion">Noticias públicas</h3>
+        <ul class="lista-noticias">
+          <li class="noticia">
+            <article>
+              <h4 class="noticia__titulo">Asamblea general del Cabildo</h4>
+              <p class="noticia__fecha"><time datetime="2026-10-12">12 de octubre de 2026</time></p>
+            </article>
+          </li>
+          <li class="noticia">
+            <article>
+              <h4 class="noticia__titulo">Jornada de salud en la vereda Venecia</h4>
+              <p class="noticia__fecha"><time datetime="2026-09-03">3 de septiembre de 2026</time></p>
+            </article>
+          </li>
+        </ul>
+        <p class="campo__ayuda">No existe vista de detalle individual de la noticia: el título no es un enlace.</p>
+
+        <h3 class="titulo-seccion">Accesos por rol</h3>
+        <div class="rejilla">
+          <article class="tarjeta tarjeta--rol" aria-labelledby="ejemplo-rol-miembro">
+            <h4 id="ejemplo-rol-miembro">Miembro</h4>
+            <ul class="lista-accesos">
+              <li>Inicio</li>
+              <li>Registrar solicitud</li>
+              <li>Mis solicitudes</li>
+              <li>Mis certificados</li>
+            </ul>
+          </article>
+          <article class="tarjeta tarjeta--rol" aria-labelledby="ejemplo-rol-lider">
+            <h4 id="ejemplo-rol-lider">Líder</h4>
+            <ul class="lista-accesos">
+              <li>Inicio</li>
+              <li>Todas las solicitudes</li>
+              <li>Comuneros</li>
+              <li>Crear cuenta</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section class="tarjeta" aria-labelledby="titulo-accesibilidad" id="accesibilidad">
+        <h2 class="tarjeta__titulo" id="titulo-accesibilidad">11. Accesibilidad y contraste</h2>
+        <ul class="lista-accesos">
+          <li>Un solo <code>h1</code> por pantalla y sin saltos de nivel.</li>
+          <li><code>header</code>, <code>nav</code>, <code>main</code> y <code>footer</code> como landmarks; enlace de salto al contenido.</li>
+          <li>Foco de dos tonos: anillo dorado de 3 px y anillo oscuro exterior de 3 px.</li>
+          <li>Etiquetas asociadas con <code>for</code> e <code>id</code>; ayudas y errores con <code>aria-describedby</code>.</li>
+          <li>Errores junto al campo con <code>aria-invalid="true"</code>; nunca en <code>alert()</code>.</li>
+          <li><code>aria-current="page"</code> en la navegación y <code>aria-current="step"</code> en el proceso.</li>
+          <li>Tablas con <code>caption</code>, <code>th scope="col"</code>, roles explícitos y <code>data-etiqueta</code>.</li>
+          <li>Ningún estado, rol o error se comunica solo por color.</li>
+          <li>Botones de 48 px de alto mínimo y opciones de menú de 44 px.</li>
+          <li>Sin scroll horizontal a 360, 768 ni 1280 px; el código se ajusta con <code>pre-wrap</code>.</li>
+        </ul>
+
+        <h3 class="titulo-seccion">Contraste calculado de la paleta</h3>
+        <table class="tabla-datos" role="table">
+          <caption class="tabla-datos__leyenda">Valores calculados con la fórmula de luminancia relativa de WCAG 2.1.</caption>
+          <thead role="rowgroup">
+            <tr role="row">
+              <th scope="col" role="columnheader">Combinación</th>
+              <th scope="col" role="columnheader">Ratio</th>
+              <th scope="col" role="columnheader">Uso</th>
+            </tr>
+          </thead>
+          <tbody role="rowgroup">
+            <tr role="row">
+              <td role="cell" data-etiqueta="Combinación">Texto sobre crema</td>
+              <td role="cell" data-etiqueta="Ratio">12,39:1</td>
+              <td role="cell" data-etiqueta="Uso">Texto principal</td>
+            </tr>
+            <tr role="row">
+              <td role="cell" data-etiqueta="Combinación">Texto secundario sobre crema</td>
+              <td role="cell" data-etiqueta="Ratio">5,12:1</td>
+              <td role="cell" data-etiqueta="Uso">Ayudas y fechas</td>
+            </tr>
+            <tr role="row">
+              <td role="cell" data-etiqueta="Combinación">Blanco sobre verde</td>
+              <td role="cell" data-etiqueta="Ratio">10,16:1</td>
+              <td role="cell" data-etiqueta="Uso">Encabezado y botón primario</td>
+            </tr>
+            <tr role="row">
+              <td role="cell" data-etiqueta="Combinación">Error sobre crema</td>
+              <td role="cell" data-etiqueta="Ratio">6,61:1</td>
+              <td role="cell" data-etiqueta="Uso">Mensajes de error</td>
+            </tr>
+            <tr role="row">
+              <td role="cell" data-etiqueta="Combinación">Borde de control sobre blanco</td>
+              <td role="cell" data-etiqueta="Ratio">5,78:1</td>
+              <td role="cell" data-etiqueta="Uso">Campos y selectores</td>
+            </tr>
+            <tr role="row">
+              <td role="cell" data-etiqueta="Combinación">Foco dorado sobre blanco</td>
+              <td role="cell" data-etiqueta="Ratio">3,34:1</td>
+              <td role="cell" data-etiqueta="Uso">Anillo interior sobre superficie</td>
+            </tr>
+            <tr role="row">
+              <td role="cell" data-etiqueta="Combinación">Foco dorado sobre verde</td>
+              <td role="cell" data-etiqueta="Ratio">3,04:1</td>
+              <td role="cell" data-etiqueta="Uso">Anillo interior sobre encabezado</td>
+            </tr>
+            <tr role="row">
+              <td role="cell" data-etiqueta="Combinación">Anillo oscuro sobre crema</td>
+              <td role="cell" data-etiqueta="Ratio">12,39:1</td>
+              <td role="cell" data-etiqueta="Uso">Anillo exterior del foco</td>
+            </tr>
+            <tr role="row">
+              <td role="cell" data-etiqueta="Combinación">Anillo oscuro sobre relleno</td>
+              <td role="cell" data-etiqueta="Ratio">11,21:1</td>
+              <td role="cell" data-etiqueta="Uso">Anillo exterior sobre paneles</td>
+            </tr>
+          </tbody>
+        </table>
+        <p class="campo__ayuda">El foco dorado no alcanza 3:1 sobre crema (2,96:1); por eso el indicador suma un anillo oscuro exterior. La combinación mantiene el foco perceptible tanto en fondos claros como en el encabezado verde.</p>
+      </section>
+
+      <section class="tarjeta" aria-labelledby="titulo-no-usar" id="no-usar">
+        <h2 class="tarjeta__titulo" id="titulo-no-usar">12. Clases que no deben usarse en la interfaz final</h2>
+        <p>Estas clases existen para documentar las maquetas de <code>prototipo/</code>. No forman parte del sistema visual definitivo y no deben copiarse a las pantallas de AA4.</p>
+        <ul class="lista-accesos">
+          <li><code>.sello-mockup</code>: rotula la baja fidelidad.</li>
+          <li><code>.ficha-mockup</code>, <code>.ficha-mockup__titulo</code>, <code>.ficha-mockup__lista</code> y <code>.ficha-mockup__fila</code>: ficha académica de cada maqueta.</li>
+          <li><code>.ejemplo-visual</code> y <code>.etiqueta-ejemplo</code>: variantes estáticas que no son estados activos.</li>
+          <li><code>.marca-pendiente</code>: señal de pantalla actual en la maqueta de inicio.</li>
+        </ul>
+        <p class="aviso">Si una pantalla final necesita mostrar una confirmación o un error, use los componentes de la sección 8 con texto real en el HTML. No copie la ficha ni los bloques de ejemplo de las maquetas.</p>
+      </section>
+    </div>
+  </main>
+
+  <footer class="pie-sitio">
+    <div class="contenedor">
+      <p>Cabildo Indígena de Venecia · Guía de componentes del sistema visual.</p>
+      <p>Documento de referencia con datos ficticios. Sin backend, API, almacenamiento persistente ni dependencias externas.</p>
+    </div>
+  </footer>
+</body>
+</html>

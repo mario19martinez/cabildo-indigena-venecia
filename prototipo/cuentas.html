@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cuentas de usuario — Maqueta AA3-EV02</title>
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body class="baja-fidelidad">
+  <a class="salto-contenido" href="#contenido">Saltar al contenido</a>
+
+  <header class="encabezado-sitio">
+    <div class="contenedor encabezado-sitio__interior">
+      <div class="identidad-sitio">
+        <p class="nombre-sitio">Cabildo Indígena de Venecia</p>
+        <p class="sello-mockup">Maqueta de baja fidelidad · AA3-EV02</p>
+        <p class="etiqueta-rol">Rol representado: Administrador</p>
+      </div>
+      <nav class="menu-principal" aria-label="Navegación principal">
+        <ul class="menu-principal__lista">
+          <li><a class="menu-principal__enlace" href="inicio.html">Inicio</a></li>
+          <li><a class="menu-principal__enlace" href="solicitudes.html">Todas las solicitudes</a></li>
+          <li><a class="menu-principal__enlace" href="comuneros.html">Comuneros</a></li>
+          <li><a class="menu-principal__enlace" href="cuentas.html" aria-current="page">Cuentas de usuario</a></li>
+          <li><a class="menu-principal__enlace" href="index.html">Noticias</a></li>
+          <li><a class="menu-principal__enlace" href="index.html">Cerrar sesión (simulación)</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="contenido" class="contenido-principal">
+    <div class="contenedor">
+      <h1 class="titulo-pantalla">Cuentas de usuario</h1>
+      <p class="trazabilidad">HU-04 · RF-05, RF-06</p>
+
+      <p>Consulta de las cuentas con su correo, rol y estado. Solo el Administrador cambia roles; el Líder no accede a esta pantalla ni puede asignarlos. No se activan, desactivan ni bloquean cuentas.</p>
+
+      <section class="tarjeta" aria-labelledby="titulo-listado">
+        <h2 class="tarjeta__titulo" id="titulo-listado">Cuentas registradas</h2>
+
+        <table class="tabla-datos" role="table">
+          <caption class="tabla-datos__leyenda">Datos de ejemplo con fines demostrativos.</caption>
+          <thead role="rowgroup">
+            <tr role="row">
+              <th scope="col" role="columnheader">Correo</th>
+              <th scope="col" role="columnheader">Rol</th>
+              <th scope="col" role="columnheader">Estado</th>
+              <th scope="col" role="columnheader">Cambiar rol</th>
+            </tr>
+          </thead>
+          <tbody role="rowgroup">
+            <tr role="row">
+              <td role="cell" data-etiqueta="Correo">admin@cabildo.ejemplo</td>
+              <td role="cell" data-etiqueta="Rol"><span class="etiqueta-rol">Administrador</span></td>
+              <td role="cell" data-etiqueta="Estado"><span class="etiqueta-estado etiqueta-estado--activo">Activo</span></td>
+              <td role="cell" data-etiqueta="Cambiar rol">
+                <div class="campo">
+                  <label class="campo__etiqueta" for="rol-cuenta-1">Nuevo rol</label>
+                  <select class="campo__control" id="rol-cuenta-1">
+                    <option value="administrador" selected>Administrador</option>
+                    <option value="lider">Líder</option>
+                    <option value="miembro">Miembro</option>
+                  </select>
+                </div>
+              </td>
+            </tr>
+            <tr role="row">
+              <td role="cell" data-etiqueta="Correo">lider@cabildo.ejemplo</td>
+              <td role="cell" data-etiqueta="Rol"><span class="etiqueta-rol">Líder</span></td>
+              <td role="cell" data-etiqueta="Estado"><span class="etiqueta-estado etiqueta-estado--activo">Activo</span></td>
+              <td role="cell" data-etiqueta="Cambiar rol">
+                <div class="campo">
+                  <label class="campo__etiqueta" for="rol-cuenta-2">Nuevo rol</label>
+                  <select class="campo__control" id="rol-cuenta-2">
+                    <option value="administrador">Administrador</option>
+                    <option value="lider" selected>Líder</option>
+                    <option value="miembro">Miembro</option>
+                  </select>
+                </div>
+              </td>
+            </tr>
+            <tr role="row">
+              <td role="cell" data-etiqueta="Correo">marta@cabildo.ejemplo</td>
+              <td role="cell" data-etiqueta="Rol"><span class="etiqueta-rol">Miembro</span></td>
+              <td role="cell" data-etiqueta="Estado"><span class="etiqueta-estado etiqueta-estado--inactivo">Inactivo</span></td>
+              <td role="cell" data-etiqueta="Cambiar rol">
+                <div class="campo">
+                  <label class="campo__etiqueta" for="rol-cuenta-3">Nuevo rol</label>
+                  <select class="campo__control" id="rol-cuenta-3">
+                    <option value="administrador">Administrador</option>
+                    <option value="lider">Líder</option>
+                    <option value="miembro" selected>Miembro</option>
+                  </select>
+                </div>
+              </td>
+            </tr>
+            <tr role="row">
+              <td role="cell" data-etiqueta="Correo">luis@cabildo.ejemplo</td>
+              <td role="cell" data-etiqueta="Rol"><span class="etiqueta-rol">Miembro</span></td>
+              <td role="cell" data-etiqueta="Estado"><span class="etiqueta-estado etiqueta-estado--bloqueado">Bloqueado</span></td>
+              <td role="cell" data-etiqueta="Cambiar rol">
+                <div class="campo">
+                  <label class="campo__etiqueta" for="rol-cuenta-4">Nuevo rol</label>
+                  <select class="campo__control" id="rol-cuenta-4">
+                    <option value="administrador">Administrador</option>
+                    <option value="lider">Líder</option>
+                    <option value="miembro" selected>Miembro</option>
+                  </select>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <p class="aviso">Los selectores son representaciones visuales: no guardan cambios ni actualizan la tabla. El estado de las cuentas es informativo y no se modifica desde esta pantalla.</p>
+        <p>Roles disponibles: Administrador, Líder y Miembro. El Líder no puede asignar ni cambiar roles.</p>
+      </section>
+
+      <section class="ejemplo-visual" aria-labelledby="titulo-confirmacion">
+        <p class="etiqueta-ejemplo">Ejemplo visual · no es un estado activo</p>
+        <h2 class="tarjeta__titulo" id="titulo-confirmacion">Confirmación del cambio de rol</h2>
+        <p>Variante de esta misma pantalla: muestra la confirmación que pediría el cambio de rol y el rol resultante de una cuenta.</p>
+        <p>¿Confirma cambiar el rol de <strong>marta@cabildo.ejemplo</strong> de «Miembro» a «Líder»?</p>
+        <p class="mensaje-exito">Rol actualizado.</p>
+        <dl class="resumen">
+          <div class="resumen__fila">
+            <dt>Rol anterior</dt>
+            <dd><span class="etiqueta-rol">Miembro</span></dd>
+          </div>
+          <div class="resumen__fila">
+            <dt>Rol actualizado</dt>
+            <dd><span class="etiqueta-rol">Líder</span></dd>
+          </div>
+        </dl>
+        <p>Representación estática: no se guardó ningún cambio y el listado conserva sus datos de ejemplo.</p>
+      </section>
+
+      <section class="ejemplo-visual" aria-labelledby="titulo-vacio">
+        <p class="etiqueta-ejemplo">Ejemplo visual · no es un estado activo</p>
+        <h2 class="tarjeta__titulo" id="titulo-vacio">Estado vacío del listado</h2>
+        <p>Variante de esta misma pantalla: sustituye a la tabla cuando no hay cuentas registradas.</p>
+        <div class="estado-vacio">
+          <p>No hay cuentas registradas.</p>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <aside class="ficha-mockup" aria-labelledby="ficha-titulo">
+    <div class="contenedor">
+      <h2 class="ficha-mockup__titulo" id="ficha-titulo">Ficha de la pantalla · documentación, no forma parte de la interfaz</h2>
+      <dl class="ficha-mockup__lista">
+        <div class="ficha-mockup__fila">
+          <dt>Nombre</dt>
+          <dd>Cuentas de usuario — <code>prototipo/cuentas.html</code></dd>
+        </div>
+        <div class="ficha-mockup__fila">
+          <dt>Historias de usuario</dt>
+          <dd>HU-04 (criterios 1 a 5)</dd>
+        </div>
+        <div class="ficha-mockup__fila">
+          <dt>Requisitos funcionales</dt>
+          <dd>RF-05 y RF-06 (con las restricciones R-02, R-09 y R-10)</dd>
+        </div>
+        <div class="ficha-mockup__fila">
+          <dt>Descripción</dt>
+          <dd>Listado de cuentas con correo, rol y estado en modo de solo lectura, más un selector de rol por fila. La confirmación y el rol resultante se presentan solo como variante estática: no se implementa el cambio ni se afirma que se haya guardado. Incluye el estado vacío y no ofrece creación, edición, eliminación ni cambios de estado.</dd>
+        </div>
+        <div class="ficha-mockup__fila">
+          <dt>Usabilidad y accesibilidad</dt>
+          <dd>Tabla con <code>caption</code>, encabezados <code>th scope="col"</code> y roles explícitos que sostienen la semántica cuando el CSS apila las filas; en celular cada celda muestra su etiqueta con <code>data-etiqueta</code>, sin desplazamiento horizontal; cada selector tiene etiqueta asociada con <code>for</code> e <code>id</code>; el rol y el estado se leen por texto y no solo por color o borde; el estado no tiene controles, de modo que no se sugiere una operación prohibida.</dd>
+        </div>
+        <div class="ficha-mockup__fila">
+          <dt>Nota de alcance</dt>
+          <dd>El criterio 5 de HU-04 se representa por ausencia: la pantalla no aparece en el menú del Líder. No se incluye la creación de cuentas desde el perfil del Administrador porque sigue pendiente (P-07), ni administración de sesiones o cambios de estado de las cuentas (R-09). No se establece una matriz de permisos (R-10).</dd>
+        </div>
+      </dl>
+    </div>
+  </aside>
+
+  <footer class="pie-sitio">
+    <div class="contenedor">
+      <p>Maqueta de baja fidelidad de la evidencia GA6-220501096 (AA3-EV02). Datos ficticios con fines demostrativos.</p>
+      <p>Sin sesión funcional ni persistencia: los cambios de rol son solo representaciones visuales y no se conservan al recargar.</p>
+    </div>
+  </footer>
+</body>
+</html>
