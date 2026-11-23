@@ -438,7 +438,7 @@ Los catorce RF quedan representados. RF-09 figura en la 4 porque el criterio 6 d
 | Objetivo | Consultar las cuentas y cambiar roles con confirmación |
 | Datos | `cuentas`: correo, rol y estado |
 | Interacciones | Selector de rol por fila; confirmación en línea (D-06); la fila del propio Administrador no lleva selector y muestra «No puede cambiar su propio rol» (D-07) |
-| Estados | Tabla · confirmación · vacío · aviso de que el estado es de solo lectura (R-09) |
+| Estados | Tabla · confirmación pendiente · rol aplicado · vacío · aviso de que el estado es de solo lectura (R-09) |
 | Accesibilidad | Un `label` por selector; confirmación con `role="status"`; el rol actualizado se muestra como texto |
 | Dependencias | Vista 11 (cuentas creadas en la sesión) y vista 3 |
 | Verificación | Cambiar el rol de otra cuenta y comprobar la ausencia de selector en la propia |
@@ -715,3 +715,4 @@ Cubre RF-04, RF-08, RF-09, RF-12 y RF-02 en una sola sesión, sin recargar.
 | 15/11/2026 | Creación del documento en la Etapa 0: mapa de las doce vistas, fichas, semilla en memoria, sesión simulada, decisiones D-01 a D-13 y verificaciones. Sin cambios en `docs/historias.md` ni en `docs/requisitos.md`. |
 | 16/11/2026 | Etapa 2, Bloque 1: se registra D-14 (sesión activa en `#/iniciar-sesion` → `#/inicio` con aviso), se corrige §8.3 y §8.4, se deja constancia de que P-07 sigue pendiente, se documenta PE-12 sobre la conservación de maquetas y se anota la limitación temporal `fichas: []` que se resolverá en el Bloque 4. La guarda provisional de `#/ficha-censal` se identifica como temporal y no como D-11. Se corrige en la ficha 6.3 la referencia al cierre de sesión, que se realiza desde el botón del encabezado (PE-08). |
 | 22/11/2026 | HU-09 / RF-12: el cambio de estado de una solicitud se habilita con confirmación en línea. El selector solo propone el cambio; la escritura ocurre al confirmar y se refleja en la consulta del miembro. Se actualiza la ficha 6.7. |
+| 22/11/2026 | HU-04 / RF-06: el cambio de rol de una cuenta se habilita con confirmación en línea y solo para el Administrador; la fila propia sigue sin selector (D-07). Se actualiza la ficha 6.12. |

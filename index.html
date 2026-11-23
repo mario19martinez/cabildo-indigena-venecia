@@ -673,24 +673,28 @@
             <tbody role="rowgroup" id="cuentas-cuerpo"></tbody>
           </table>
 
-          <p class="aviso">Los selectores no tienen efecto en este bloque: están deshabilitados y no guardan cambios ni actualizan la tabla. El cambio de rol se habilitará en el Bloque 3. El estado de las cuentas es informativo y no se modifica desde esta vista.</p>
+          <p class="aviso">El selector propone un nuevo rol; el cambio se aplica solo al confirmar. El estado de las cuentas es informativo y no se modifica desde esta vista.</p>
           <p>Roles disponibles: Administrador, Líder y Miembro. El Líder no puede asignar ni cambiar roles. La fila del propio Administrador no ofrece selector.</p>
         </section>
 
         <section class="tarjeta" id="cuentas-confirmacion" aria-labelledby="cuentas-titulo-confirmacion" hidden>
-          <h2 class="tarjeta__titulo" id="cuentas-titulo-confirmacion">Confirmación del cambio de rol</h2>
-          <p>¿Confirma cambiar el rol de <strong>marta@cabildo.ejemplo</strong> de «Miembro» a «Líder»?</p>
-          <p class="mensaje-exito" role="status">Rol actualizado.</p>
+          <h2 class="tarjeta__titulo" id="cuentas-titulo-confirmacion" tabindex="-1">Confirmación del cambio de rol</h2>
+          <p id="cuentas-confirmacion-pregunta">¿Confirma cambiar el rol de la cuenta?</p>
+          <p class="mensaje-exito" id="cuentas-confirmacion-exito" role="status" tabindex="-1" hidden>Rol actualizado.</p>
           <dl class="resumen">
             <div class="resumen__fila">
               <dt>Rol anterior</dt>
-              <dd><span class="etiqueta-rol">Miembro</span></dd>
+              <dd id="cuentas-confirmacion-anterior"></dd>
             </div>
             <div class="resumen__fila">
               <dt>Rol actualizado</dt>
-              <dd><span class="etiqueta-rol">Líder</span></dd>
+              <dd id="cuentas-confirmacion-nueva"></dd>
             </div>
           </dl>
+          <div class="acciones" id="cuentas-confirmacion-acciones">
+            <button class="boton-principal" id="cuentas-confirmar" type="button">Confirmar</button>
+            <button class="boton-secundario" id="cuentas-cancelar" type="button">Cancelar</button>
+          </div>
         </section>
 
         <section class="tarjeta" id="cuentas-vacio" aria-labelledby="cuentas-titulo-vacio" hidden>

@@ -8,9 +8,10 @@
    las colecciones desde Datos.crearSemilla().
 
    Las consultas son de solo lectura. Las escrituras sobre los datos
-   son el alta de solicitudes (HU-06) y el cambio de estado de una
-   solicitud (HU-09 / RF-12); las demás operaciones que modifican
-   datos corresponden a bloques posteriores.
+   son el alta de solicitudes (HU-06), el cambio de estado de una
+   solicitud (HU-09 / RF-12) y el cambio de rol de una cuenta
+   (HU-04 / RF-06); las demás operaciones que modifican datos
+   corresponden a bloques posteriores.
    ========================================================= */
 
 window.Estado = (function () {
@@ -19,6 +20,7 @@ window.Estado = (function () {
   var ESTADOS_SOLICITUD = [
     'pendiente', 'en-revision', 'aprobada', 'rechazada', 'completada'
   ];
+  var ROLES = ['administrador', 'lider', 'miembro'];
 
   var API = {
     datos: null,
@@ -168,6 +170,39 @@ window.Estado = (function () {
       solicitud.estado = nuevoEstado;
 
       return { ok: true, solicitud: solicitud, anterior: anterior };
+    },
+
+    /* HU-04 / RF-06: cambio de rol en memoria.
+       Solo Administrador y nunca sobre su propia cuenta (D-07). */
+    cambiarRolCuenta: function (idCuenta, nuevoRol) {
+      var sesion = API.sesion;
+      var cuenta = API.cuentaPorId(idCuenta);
+      var anterior;
+
+      if (!sesion || sesion.rol !== 'administrador') {
+        return { ok: false, motivo: 'sin-permiso' };
+      }
+
+      if (!cuenta) {
+        return { ok: false, motivo: 'no-encontrada' };
+      }
+
+      if (ROLES.indexOf(nuevoRol) === -1) {
+        return { ok: false, motivo: 'rol-invalido' };
+      }
+
+      if (sesion.idCuenta === cuenta.id) {
+        return { ok: false, motivo: 'propia' };
+      }
+
+      if (cuenta.rol === nuevoRol) {
+        return { ok: false, motivo: 'sin-cambios' };
+      }
+
+      anterior = cuenta.rol;
+      cuenta.rol = nuevoRol;
+
+      return { ok: true, cuenta: cuenta, anterior: anterior };
     }
   };
 

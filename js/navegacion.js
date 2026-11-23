@@ -26,6 +26,7 @@
   var RUTA_INICIAL = window.RUTA_INICIAL || (RUTAS[0] ? RUTAS[0].clave : '');
   var claveActiva = null;
   var cambioEstadoPendiente = null;
+  var cambioRolPendiente = null;
 
   function porId(id) {
     return document.getElementById(id);
@@ -187,6 +188,10 @@
 
     if (clave === 'solicitudes') {
       prepararVistaSolicitudes();
+    }
+
+    if (clave === 'cuentas') {
+      prepararVistaCuentas();
     }
 
     if (enfocar) {
@@ -583,6 +588,119 @@
     }
   }
 
+  /* HU-04 / RF-06: cambio de rol con confirmación en línea. */
+  function prepararVistaCuentas() {
+    cambioRolPendiente = null;
+    window.Vistas.limpiarConfirmacionRol();
+  }
+
+  function alCambiarRolCuenta(evento) {
+    var select = evento.target;
+    var cuenta;
+    var rolAnterior;
+
+    if (!select || select.tagName !== 'SELECT') {
+      return;
+    }
+
+    if (select.id.indexOf('cuentas-rol-') !== 0) {
+      return;
+    }
+
+    cuenta = window.Estado.cuentaPorId(select.getAttribute('data-cuenta'));
+
+    if (!cuenta) {
+      return;
+    }
+
+    rolAnterior = cuenta.rol;
+
+    if (select.value === rolAnterior) {
+      cambioRolPendiente = null;
+      window.Vistas.limpiarConfirmacionRol();
+      return;
+    }
+
+    cambioRolPendiente = {
+      idCuenta: cuenta.id,
+      rolAnterior: rolAnterior,
+      rolNuevo: select.value
+    };
+
+    window.Vistas.mostrarConfirmacionRol(
+      cuenta,
+      rolAnterior,
+      select.value,
+      false
+    );
+  }
+
+  function confirmarCambioRol() {
+    var pendiente = cambioRolPendiente;
+    var resultado;
+
+    if (!pendiente) {
+      return;
+    }
+
+    resultado = window.Estado.cambiarRolCuenta(
+      pendiente.idCuenta,
+      pendiente.rolNuevo
+    );
+
+    cambioRolPendiente = null;
+    window.Vistas.actualizar();
+
+    if (!resultado.ok) {
+      window.Vistas.limpiarConfirmacionRol();
+      return;
+    }
+
+    window.Vistas.mostrarConfirmacionRol(
+      resultado.cuenta,
+      resultado.anterior,
+      resultado.cuenta.rol,
+      true
+    );
+  }
+
+  function cancelarCambioRol() {
+    var pendiente = cambioRolPendiente;
+    var select;
+
+    cambioRolPendiente = null;
+    window.Vistas.limpiarConfirmacionRol();
+
+    if (!pendiente) {
+      return;
+    }
+
+    select = porId('cuentas-rol-' + pendiente.idCuenta);
+
+    if (select) {
+      select.value = pendiente.rolAnterior;
+      select.focus();
+    }
+  }
+
+  function enlazarCambioRolCuentas() {
+    var cuerpo = porId('cuentas-cuerpo');
+    var confirmar = porId('cuentas-confirmar');
+    var cancelar = porId('cuentas-cancelar');
+
+    if (cuerpo) {
+      cuerpo.addEventListener('change', alCambiarRolCuenta);
+    }
+
+    if (confirmar) {
+      confirmar.addEventListener('click', confirmarCambioRol);
+    }
+
+    if (cancelar) {
+      cancelar.addEventListener('click', cancelarCambioRol);
+    }
+  }
+
   function enlazarCierre() {
     var boton = porId('cerrar-sesion');
 
@@ -628,6 +746,7 @@
     enlazarCierre();
     enlazarRegistroSolicitud();
     enlazarCambioEstadoSolicitudes();
+    enlazarCambioRolCuentas();
     prepararSaltoContenido();
     evitarEnvioDeFormularios();
     prepararCargaInicial();

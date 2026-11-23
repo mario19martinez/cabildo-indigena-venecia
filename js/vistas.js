@@ -219,15 +219,25 @@ window.Vistas = (function () {
     var valores = ROLES.map(function (rol) {
       return { valor: rol, texto: etiquetaRol(rol) };
     });
-
-    return crearSelect(
+    var campo = crearSelect(
       'cuentas-rol-' + cuenta.id,
       'rol',
       valores,
       cuenta.rol,
-      'bloque-3',
-      true
+      null,
+      false
     );
+    var select = campo.querySelector('select');
+
+    if (select) {
+      select.setAttribute('data-cuenta', cuenta.id);
+      select.setAttribute(
+        'aria-label',
+        'Nuevo rol de la cuenta ' + cuenta.correo
+      );
+    }
+
+    return campo;
   }
 
   function renderNoticias() {
@@ -427,6 +437,67 @@ window.Vistas = (function () {
     var panel = porId('solicitudes-confirmacion');
     var exito = porId('solicitudes-confirmacion-exito');
     var acciones = porId('solicitudes-confirmacion-acciones');
+
+    if (!panel) {
+      return;
+    }
+
+    if (exito) {
+      exito.hidden = true;
+      exito.textContent = '';
+    }
+
+    if (acciones) {
+      acciones.hidden = false;
+    }
+
+    panel.hidden = true;
+  }
+
+  /* HU-04 / RF-06: confirmación en línea del cambio de rol. */
+  function mostrarConfirmacionRol(cuenta, anterior, nuevo, aplicado) {
+    var panel = porId('cuentas-confirmacion');
+    var titulo = porId('cuentas-titulo-confirmacion');
+    var pregunta = porId('cuentas-confirmacion-pregunta');
+    var exito = porId('cuentas-confirmacion-exito');
+    var nodoAnterior = porId('cuentas-confirmacion-anterior');
+    var nodoNuevo = porId('cuentas-confirmacion-nueva');
+    var acciones = porId('cuentas-confirmacion-acciones');
+
+    if (!panel || !pregunta || !nodoAnterior || !nodoNuevo) {
+      return;
+    }
+
+    pregunta.textContent = '¿Confirma cambiar el rol de ' + cuenta.correo +
+      ' de «' + etiquetaRol(anterior) + '» a «' + etiquetaRol(nuevo) + '»?';
+
+    limpiar(nodoAnterior);
+    limpiar(nodoNuevo);
+    nodoAnterior.appendChild(crearEtiquetaRol(anterior));
+    nodoNuevo.appendChild(crearEtiquetaRol(nuevo));
+
+    if (exito) {
+      exito.hidden = aplicado !== true;
+      exito.textContent = aplicado === true ? 'Rol actualizado.' : '';
+    }
+
+    if (acciones) {
+      acciones.hidden = aplicado === true;
+    }
+
+    panel.hidden = false;
+
+    if (aplicado === true && exito) {
+      exito.focus();
+    } else if (titulo) {
+      titulo.focus();
+    }
+  }
+
+  function limpiarConfirmacionRol() {
+    var panel = porId('cuentas-confirmacion');
+    var exito = porId('cuentas-confirmacion-exito');
+    var acciones = porId('cuentas-confirmacion-acciones');
 
     if (!panel) {
       return;
@@ -706,6 +777,8 @@ window.Vistas = (function () {
     mostrarConfirmacionSolicitud: mostrarConfirmacionSolicitud,
     limpiarConfirmacionSolicitud: limpiarConfirmacionSolicitud,
     mostrarConfirmacionEstado: mostrarConfirmacionEstado,
-    limpiarConfirmacionEstado: limpiarConfirmacionEstado
+    limpiarConfirmacionEstado: limpiarConfirmacionEstado,
+    mostrarConfirmacionRol: mostrarConfirmacionRol,
+    limpiarConfirmacionRol: limpiarConfirmacionRol
   };
 })();
