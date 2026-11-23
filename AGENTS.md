@@ -1,6 +1,6 @@
 # Plataforma de Gestión — Cabildo Indígena de Venecia
 
-Prototipo web de la entrega integradora **GA6-220501096 (AA3 + AA4)** para el Cabildo Indígena de Venecia. El contexto general del proyecto abarca comuneros, familias, fichas censales, solicitudes, certificados, actas históricas/etiquetas y noticias; esa enumeración **no es una lista de módulos obligatorios**. Las funcionalidades y pantallas de esta evidencia se determinarán **exclusivamente** a partir de las HU y RF aprobados. Usuarios y roles del sistema: Administrador, Líder y Miembro. La interfaz final es una **aplicación de una sola página** con JavaScript puro y vistas diferenciadas. El código se evalúa junto con el PDF y la bitácora; este archivo también es evidencia (Sección 1).
+Prototipo web de las entregas integradoras **GA6-220501096 (AA3 + AA4)** y **GA7-220501096-AA1 (EV02, EV04 y EV05)** para el Cabildo Indígena de Venecia. El contexto general del proyecto abarca comuneros, familias, fichas censales, solicitudes, certificados, actas históricas/etiquetas y noticias; esa enumeración **no es una lista de módulos obligatorios**. Las funcionalidades y pantallas de esta evidencia se determinarán **exclusivamente** a partir de las HU y RF aprobados. Usuarios y roles del sistema: Administrador, Líder y Miembro. La interfaz final es una **aplicación de una sola página** con JavaScript puro y vistas diferenciadas. El código se evalúa junto con el PDF y la bitácora; este archivo también es evidencia (Sección 1).
 
 ## Reglas obligatorias
 
@@ -71,6 +71,15 @@ No hay build, lint, typecheck ni tests; no agregues un runner.
 - Confirma que exista un único `styles.css` y que la interfaz final no use `<style>` ni `style=""`.
 - Confirma que cada vista mueva el foco a su `h1` al activarse, actualice `document.title` y marque una sola opción con `aria-current="page"`.
 - Una vista no está lista hasta haberla abierto y recorrido en el navegador.
+
+## Control de versiones
+
+- Repositorio público: <https://github.com/mario19martinez/cabildo-indigena-venecia>.
+- Rama principal: `main`. El trabajo se realiza en ramas `tipo/descripcion-corta` (`docs/…`, `feat/…`, `fix/…`, `chore/…`) y se integra mediante pull request.
+- Commits en **Conventional Commits**, en español e imperativo: `tipo(alcance): descripción`, con asunto de 72 caracteres como máximo. Tipos usados: `feat`, `fix`, `docs`, `chore`, `refactor`.
+- Versiones con etiquetas semánticas `vX.Y.Z`; la primera versión completa es `v1.0.0`.
+- `Referencias/` no se versiona: permanece solo en el entorno local.
+- Antes de cada commit, `git status` debe estar limpio de cambios ajenos al alcance de ese commit.
 
 ## Material de referencia
 
